@@ -12,9 +12,9 @@ export function Footer({ onSelectDestinationName }: FooterProps) {
   };
 
   return (
-    <footer className="editorial-grain relative border-t border-[#C6A66B]/20 bg-[#171B19] pt-16 pb-10 text-[#F7F4EC] sm:pt-24 sm:pb-12">
-      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
-        <div className="grid grid-cols-1 gap-10 pb-12 sm:gap-12 sm:pb-16 md:grid-cols-2 lg:grid-cols-12">
+    <footer className="editorial-grain relative border-t border-[#C6A66B]/20 bg-[#171B19] pt-14 pb-24 text-[#F7F4EC] sm:pt-24 sm:pb-12">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+        <div className="grid grid-cols-1 gap-10 pb-10 sm:gap-12 sm:pb-16 md:grid-cols-2 lg:grid-cols-12">
           {/* Brand Placeholder */}
           <div className="lg:col-span-4">
             <div className="flex items-center gap-3.5">
@@ -102,13 +102,13 @@ export function Footer({ onSelectDestinationName }: FooterProps) {
             <h4 className="text-[10px] font-semibold tracking-[0.28em] text-[#C6A66B] uppercase">
               Popular Destinations
             </h4>
-            <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 text-sm font-light text-[#F7F4EC]/75">
+            <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-1 text-sm font-light text-[#F7F4EC]/75">
               {DESTINATIONS.map((dest) => (
                 <li key={dest.id}>
                   <button
                     type="button"
                     onClick={() => onSelectDestinationName(dest.name)}
-                    className="cursor-pointer text-left transition hover:text-[#C6A66B]"
+                    className="inline-flex min-h-[40px] cursor-pointer items-center text-left transition hover:text-[#C6A66B]"
                   >
                     {dest.name}
                   </button>

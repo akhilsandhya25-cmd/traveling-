@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MotionConfig } from 'framer-motion';
 import { About } from './components/About';
 import { DestinationModal } from './components/DestinationModal';
@@ -6,6 +6,7 @@ import { Destinations } from './components/Destinations';
 import { EnquirySection } from './components/EnquirySection';
 import { Experiences } from './components/Experiences';
 import { FeaturedJourneys } from './components/FeaturedJourneys';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { Footer } from './components/Footer';
 import { Gallery } from './components/Gallery';
 import { Hero } from './components/Hero';
@@ -24,7 +25,18 @@ export default function App() {
   const [activeJourney, setActiveJourney] = useState<FeaturedJourney | null>(
     null
   );
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [enquiryDestination, setEnquiryDestination] = useState<string>('');
+
+  const anyOverlayOpen =
+    Boolean(activeDestination) || Boolean(activeJourney) || mobileMenuOpen;
+
+  useEffect(() => {
+    document.body.style.overflow = anyOverlayOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [anyOverlayOpen]);
 
   const jumpToEnquiry = (destinationName: string) => {
     setActiveDestination(null);
@@ -50,7 +62,7 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <div className="min-h-screen overflow-x-clip bg-[#F7F4EC] text-[#171B19]">
         <PageIntro />
-        <Navbar />
+        <Navbar onMobileMenuChange={setMobileMenuOpen} />
 
         <main>
           <Hero />
@@ -60,13 +72,19 @@ export default function App() {
               jumpToEnquiry('Custom Multi-Region Journey')
             }
           />
-          <FeaturedJourneys onSelectJourney={setActiveJourney} />
+          <FeaturedJourneys
+            onSelectJourney={setActiveJourney}
+            onEnquireJourney={(journey) => jumpToEnquiry(journey.destinationName)}
+          />
           <About />
           <Gallery />
           <EnquirySection preselectedDestination={enquiryDestination} />
         </main>
 
         <Footer onSelectDestinationName={handleFooterDestinationClick} />
+
+        {/* Mobile-Friendly Floating WhatsApp Concierge */}
+        <FloatingWhatsApp hidden={anyOverlayOpen} />
 
         {/* Interactive Modals */}
         <DestinationModal

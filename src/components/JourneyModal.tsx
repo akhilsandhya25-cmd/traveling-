@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, CalendarDays, Info, MapPin, X } from 'lucide-react';
 import type { FeaturedJourney } from '../data/travelData';
+import { getResponsiveImageProps } from '../utils/responsiveMedia';
 
 interface JourneyModalProps {
   journey: FeaturedJourney | null;
@@ -32,7 +33,7 @@ export function JourneyModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
-          className="fixed inset-0 z-[70] flex items-center justify-center bg-[#102820]/80 p-4 backdrop-blur-md sm:p-6"
+          className="fixed inset-0 z-[70] flex items-end justify-center bg-[#102820]/80 p-0 backdrop-blur-md sm:items-center sm:p-6"
           onClick={onClose}
         >
           <motion.div
@@ -41,21 +42,24 @@ export function JourneyModal({
             exit={{ opacity: 0, y: 18, scale: 0.97 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-2xl bg-[#FCFBF7] text-[#171B19] shadow-2xl"
+            className="relative max-h-[92svh] w-full max-w-4xl overflow-y-auto rounded-t-3xl bg-[#FCFBF7] pb-[env(safe-area-inset-bottom)] text-[#171B19] shadow-2xl sm:max-h-[90vh] sm:rounded-2xl sm:pb-0"
           >
             <button
               type="button"
               onClick={onClose}
               aria-label="Close journey itinerary"
-              className="absolute top-5 right-5 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#102820]/80 text-white backdrop-blur-md transition hover:bg-[#C6A66B] hover:text-[#102820]"
+              className="absolute top-4 right-4 z-20 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-[#102820]/80 text-white backdrop-blur-md transition hover:bg-[#C6A66B] hover:text-[#102820] sm:top-5 sm:right-5"
             >
               <X className="h-5 w-5" />
             </button>
 
             {/* Hero Cover */}
-            <div className="relative h-64 w-full overflow-hidden sm:h-80">
+            <div className="relative h-60 w-full overflow-hidden sm:h-80">
               <img
-                src={journey.image}
+                {...getResponsiveImageProps(
+                  journey.image,
+                  '(max-width: 768px) 100vw, 896px'
+                )}
                 alt={journey.alt}
                 decoding="async"
                 referrerPolicy="no-referrer"

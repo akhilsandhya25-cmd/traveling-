@@ -10,18 +10,29 @@
   --color-charcoal: #171B19;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --breakpoint-xs: 27rem;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
   html,
   body {
     font-family: var(--font-sans);
     background-color: #F7F4EC;
     color: #171B19;
-    scroll-behavior: smooth;
     overflow-x: clip;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   h1, h2, h3, h4, .font-editorial {

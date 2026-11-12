@@ -1,17 +1,23 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 
 /**
  * Brief theatrical opening veil that glides upward to unveil the Hero.
- * Clears cleanly from the DOM once complete.
+ * Clears cleanly from the DOM once complete and respects reduced motion.
  */
 export function PageIntro() {
-  const [visible, setVisible] = useState(true);
+  const prefersReduced = useReducedMotion();
+  const [visible, setVisible] = useState(!prefersReduced);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setVisible(false), 950);
+    if (prefersReduced) {
+      setVisible(false);
+      return;
+    }
+    const isNarrow = window.innerWidth < 768;
+    const timer = window.setTimeout(() => setVisible(false), isNarrow ? 550 : 900);
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [prefersReduced]);
 
   return (
     <AnimatePresence>

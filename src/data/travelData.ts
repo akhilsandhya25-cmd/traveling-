@@ -83,7 +83,7 @@ export const DESTINATIONS: Destination[] = [
     image:
       'https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Dal_Lake_Hazratbal_Srinagar.jpg/1920px-Dal_Lake_Hazratbal_Srinagar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
     alt: 'Serene waters of Dal Lake in Srinagar with Himalayan mountains behind, Kashmir',
-    gridClass: 'md:col-span-7 md:row-span-2 min-h-[340px] sm:min-h-[420px] md:min-h-[560px]',
+    gridClass: 'md:col-span-7 md:row-span-2 md:min-h-[560px]',
   },
   {
     id: 'ladakh',
@@ -106,7 +106,7 @@ export const DESTINATIONS: Destination[] = [
     image:
       'https://images.unsplash.com/photo-1739863077064-666dc0b131d5?auto=format&fit=crop&w=1600&q=85',
     alt: 'Turquoise Himalayan lake surrounded by dramatic Ladakh mountain peaks',
-    gridClass: 'md:col-span-5 min-h-[300px] md:min-h-[270px]',
+    gridClass: 'md:col-span-5 md:min-h-[270px]',
   },
   {
     id: 'kerala',
@@ -129,7 +129,7 @@ export const DESTINATIONS: Destination[] = [
     image:
       'https://images.unsplash.com/photo-1785932413547-cdd1159e1f1e?auto=format&fit=crop&w=1600&q=85',
     alt: 'Traditional Kerala houseboat gliding through palm-lined Alleppey backwaters',
-    gridClass: 'md:col-span-5 min-h-[300px] md:min-h-[270px]',
+    gridClass: 'md:col-span-5 md:min-h-[270px]',
   },
   {
     id: 'rajasthan',
@@ -152,7 +152,7 @@ export const DESTINATIONS: Destination[] = [
     image:
       'https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/20191207_City_Palace%2C_Mohan_Temple_and_Lake_Pichola%2C_Udaipur%2C_1523_7262.jpg/1920px-20191207_City_Palace%2C_Mohan_Temple_and_Lake_Pichola%2C_Udaipur%2C_1523_7262.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
     alt: 'City Palace and Lake Pichola glowing at golden hour in Udaipur, Rajasthan',
-    gridClass: 'md:col-span-5 min-h-[320px] sm:min-h-[380px] md:min-h-[450px]',
+    gridClass: 'md:col-span-5 md:min-h-[450px]',
   },
   {
     id: 'goa',
@@ -175,7 +175,7 @@ export const DESTINATIONS: Destination[] = [
     image:
       'https://images.unsplash.com/photo-1695411560235-595738c0dbda?auto=format&fit=crop&w=1600&q=85',
     alt: 'Palm-lined golden beach and gentle Arabian Sea waves in Goa, India',
-    gridClass: 'md:col-span-7 min-h-[320px] sm:min-h-[380px] md:min-h-[450px]',
+    gridClass: 'md:col-span-7 md:min-h-[450px]',
   },
   {
     id: 'himachal',
@@ -198,7 +198,7 @@ export const DESTINATIONS: Destination[] = [
     image:
       'https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1600&q=85',
     alt: 'Dramatic snow-dusted mountains and valley terrain in Himachal Pradesh, India',
-    gridClass: 'md:col-span-4 min-h-[310px] sm:min-h-[340px] md:min-h-[390px]',
+    gridClass: 'md:col-span-4 md:min-h-[390px]',
   },
   {
     id: 'meghalaya',
@@ -221,7 +221,7 @@ export const DESTINATIONS: Destination[] = [
     image:
       'https://images.unsplash.com/photo-1685271567656-84a60da957d9?auto=format&fit=crop&w=1600&q=85',
     alt: 'Cascading waterfall plunging through lush emerald cliffs in Meghalaya, India',
-    gridClass: 'md:col-span-4 min-h-[310px] sm:min-h-[340px] md:min-h-[390px]',
+    gridClass: 'md:col-span-4 md:min-h-[390px]',
   },
   {
     id: 'varanasi',
@@ -244,7 +244,7 @@ export const DESTINATIONS: Destination[] = [
     image:
       'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Varanasi_2010_Ahilyabai_Ghat.jpg/1920px-Varanasi_2010_Ahilyabai_Ghat.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
     alt: 'Historic stone ghats and wooden boats along the Ganges River in Varanasi, India',
-    gridClass: 'md:col-span-4 min-h-[310px] sm:min-h-[340px] md:min-h-[390px]',
+    gridClass: 'md:col-span-4 md:min-h-[390px]',
   },
 ];
 
@@ -608,7 +608,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     image:
       'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Aru_Valley_Kashmir_in_winter_view.jpg/1920px-Aru_Valley_Kashmir_in_winter_view.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
     alt: 'Snow-dusted pine valley and mountain peaks in Aru, Kashmir',
-    spanClass: 'sm:col-span-2 md:col-span-2 md:row-span-2 min-h-[280px] sm:min-h-[340px] md:min-h-[500px]',
+    spanClass: 'xs:col-span-2 aspect-[16/10] md:aspect-auto md:col-span-2 md:row-span-2 md:min-h-[500px]',
   },
   {
     id: 'g-kerala',
@@ -618,7 +618,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     image:
       'https://images.unsplash.com/photo-1769160944228-d837cc35f849?auto=format&fit=crop&w=1600&q=85',
     alt: 'Traditional houseboat gliding across serene Kerala backwaters',
-    spanClass: 'md:col-span-1 min-h-[240px]',
+    spanClass: 'aspect-[4/3] md:aspect-auto md:col-span-1 md:min-h-[240px]',
   },
   {
     id: 'g-rajasthan',
@@ -628,7 +628,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     image:
       'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/20191207_Lake_Pichola%2C_City_Palace%2C_Udaipur%2C_1516_7254.jpg/1920px-20191207_Lake_Pichola%2C_City_Palace%2C_Udaipur%2C_1516_7254.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
     alt: 'Udaipur City Palace rising above Lake Pichola, Rajasthan',
-    spanClass: 'md:col-span-1 min-h-[240px]',
+    spanClass: 'aspect-[4/3] md:aspect-auto md:col-span-1 md:min-h-[240px]',
   },
   {
     id: 'g-himalaya-road',
@@ -638,7 +638,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     image:
       'https://thumb.wikimedia.org/wikipedia/commons/thumb/4/44/Leh-Manali_Highway%2C_Himachal_Pradesh%2C_India.jpg/1920px-Leh-Manali_Highway%2C_Himachal_Pradesh%2C_India.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
     alt: 'Winding Leh-Manali Himalayan mountain highway cutting across peaks',
-    spanClass: 'sm:col-span-2 md:col-span-2 min-h-[240px] sm:min-h-[260px]',
+    spanClass: 'xs:col-span-2 aspect-[16/10] md:aspect-auto md:col-span-2 md:min-h-[260px]',
   },
   {
     id: 'g-meghalaya',
@@ -648,7 +648,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     image:
       'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/NohKaLikai_Falls_V2_Wiki.jpg/1920px-NohKaLikai_Falls_V2_Wiki.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
     alt: 'Nohkalikai Falls plunging into a misty green gorge in Meghalaya',
-    spanClass: 'md:col-span-1 min-h-[280px]',
+    spanClass: 'aspect-[4/3] md:aspect-auto md:col-span-1 md:min-h-[280px]',
   },
   {
     id: 'g-goa',
@@ -658,7 +658,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     image:
       'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Palolem_Beach_sunset_-_Goa_%2846052828755%29.jpg/1920px-Palolem_Beach_sunset_-_Goa_%2846052828755%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
     alt: 'Golden sunset reflection over Palolem Beach in Goa',
-    spanClass: 'md:col-span-1 min-h-[280px]',
+    spanClass: 'aspect-[4/3] md:aspect-auto md:col-span-1 md:min-h-[280px]',
   },
   {
     id: 'g-varanasi',
@@ -668,6 +668,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     image:
       'https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Varanasi_2010_ghats3.jpg/1920px-Varanasi_2010_ghats3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
     alt: 'Stone ghats and boats bathed in warm morning light in Varanasi',
-    spanClass: 'md:col-span-1 min-h-[280px]',
+    spanClass: 'aspect-[4/3] md:aspect-auto md:col-span-1 md:min-h-[280px]',
   },
 ];
