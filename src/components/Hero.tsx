@@ -69,6 +69,16 @@ export function Hero() {
       {/* Dark Cinematic Multi-layer Scrim (stronger vertical contrast on portrait mobile) */}
       <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[#102820]/82 via-[#171B19]/48 to-[#102820]/94 md:from-[#102820]/75 md:via-[#171B19]/42 md:to-[#102820]/92" />
       <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-[#102820]/65 via-transparent to-[#102820]/55" />
+      <div className="atelier-glow pointer-events-none absolute top-1/3 left-1/2 z-10 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#C6A66B]/10 blur-[140px]" />
+
+      {/* Subtle Architectural Inset Frame on Larger Viewports */}
+      <motion.div
+        aria-hidden="true"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.4, delay: 0.9, ease: EDITORIAL_EASE }}
+        className="pointer-events-none absolute inset-6 z-10 hidden rounded-2xl border border-[#C6A66B]/18 md:block lg:inset-8"
+      />
 
       {/* Hero Editorial Content */}
       <motion.div
@@ -177,7 +187,7 @@ export function Hero() {
             whileHover={isMobile ? undefined : { y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => scrollToSection('#destinations')}
-            className="group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-[#F7F4EC] px-7 py-3.5 text-[11px] font-semibold tracking-[0.2em] text-[#102820] uppercase shadow-[0_20px_45px_-12px_rgba(0,0,0,0.45)] transition-colors duration-300 hover:bg-[#C6A66B] hover:text-[#102820] sm:w-auto sm:px-8 sm:py-4"
+            className="luxury-sheen group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-[#F7F4EC] px-7 py-3.5 text-[11px] font-semibold tracking-[0.2em] text-[#102820] uppercase shadow-[0_20px_45px_-12px_rgba(0,0,0,0.45)] transition-colors duration-300 hover:bg-[#C6A66B] hover:text-[#102820] sm:w-auto sm:px-8 sm:py-4"
           >
             <span>Explore India</span>
             <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />

@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import { WHATSAPP_CONFIG, buildWhatsAppUrl } from '../config/concierge';
 import { DESTINATIONS } from '../data/travelData';
-import { AnimatedRule, MaskedLine, Reveal } from './Reveal';
+import { AnimatedRule, EDITORIAL_EASE, MaskedLine, Reveal } from './Reveal';
 
 const MONTHS = [
   'January',
@@ -163,7 +163,8 @@ export function EnquirySection({
       className="editorial-grain relative overflow-hidden bg-[#102820] py-16 text-[#F7F4EC] sm:py-24 lg:py-36"
     >
       {/* Subtle Ambient Light */}
-      <div className="pointer-events-none absolute -bottom-32 -left-24 h-96 w-96 rounded-full bg-[#C6A66B]/12 blur-[140px]" />
+      <div className="atelier-glow pointer-events-none absolute -bottom-32 -left-24 h-96 w-96 rounded-full bg-[#C6A66B]/16 blur-[140px]" />
+      <div className="atelier-glow pointer-events-none absolute -top-24 right-0 h-80 w-80 rounded-full bg-[#C6A66B]/10 blur-[150px]" />
 
       <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:gap-14 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
         {/* Left Editorial Column */}
@@ -192,7 +193,7 @@ export function EnquirySection({
 
           {/* Configurable WhatsApp Concierge Placeholder */}
           <Reveal delay={0.2} className="mt-8 sm:mt-10">
-            <div className="rounded-2xl border border-[#C6A66B]/30 bg-[#18392e]/55 p-5 backdrop-blur-md sm:p-7">
+            <div className="rounded-2xl border border-[#C6A66B]/35 bg-[#18392e]/60 p-5 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.6)] ring-1 ring-inset ring-white/5 backdrop-blur-md sm:p-7">
               <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3">
                 <span className="text-[10px] font-semibold tracking-[0.22em] text-[#C6A66B] uppercase sm:tracking-[0.26em]">
                   Direct Concierge Integration
@@ -215,7 +216,7 @@ export function EnquirySection({
                 href={buildWhatsAppUrl(whatsappMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 inline-flex min-h-[48px] w-full items-center justify-center gap-2.5 rounded-full border border-[#C6A66B] bg-[#C6A66B] px-6 py-3.5 text-[11px] font-semibold tracking-[0.18em] text-[#102820] uppercase transition duration-300 active:scale-[0.98] hover:bg-[#F7F4EC] sm:mt-6 sm:tracking-[0.2em]"
+                className="luxury-sheen mt-5 inline-flex min-h-[48px] w-full items-center justify-center gap-2.5 rounded-full border border-[#C6A66B] bg-[#C6A66B] px-6 py-3.5 text-[11px] font-semibold tracking-[0.18em] text-[#102820] uppercase transition duration-300 active:scale-[0.98] hover:bg-[#F7F4EC] sm:mt-6 sm:tracking-[0.2em]"
               >
                 <MessageCircle className="h-4 w-4" />
                 <span>WhatsApp Concierge (Placeholder)</span>
@@ -227,7 +228,16 @@ export function EnquirySection({
         {/* Right Bespoke Concierge Form Card */}
         <div className="lg:col-span-7">
           <Reveal delay={0.1}>
-            <div className="rounded-2xl border border-[#C6A66B]/25 bg-[#FCFBF7] p-5 text-[#171B19] shadow-[0_35px_90px_-28px_rgba(0,0,0,0.65)] sm:p-9 lg:p-12">
+            <div className="relative overflow-hidden rounded-2xl border border-[#C6A66B]/35 bg-gradient-to-br from-[#FCFBF7] via-[#FAF6EB] to-[#F3ECDC] p-5 text-[#171B19] shadow-[0_40px_100px_-28px_rgba(0,0,0,0.72)] ring-1 ring-inset ring-[#C6A66B]/20 sm:p-9 lg:p-12">
+              {/* Subtle Animated Corner Gold Accents */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute top-3 left-3 h-5 w-5 border-t border-l border-[#C6A66B]/45"
+              />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute right-3 bottom-3 h-5 w-5 border-r border-b border-[#C6A66B]/45"
+              />
               <AnimatePresence mode="wait">
                 {submittedSnapshot ? (
                   <motion.div
@@ -310,20 +320,21 @@ export function EnquirySection({
                 ) : (
                   <motion.form
                     key="enquiry-form"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.45, ease: EDITORIAL_EASE }}
                     onSubmit={handleSubmit}
                     noValidate
                     className="space-y-6 sm:space-y-7"
                   >
-                    <div className="border-b border-[#102820]/12 pb-4 sm:pb-5">
-                      <h3 className="font-editorial text-[clamp(1.75rem,5vw,2.25rem)] text-[#102820]">
-                        Design Your Journey
-                      </h3>
-                      <p className="mt-1 text-xs leading-relaxed text-[#171B19]/65">
-                        Interactive demonstration form &bull; Validates inputs
-                        locally without sending data
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#102820]/12 pb-4">
+                      <div className="flex items-center gap-2.5 text-[10px] font-semibold tracking-[0.24em] text-[#9A7B42] uppercase">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#C6A66B]" />
+                        <span>Private Concierge Atelier</span>
+                      </div>
+                      <p className="text-[11px] leading-relaxed text-[#171B19]/60">
+                        Interactive demo &bull; Validates locally
                       </p>
                     </div>
 
@@ -580,13 +591,15 @@ export function EnquirySection({
                     </div>
 
                     <div className="pt-2">
-                      <button
+                      <motion.button
                         type="submit"
-                        className="inline-flex min-h-[52px] w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-[#102820] px-8 py-4 text-xs font-semibold tracking-[0.2em] text-[#F7F4EC] uppercase shadow-lg transition-all duration-300 active:scale-[0.99] hover:bg-[#C6A66B] hover:text-[#102820]"
+                        whileHover={{ y: -1 }}
+                        whileTap={{ scale: 0.99 }}
+                        className="luxury-sheen inline-flex min-h-[52px] w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-[#102820] px-8 py-4 text-xs font-semibold tracking-[0.2em] text-[#F7F4EC] uppercase shadow-[0_18px_40px_-14px_rgba(16,40,32,0.55)] transition-colors duration-300 hover:bg-[#C6A66B] hover:text-[#102820]"
                       >
                         <Send className="h-4 w-4" />
                         <span>Preview Trip Enquiry (Demo)</span>
-                      </button>
+                      </motion.button>
                     </div>
                   </motion.form>
                 )}

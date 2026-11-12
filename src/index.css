@@ -66,6 +66,61 @@
   filter: contrast(1.03) saturate(0.95);
 }
 
+/* Luxury metallic sheen sweep for primary CTAs */
+.luxury-sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.luxury-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(220, 194, 142, 0.28) 48%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(220, 194, 142, 0.28) 52%,
+    transparent 80%
+  );
+  transform: translateX(-135%) skewX(-12deg);
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.luxury-sheen:hover::after,
+.luxury-sheen:focus-visible::after {
+  transform: translateX(135%) skewX(-12deg);
+}
+
+/* Gentle bespoke ambient gold shimmer */
+@keyframes atelierPulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.06);
+  }
+}
+
+.atelier-glow {
+  animation: atelierPulse 9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .luxury-sheen::after {
+    display: none;
+  }
+  .atelier-glow {
+    animation: none;
+  }
+}
+
 /* Custom subtle scrollbars for editorial feel */
 ::-webkit-scrollbar {
   width: 7px;

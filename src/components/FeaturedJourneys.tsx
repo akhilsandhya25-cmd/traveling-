@@ -149,7 +149,7 @@ export function FeaturedJourneys({
                         type="button"
                         whileTap={{ scale: 0.98 }}
                         onClick={() => onSelectJourney(journey)}
-                        className="inline-flex min-h-[46px] w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#102820] px-5 py-3 text-[11px] font-semibold tracking-[0.16em] text-[#F7F4EC] uppercase transition-colors duration-300 hover:bg-[#C6A66B] hover:text-[#102820]"
+                        className="luxury-sheen inline-flex min-h-[46px] w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#102820] px-5 py-3 text-[11px] font-semibold tracking-[0.16em] text-[#F7F4EC] uppercase shadow-[0_14px_30px_-14px_rgba(16,40,32,0.5)] transition-colors duration-300 hover:bg-[#C6A66B] hover:text-[#102820]"
                       >
                         <span>View Details</span>
                         <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />

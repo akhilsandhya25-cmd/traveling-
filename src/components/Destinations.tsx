@@ -123,7 +123,7 @@ export function Destinations({ onSelectDestination }: DestinationsProps) {
                     ease: EDITORIAL_EASE,
                   }}
                   onClick={() => onSelectDestination(dest)}
-                  className={`group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl bg-[#102820] shadow-[0_24px_60px_-28px_rgba(16,40,32,0.45)] md:justify-end ${desktopSpanClass}`}
+                  className={`group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl bg-[#102820] shadow-[0_24px_60px_-28px_rgba(16,40,32,0.45)] ring-1 ring-inset ring-white/10 transition-shadow duration-500 hover:shadow-[0_32px_80px_-22px_rgba(16,40,32,0.65)] hover:ring-[#C6A66B]/45 md:justify-end ${desktopSpanClass}`}
                 >
                   {/* Smartphone / Tablet (< md): Consistent 4:3 Image Frame | Desktop (md+): Full-Bleed Fill */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden md:static md:aspect-auto">

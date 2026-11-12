@@ -123,7 +123,7 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
                 e.preventDefault();
                 handleLinkClick('#enquiry');
               }}
-              className="hidden min-h-[40px] items-center justify-center rounded-full border border-[#C6A66B]/65 px-5 py-2 text-[10px] font-medium tracking-[0.18em] text-[#F7F4EC] uppercase transition-all duration-300 hover:bg-[#C6A66B] hover:text-[#102820] xs:inline-flex sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[0.2em]"
+              className="luxury-sheen hidden min-h-[40px] items-center justify-center rounded-full border border-[#C6A66B]/65 px-5 py-2 text-[10px] font-medium tracking-[0.18em] text-[#F7F4EC] uppercase transition-all duration-300 hover:bg-[#C6A66B] hover:text-[#102820] xs:inline-flex sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[0.2em]"
             >
               Plan Your Trip
             </a>
