@@ -8,6 +8,7 @@ import {
 import { ArrowDownRight, Compass } from 'lucide-react';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { getResponsiveImageProps } from '../utils/responsiveMedia';
+import { LuxuryExpeditionSUV } from './LuxuryExpeditionSUV';
 import { EDITORIAL_EASE } from './Reveal';
 
 const HERO_IMAGE =
@@ -80,6 +81,35 @@ export function Hero() {
         className="pointer-events-none absolute inset-6 z-10 hidden rounded-2xl border border-[#C6A66B]/18 md:block lg:inset-8"
       />
 
+      {/* Atmospheric Drifting Cloud Layer */}
+      {!prefersReduced && (
+        <motion.div
+          aria-hidden="true"
+          animate={{ x: ['-6%', '6%', '-6%'] }}
+          transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+          className="pointer-events-none absolute top-16 -left-1/4 z-10 h-56 w-[150%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(247,244,236,0.12)_0%,transparent_65%)] blur-2xl"
+        />
+      )}
+
+      {/* Trailhead Scenic Road Entry + Expedition SUV Poised at KM 000 */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 flex flex-col items-center justify-end overflow-hidden"
+      >
+        <div className="relative flex h-28 w-20 items-start justify-center sm:h-32 sm:w-24">
+          <div className="h-full w-10 border-x border-[#C6A66B]/30 bg-[#1A221F]/90 shadow-inner sm:w-12" />
+          <div className="absolute inset-y-0 w-px border-l-2 border-dashed border-[#F7F4EC]/55" />
+          <motion.div
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: isMobile ? 0.5 : 1.0, ease: EDITORIAL_EASE }}
+            className="absolute -top-6 sm:-top-7"
+          >
+            <LuxuryExpeditionSUV className="h-auto w-[44px] drop-shadow-[0_10px_18px_rgba(0,0,0,0.6)] sm:w-[54px]" />
+          </motion.div>
+        </div>
+      </div>
+
       {/* Hero Editorial Content */}
       <motion.div
         style={
@@ -126,7 +156,7 @@ export function Hero() {
         </motion.div>
 
         {/* Fluid Responsive Masked Kinetic Headline */}
-        <h1 className="font-editorial max-w-5xl text-[clamp(2.15rem,8.4vw,5.75rem)] font-normal leading-[1.06] tracking-[-0.02em] text-white sm:leading-[1.03]">
+        <h1 className="font-editorial max-w-5xl text-[clamp(2.2rem,8.5vw,5.75rem)] font-normal leading-[1.06] tracking-[-0.02em] text-white sm:leading-[1.03]">
           <span className="block overflow-hidden">
             <motion.span
               initial={{ y: '108%', opacity: 0 }}
@@ -138,7 +168,7 @@ export function Hero() {
               }}
               className="block will-change-transform"
             >
-              India is not just a destination.
+              India Awaits.
             </motion.span>
           </span>
           <span className="block overflow-hidden pt-1">
@@ -152,7 +182,7 @@ export function Hero() {
               }}
               className="block italic text-[#DCC28E] will-change-transform"
             >
-              It&apos;s a feeling.
+              Let&apos;s Drive.
             </motion.span>
           </span>
         </h1>
@@ -167,8 +197,7 @@ export function Hero() {
           }}
           className="mt-5 max-w-xl text-[clamp(0.95rem,2.5vw,1.15rem)] font-light leading-relaxed tracking-wide text-[#F7F4EC]/88 sm:mt-8"
         >
-          Discover extraordinary places, unforgettable journeys and the beauty of
-          India.
+          One road. Endless destinations. Unforgettable journeys.
         </motion.p>
 
         {/* Dual Luxury CTA Buttons */}
@@ -186,10 +215,10 @@ export function Hero() {
             type="button"
             whileHover={isMobile ? undefined : { y: -2 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => scrollToSection('#destinations')}
+            onClick={() => scrollToSection('#road-trip')}
             className="luxury-sheen group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-[#F7F4EC] px-7 py-3.5 text-[11px] font-semibold tracking-[0.2em] text-[#102820] uppercase shadow-[0_20px_45px_-12px_rgba(0,0,0,0.45)] transition-colors duration-300 hover:bg-[#C6A66B] hover:text-[#102820] sm:w-auto sm:px-8 sm:py-4"
           >
-            <span>Explore India</span>
+            <span>Start Your Journey</span>
             <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
           </motion.button>
 
@@ -197,11 +226,11 @@ export function Hero() {
             type="button"
             whileHover={isMobile ? undefined : { y: -2 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => scrollToSection('#experiences')}
+            onClick={() => scrollToSection('#destinations')}
             className="group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full border border-[#F7F4EC]/45 bg-[#102820]/40 px-7 py-3.5 text-[11px] font-medium tracking-[0.2em] text-[#F7F4EC] uppercase backdrop-blur-md transition-colors duration-300 hover:border-[#C6A66B] hover:bg-[#102820]/75 hover:text-[#DCC28E] sm:w-auto sm:px-8 sm:py-4"
           >
             <Compass className="h-4 w-4 text-[#C6A66B] transition-transform duration-700 group-hover:rotate-45" />
-            <span>Discover Experiences</span>
+            <span>Explore India</span>
           </motion.button>
         </motion.div>
       </motion.div>
@@ -221,12 +250,12 @@ export function Hero() {
         {/* Scroll Indicator */}
         <motion.button
           type="button"
-          onClick={() => scrollToSection('#destinations')}
+          onClick={() => scrollToSection('#road-trip')}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: isMobile ? 0.9 : 1.45, duration: 0.8 }}
-          aria-label="Scroll down to destinations"
-          className="pointer-events-auto group mx-auto flex min-h-[44px] cursor-pointer flex-col items-center justify-end gap-1.5 focus:outline-none md:mx-0"
+          aria-label="Scroll down to start the road trip"
+          className="pointer-events-auto group mx-auto flex min-h-[44px] cursor-pointer flex-col items-center justify-end gap-1.5 rounded-full bg-[#102820]/65 px-3 py-1.5 backdrop-blur-sm focus:outline-none md:mx-0 md:bg-transparent md:p-0 md:backdrop-blur-none"
         >
           <span className="text-[9px] font-medium tracking-[0.34em] text-[#F7F4EC]/70 uppercase transition-colors group-hover:text-[#C6A66B]">
             Scroll

@@ -9,6 +9,7 @@ import { ArrowUpRight, Compass, Menu, X } from 'lucide-react';
 import { EDITORIAL_EASE } from './Reveal';
 
 const NAV_LINKS = [
+  { label: 'The Drive', href: '#road-trip' },
   { label: 'Destinations', href: '#destinations' },
   { label: 'Experiences', href: '#experiences' },
   { label: 'Journeys', href: '#journeys' },

@@ -13,6 +13,7 @@ import { Hero } from './components/Hero';
 import { JourneyModal } from './components/JourneyModal';
 import { Navbar } from './components/Navbar';
 import { PageIntro } from './components/PageIntro';
+import { RoadTripJourney } from './components/RoadTripJourney';
 import {
   DESTINATIONS,
   type Destination,
@@ -66,6 +67,17 @@ export default function App() {
 
         <main>
           <Hero />
+          <RoadTripJourney
+            onSelectDestinationById={(destinationId) => {
+              const match = DESTINATIONS.find((d) => d.id === destinationId);
+              if (match) setActiveDestination(match);
+            }}
+            onExploreAll={() => {
+              const el = document.querySelector('#destinations');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            onPlanTrip={() => jumpToEnquiry('Custom Multi-Region Journey')}
+          />
           <Destinations onSelectDestination={setActiveDestination} />
           <Experiences
             onSelectExperience={() =>
