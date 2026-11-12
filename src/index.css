@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #102820;
+  --color-forest-light: #18392e;
+  --color-ivory: #F7F4EC;
+  --color-ivory-dark: #EAE4D3;
+  --color-gold: #C6A66B;
+  --color-gold-light: #DCC28E;
+  --color-charcoal: #171B19;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: var(--font-sans);
+    background-color: #F7F4EC;
+    color: #171B19;
+    scroll-behavior: smooth;
+    overflow-x: clip;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, .font-editorial {
+    font-family: var(--font-serif);
+  }
+}
+
+/* Hide scrollbars for horizontal mobile tab strips */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Tactile editorial grain for dark sections */
+.editorial-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: radial-gradient(rgba(247, 244, 236, 0.7) 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
+  z-index: 1;
+}
+
+/* Cohesive filmic photo grading */
+.photo-grade {
+  filter: contrast(1.03) saturate(0.95);
+}
+
+/* Custom subtle scrollbars for editorial feel */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F4EC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C6A66B;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #102820;
+}
