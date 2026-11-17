@@ -254,7 +254,7 @@ export function EnquirySection({
         {/* Right Column: Interactive Pilgrimage Enquiry Form */}
         <div className="lg:col-span-7">
           <Reveal delay={0.16}>
-            <div className="rounded-2xl border border-[#C6A66B]/35 bg-[#FCFBF7] p-6 text-[#171B19] shadow-[0_32px_80px_-24px_rgba(0,0,0,0.5)] sm:p-9 lg:p-10">
+            <div className="rounded-2xl border border-amber-400/40 bg-gradient-to-b from-[#FFFDF8] via-[#FFF8ED] to-[#FEF0DD] p-6 text-[#171B19] shadow-[0_32px_80px_-24px_rgba(0,0,0,0.65)] ring-1 ring-amber-300/30 sm:p-9 lg:p-10">
               <div className="flex items-center justify-between border-b border-[#102820]/10 pb-4">
                 <div>
                   <h3 className="font-editorial text-2xl font-normal text-[#102820] sm:text-3xl">

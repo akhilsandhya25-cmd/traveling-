@@ -62,7 +62,7 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="min-h-screen overflow-x-clip bg-[#F7F4EC] text-[#171B19]">
+      <div className="min-h-screen overflow-x-clip bg-[#FFF8EE] text-[#171B19]">
         <PageIntro />
         <Navbar onMobileMenuChange={setMobileMenuOpen} />
 
@@ -112,7 +112,7 @@ export default function App() {
           />
 
           {/* Temple Photography Gallery */}
-          <Gallery />
+          <Gallery onPlanTrip={jumpToEnquiry} />
 
           {/* Section G: Contact & Enquiry */}
           <EnquirySection preselectedDestination={enquiryDestination} />

@@ -93,11 +93,16 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
               <Compass className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={1.35} />
             </span>
             <div className="flex flex-col leading-none">
-              <span className="font-editorial text-lg font-medium tracking-[0.14em] text-white sm:text-2xl sm:tracking-[0.18em]">
-                BHARGAVI
-              </span>
-              <span className="mt-0.5 text-[7px] font-medium tracking-[0.22em] text-[#C6A66B]/90 uppercase sm:mt-1 sm:text-[8px] sm:tracking-[0.3em]">
-                Tour &amp; Travels &bull; Sacred India
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="font-editorial text-lg font-bold tracking-[0.12em] text-white sm:text-2xl sm:tracking-[0.16em]">
+                  BHARGAVI
+                </span>
+                <span className="rounded bg-gradient-to-r from-[#F59E0B] via-[#FBBF24] to-[#D97706] px-1.5 py-0.5 text-[8.5px] font-black tracking-[0.18em] text-[#0A1813] uppercase shadow-sm sm:px-2 sm:text-[10px] sm:tracking-[0.2em]">
+                  TOUR &amp; TRAVELS
+                </span>
+              </div>
+              <span className="mt-1 text-[7px] font-semibold tracking-[0.24em] text-[#FDE047]/90 uppercase sm:text-[8px] sm:tracking-[0.3em]">
+                Sacred India Pilgrimages
               </span>
             </div>
           </a>
@@ -189,11 +194,16 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
                     <Compass className="h-4 w-4" strokeWidth={1.35} />
                   </span>
                   <div className="flex flex-col">
-                    <span className="font-editorial text-xl tracking-[0.16em] text-white sm:text-2xl">
-                      BHARGAVI
-                    </span>
-                    <span className="mt-1 text-[8px] tracking-[0.24em] text-[#C6A66B] uppercase">
-                      Tour &amp; Travels &bull; Pilgrimages
+                    <div className="flex items-center gap-2">
+                      <span className="font-editorial text-xl font-bold tracking-[0.14em] text-white sm:text-2xl">
+                        BHARGAVI
+                      </span>
+                      <span className="rounded bg-gradient-to-r from-[#F59E0B] via-[#FBBF24] to-[#D97706] px-1.5 py-0.5 text-[9px] font-black tracking-[0.16em] text-[#0A1813] uppercase shadow-sm">
+                        TOUR &amp; TRAVELS
+                      </span>
+                    </div>
+                    <span className="mt-1 text-[8px] font-semibold tracking-[0.26em] text-[#FDE047]/90 uppercase">
+                      Sacred India Pilgrimages
                     </span>
                   </div>
                 </div>

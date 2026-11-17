@@ -105,11 +105,11 @@ export function DestinationModal({
                     {destination.bestSeason}
                   </span>
                 </div>
-                <div className="flex items-center gap-2 rounded-full bg-[#102820]/5 px-4 py-2 text-xs text-[#102820]">
-                  <Clock className="h-3.5 w-3.5 text-[#C6A66B]" />
+                <div className="flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-xs text-[#102820]">
+                  <Clock className="h-3.5 w-3.5 text-[#EA580C]" />
                   <span>
-                    <strong className="font-semibold">Suggested Duration:</strong>{' '}
-                    {destination.idealDuration}
+                    <strong className="font-bold text-[#C2410C]">Duration:</strong>{' '}
+                    Custom Itinerary (Flexible to Your Schedule)
                   </span>
                 </div>
                 <a

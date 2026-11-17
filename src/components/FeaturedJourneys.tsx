@@ -46,22 +46,26 @@ export function FeaturedJourneys({
   return (
     <section
       id="packages"
-      className="relative bg-[#F7F4EC] py-16 text-[#171B19] sm:py-24 lg:py-36"
+      className="relative overflow-hidden bg-gradient-to-b from-[#FCECDC] via-[#FBF0E4] to-[#F8E7D4] py-16 text-[#171B19] sm:py-24 lg:py-36"
     >
+      {/* Sunset Ambient Atmospheric Glows */}
+      <div className="pointer-events-none absolute -top-32 right-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-[#F59E0B]/20 via-[#FB923C]/15 to-[#E11D48]/10 blur-[130px] animate-pulse" />
+      <div className="pointer-events-none absolute -bottom-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-[#EA580C]/18 via-[#FBBF24]/15 to-[#F59E0B]/10 blur-[140px]" />
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         {/* Header + Transparent Quotation Notice */}
-        <div className="flex flex-col justify-between gap-6 border-b border-[#102820]/15 pb-8 sm:gap-8 sm:pb-12 lg:flex-row lg:items-end">
+        <div className="flex flex-col justify-between gap-6 border-b border-[#EA580C]/20 pb-8 sm:gap-8 sm:pb-12 lg:flex-row lg:items-end">
           <div>
-            <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#C6A66B] uppercase sm:tracking-[0.34em]">
+            <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#D97706] uppercase sm:tracking-[0.34em]">
               <span>04</span>
-              <AnimatedRule className="h-px w-7 bg-[#C6A66B] sm:w-8" />
+              <AnimatedRule className="h-px w-7 bg-[#D97706] sm:w-8" />
               <span>Spiritual Tour Packages</span>
             </Reveal>
-            <h2 className="font-editorial mt-3.5 text-[clamp(2.15rem,6.8vw,4.25rem)] font-normal leading-[1.06] tracking-[-0.02em] text-[#102820] sm:mt-4">
+            <h2 className="font-editorial mt-3.5 text-[clamp(2.15rem,6.8vw,4.25rem)] font-normal leading-[1.06] tracking-[-0.02em] text-[#1A1813] sm:mt-4">
               <MaskedLine delay={0.08}>Sacred Pilgrimage Circuits</MaskedLine>
             </h2>
             <Reveal delay={0.16}>
-              <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-[#171B19]/75 sm:mt-4 sm:text-base">
+              <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-[#4A3B2C] sm:mt-4 sm:text-base">
                 Curated temple circuits crafted with devotion, unhurried pacing,
                 senior-friendly comfort, and transparent quotations on request.
               </p>
@@ -69,13 +73,12 @@ export function FeaturedJourneys({
           </div>
 
           <Reveal delay={0.14}>
-            <div className="inline-flex max-w-md items-start gap-3 rounded-xl border border-[#C6A66B]/50 bg-[#FCFBF7] p-3.5 text-xs leading-relaxed text-[#102820] shadow-sm">
-              <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#C6A66B]" />
+            <div className="inline-flex max-w-md items-start gap-3 rounded-2xl border border-amber-400/40 bg-white/80 p-4 text-xs leading-relaxed text-[#10241E] shadow-sm backdrop-blur-md">
+              <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#EA580C]" />
               <span>
                 <strong>Transparent Pricing:</strong> We do not publish fixed or
-                unverified prices. Every pilgrimage is customized with an honest,
-                itemized quotation based on group size, vehicle choice, and
-                season.
+                artificial prices. Every quote is custom-calculated with an honest,
+                itemized quotation based on group size, vehicle choice, and exact dates.
               </span>
             </div>
           </Reveal>
@@ -125,8 +128,11 @@ export function FeaturedJourneys({
                     delay: Math.min((idx % 6) * 0.05, 0.2),
                     ease: EDITORIAL_EASE,
                   }}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-amber-900/10 bg-gradient-to-b from-[#FFFDF9] to-[#FAF6EE] shadow-[0_20px_50px_-28px_rgba(217,119,6,0.18)] transition-all duration-500 hover:border-amber-400 hover:shadow-[0_32px_70px_-24px_rgba(217,119,6,0.3)]"
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-amber-300/60 bg-gradient-to-b from-[#FFFBF5] via-[#FFF5EA] to-[#FEEED8] shadow-[0_16px_40px_-14px_rgba(217,119,6,0.22)] ring-1 ring-inset ring-white/60 transition-all duration-400 hover:border-amber-500 hover:shadow-[0_28px_65px_-12px_rgba(234,88,12,0.36)]"
                 >
+                  {/* Top Sunset Glow Gradient Accent Bar */}
+                  <div className="h-1.5 w-full bg-gradient-to-r from-[#F59E0B] via-[#FB923C] to-[#E11D48] transition-all duration-300 group-hover:h-2" />
+
                   {/* Package Photography */}
                   <div
                     className="relative aspect-[16/10] w-full cursor-pointer overflow-hidden bg-[#102820]"
@@ -144,13 +150,13 @@ export function FeaturedJourneys({
 
                     {/* Category Badge */}
                     <div className="absolute top-3.5 right-3.5 left-3.5 z-10 flex items-center justify-between">
-                      <span className="rounded-full bg-[#C6A66B] px-3 py-1 text-[9px] font-semibold tracking-wider text-[#102820] uppercase shadow">
+                      <span className="rounded-full bg-gradient-to-r from-[#F59E0B] to-[#EA580C] px-3 py-1 text-[9px] font-bold tracking-wider text-white uppercase shadow">
                         {journey.category}
                       </span>
 
-                      <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-[#102820]/80 px-2.5 py-1 text-[9px] font-medium text-[#F7F4EC] backdrop-blur-md">
-                        <Clock className="h-2.5 w-2.5 text-[#C6A66B]" />
-                        <span>{journey.duration}</span>
+                      <span className="inline-flex items-center gap-1 rounded-full border border-amber-400/40 bg-[#0B1A15]/85 px-2.5 py-1 text-[9px] font-semibold text-[#FEF3C7] backdrop-blur-md">
+                        <Clock className="h-2.5 w-2.5 text-[#F59E0B]" />
+                        <span>Custom ({journey.duration})</span>
                       </span>
                     </div>
 

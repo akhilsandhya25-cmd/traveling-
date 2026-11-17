@@ -25,11 +25,16 @@ export function Footer({ onSelectDestinationName }: FooterProps) {
                 <Compass className="h-5 w-5" strokeWidth={1.35} />
               </span>
               <div>
-                <span className="font-editorial block text-xl tracking-[0.14em] text-white sm:text-2xl">
-                  BHARGAVI
-                </span>
-                <span className="block text-[8px] font-medium tracking-[0.28em] text-[#C6A66B] uppercase">
-                  Tour &amp; Travels &bull; Sacred India
+                <div className="flex items-center gap-2">
+                  <span className="font-editorial block text-xl font-bold tracking-[0.14em] text-white sm:text-2xl">
+                    BHARGAVI
+                  </span>
+                  <span className="rounded bg-gradient-to-r from-[#F59E0B] to-[#D97706] px-1.5 py-0.5 text-[9px] font-black tracking-[0.16em] text-[#0A1813] uppercase shadow-sm">
+                    TOUR &amp; TRAVELS
+                  </span>
+                </div>
+                <span className="mt-1 block text-[8px] font-semibold tracking-[0.28em] text-[#FDE047]/90 uppercase">
+                  Sacred India Pilgrimages &bull; Telangana
                 </span>
               </div>
             </div>
