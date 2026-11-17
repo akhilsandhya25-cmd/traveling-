@@ -12,7 +12,7 @@ import { LuxuryExpeditionSUV } from './LuxuryExpeditionSUV';
 import { EDITORIAL_EASE } from './Reveal';
 
 const HERO_IMAGE =
-  'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/View_of_Aru_Village_enclosed_by_snow_clad_mountains_from_top_of_Birzamal.jpg/1920px-View_of_Aru_Village_enclosed_by_snow_clad_mountains_from_top_of_Birzamal.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail';
+  'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Varanasi_2010_Ahilyabai_Ghat.jpg/1920px-Varanasi_2010_Ahilyabai_Ghat.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail';
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -141,7 +141,7 @@ export function Hero() {
             className="h-px w-5 origin-right bg-[#C6A66B]/75 sm:w-12"
           />
           <span className="text-[10px] font-medium tracking-[0.22em] text-[#DCC28E] uppercase sm:text-[11px] sm:tracking-[0.38em]">
-            THE ART OF TRAVELLING
+            BHARGAVI TOUR AND TRAVELS &bull; SPIRITUAL PILGRIMAGES
           </span>
           <motion.span
             initial={{ scaleX: 0 }}
@@ -168,7 +168,7 @@ export function Hero() {
               }}
               className="block will-change-transform"
             >
-              India Awaits.
+              Discover India&apos;s
             </motion.span>
           </span>
           <span className="block overflow-hidden pt-1">
@@ -182,7 +182,7 @@ export function Hero() {
               }}
               className="block italic text-[#DCC28E] will-change-transform"
             >
-              Let&apos;s Drive.
+              Sacred Destinations
             </motion.span>
           </span>
         </h1>
@@ -197,7 +197,8 @@ export function Hero() {
           }}
           className="mt-5 max-w-xl text-[clamp(0.95rem,2.5vw,1.15rem)] font-light leading-relaxed tracking-wide text-[#F7F4EC]/88 sm:mt-8"
         >
-          One road. Endless destinations. Unforgettable journeys.
+          Experience divine journeys, ancient temples and unforgettable
+          spiritual pilgrimages with Bhargavi Tour and Travels.
         </motion.p>
 
         {/* Dual Luxury CTA Buttons */}
@@ -209,16 +210,16 @@ export function Hero() {
             delay: isMobile ? 0.68 : 1.3,
             ease: EDITORIAL_EASE,
           }}
-          className="mt-7 flex w-full max-w-[310px] flex-col items-center gap-3 sm:mt-11 sm:w-auto sm:max-w-none sm:flex-row sm:gap-5"
+          className="mt-7 flex w-full max-w-[340px] flex-col items-center gap-3 sm:mt-11 sm:w-auto sm:max-w-none sm:flex-row sm:gap-5"
         >
           <motion.button
             type="button"
             whileHover={isMobile ? undefined : { y: -2 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => scrollToSection('#road-trip')}
+            onClick={() => scrollToSection('#destinations')}
             className="luxury-sheen group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-[#F7F4EC] px-7 py-3.5 text-[11px] font-semibold tracking-[0.2em] text-[#102820] uppercase shadow-[0_20px_45px_-12px_rgba(0,0,0,0.45)] transition-colors duration-300 hover:bg-[#C6A66B] hover:text-[#102820] sm:w-auto sm:px-8 sm:py-4"
           >
-            <span>Start Your Journey</span>
+            <span>Explore Spiritual Destinations</span>
             <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
           </motion.button>
 
@@ -226,11 +227,11 @@ export function Hero() {
             type="button"
             whileHover={isMobile ? undefined : { y: -2 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => scrollToSection('#destinations')}
+            onClick={() => scrollToSection('#enquiry')}
             className="group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full border border-[#F7F4EC]/45 bg-[#102820]/40 px-7 py-3.5 text-[11px] font-medium tracking-[0.2em] text-[#F7F4EC] uppercase backdrop-blur-md transition-colors duration-300 hover:border-[#C6A66B] hover:bg-[#102820]/75 hover:text-[#DCC28E] sm:w-auto sm:px-8 sm:py-4"
           >
             <Compass className="h-4 w-4 text-[#C6A66B] transition-transform duration-700 group-hover:rotate-45" />
-            <span>Explore India</span>
+            <span>Plan Your Journey</span>
           </motion.button>
         </motion.div>
       </motion.div>
@@ -244,7 +245,7 @@ export function Hero() {
           className="hidden items-center gap-3 text-[10px] tracking-[0.28em] text-[#F7F4EC]/55 uppercase md:flex"
         >
           <span className="h-px w-6 bg-[#C6A66B]/60" />
-          <span>34.08&deg; N, 74.79&deg; E &bull; Kashmir</span>
+          <span>Bhargavi Tour and Travels &bull; Telangana, India</span>
         </motion.div>
 
         {/* Scroll Indicator */}

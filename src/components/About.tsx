@@ -5,31 +5,48 @@ import {
   useScroll,
   useTransform,
 } from 'framer-motion';
+import { CheckCircle2, HeartHandshake, MapPin, Shield, Sparkles } from 'lucide-react';
+import { BUSINESS_INFO } from '../config/concierge';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { getResponsiveImageProps } from '../utils/responsiveMedia';
 import { AnimatedRule, EDITORIAL_EASE, MaskedLine, Reveal } from './Reveal';
 
 const MAIN_ABOUT_IMAGE =
-  'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Krishansar_Lake%2C_Sonmarg%2C_Kashmir_valley%2C_India_01.jpg/1920px-Krishansar_Lake%2C_Sonmarg%2C_Kashmir_valley%2C_India_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail';
+  'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1600&q=85';
 
 const SECONDARY_ABOUT_IMAGE =
-  'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Houseboat_on_Alleppey_backwaters_%28Kerala%2C_India_2023%29_%2852703799667%29.jpg/1920px-Houseboat_on_Alleppey_backwaters_%28Kerala%2C_India_2023%29_%2852703799667%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail';
+  'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1600&q=85';
 
-const PILLARS = [
+const WHY_CHOOSE_US_PILLARS = [
   {
     number: '01',
-    title: 'Unhurried Pacing',
-    text: 'Space to breathe in misty valleys, linger over morning chai, and truly arrive in every place.',
+    title: 'Personalised Pilgrimage Planning',
+    text: 'Every devotee has unique spiritual intentions. We tailor darshan queues, special seva timings, and sacred river snan rituals to your family’s preferences.',
+    icon: Sparkles,
   },
   {
     number: '02',
-    title: 'Soulful Stays',
-    text: 'Heritage havelis, cedar houseboats, and quiet mountain retreats chosen for character and warmth.',
+    title: 'Comfortable Travel Arrangements',
+    text: 'Clean, sanitized AC vehicles, experienced courteous drivers, senior-citizen friendly pacing with wheelchair guidance, and hygienic pure-vegetarian dining stops.',
+    icon: Shield,
   },
   {
     number: '03',
-    title: 'Local Stories',
-    text: 'Intimate encounters with regional craft, cuisine, and landscapes far beyond the usual tourist trail.',
+    title: 'Customised Spiritual Journeys',
+    text: 'From Telangana hill shrines to South Indian gopurams, Maharashtra Jyotirlingas, and Himalayan Char Dham, we craft circuits around your sacred schedule.',
+    icon: MapPin,
+  },
+  {
+    number: '04',
+    title: 'Dedicated Customer Support',
+    text: 'Attentive telephone assistance and continuous coordination before, during, and after your pilgrimage so you can focus entirely on divine contemplation.',
+    icon: HeartHandshake,
+  },
+  {
+    number: '05',
+    title: 'Transparent Quotations',
+    text: 'Honest, itemized quotations with zero hidden surprises or forced commercial stops. We never invent package prices or claim unverified guarantees.',
+    icon: CheckCircle2,
   },
 ];
 
@@ -73,7 +90,7 @@ export function About() {
       />
 
       <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:gap-16 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
-        {/* Left Asymmetrical Dual-Layer Imagery (Static on Mobile, Parallax on Desktop) */}
+        {/* Left Asymmetrical Dual-Layer Imagery */}
         <div className="relative lg:col-span-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
@@ -88,7 +105,7 @@ export function About() {
             >
               <img
                 {...mainImgProps}
-                alt="High-altitude Krishansar alpine lake nestled in Kashmir mountains"
+                alt="Shri Ram Janmabhoomi Mandir illuminated in Ayodhya"
                 loading="lazy"
                 decoding="async"
                 referrerPolicy="no-referrer"
@@ -97,7 +114,16 @@ export function About() {
                 }`}
               />
             </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#102820]/65 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#102820]/75 via-transparent to-transparent" />
+
+            <div className="absolute right-4 bottom-4 left-4 rounded-xl border border-white/10 bg-[#102820]/90 p-3.5 backdrop-blur-md sm:right-6 sm:bottom-6 sm:left-6 sm:p-5">
+              <p className="text-[10px] font-semibold tracking-[0.24em] text-[#C6A66B] uppercase">
+                Based in Telangana &bull; Serving Devotees Pan-India
+              </p>
+              <p className="font-editorial mt-1 text-base text-white sm:text-xl">
+                {BUSINESS_INFO.address.full}
+              </p>
+            </div>
           </motion.div>
 
           {/* Floating Overlapping Detail Card */}
@@ -111,7 +137,7 @@ export function About() {
           >
             <img
               {...secondaryImgProps}
-              alt="Peaceful wooden houseboat along Kerala backwaters"
+              alt="Ancient stone gopuram of Srisailam Mallikarjuna Swamy Temple"
               loading="lazy"
               decoding="async"
               referrerPolicy="no-referrer"
@@ -119,10 +145,10 @@ export function About() {
             />
             <div className="px-2 py-2.5 sm:py-3">
               <p className="text-[9px] font-medium tracking-[0.24em] text-[#C6A66B] uppercase sm:tracking-[0.28em]">
-                From Peaks to Palms
+                Spiritual Travel Service
               </p>
               <p className="font-editorial mt-1 text-base italic text-white sm:text-lg">
-                Crafted with feeling, never hurried.
+                Devotion, comfort &amp; peace of mind.
               </p>
             </div>
           </motion.div>
@@ -131,45 +157,56 @@ export function About() {
         {/* Right Editorial Storytelling */}
         <div className="lg:col-span-6 lg:pl-8">
           <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#C6A66B] uppercase sm:tracking-[0.34em]">
-            <span>04</span>
+            <span>02</span>
             <AnimatedRule className="h-px w-7 bg-[#C6A66B] sm:w-8" />
-            <span>Our Philosophy</span>
+            <span>About Bhargavi Tour and Travels</span>
           </Reveal>
 
           <h2 className="font-editorial mt-4 text-[clamp(2rem,6vw,3.75rem)] font-normal leading-[1.09] tracking-[-0.015em] text-white sm:mt-5">
-            <MaskedLine delay={0.08}>We believe travel should</MaskedLine>
+            <MaskedLine delay={0.08}>Facilitating sacred</MaskedLine>
             <MaskedLine delay={0.18} className="italic text-[#DCC28E]">
-              change the way you see the world.
+              darshans with care &amp; reverence.
             </MaskedLine>
           </h2>
 
           <Reveal delay={0.22}>
             <blockquote className="mt-6 border-l border-[#C6A66B]/55 pl-5 text-[15px] font-light leading-relaxed text-[#F7F4EC]/84 sm:mt-8 sm:pl-6 sm:text-lg">
-              Every journey has a story. Every destination holds an experience
-              waiting to be discovered. We help travellers explore India&apos;s
-              extraordinary landscapes, cultures and hidden treasures.
+              <strong>Bhargavi Tour and Travels</strong> specialises in spiritual
+              tourism, temple visits, pilgrimage tours and religious travel
+              throughout India. Headquartered in Balakrishna Nagar, Ramanthapur,
+              Uppal (Telangana), our mission is to ensure every family and
+              elderly devotee travels in safety, peace, and spiritual comfort.
             </blockquote>
           </Reveal>
 
-          {/* Editorial Brand Pillars */}
-          <div className="mt-9 space-y-6 border-t border-[#C6A66B]/20 pt-7 sm:mt-12 sm:space-y-7 sm:pt-9">
-            {PILLARS.map((pillar, idx) => (
-              <Reveal key={pillar.number} delay={0.18 + idx * 0.06}>
-                <div className="group flex items-start gap-4 sm:gap-5">
-                  <span className="font-editorial text-xl italic text-[#C6A66B] transition-transform duration-300 group-hover:translate-x-0.5 sm:text-2xl">
-                    {pillar.number}
-                  </span>
-                  <div>
-                    <h3 className="text-xs font-semibold tracking-[0.2em] text-white uppercase sm:tracking-[0.22em]">
-                      {pillar.title}
-                    </h3>
-                    <p className="mt-1.5 text-[14px] font-light leading-relaxed text-[#F7F4EC]/74 sm:text-sm">
-                      {pillar.text}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+          {/* Section: Why Choose Us */}
+          <div className="mt-8 border-t border-[#C6A66B]/20 pt-6 sm:mt-10 sm:pt-8">
+            <p className="text-[11px] font-semibold tracking-[0.26em] text-[#C6A66B] uppercase">
+              Why Devotees Choose Us
+            </p>
+
+            <div className="mt-6 space-y-5 sm:space-y-6">
+              {WHY_CHOOSE_US_PILLARS.map((pillar, idx) => {
+                const Icon = pillar.icon;
+                return (
+                  <Reveal key={pillar.number} delay={0.15 + idx * 0.05}>
+                    <div className="group flex items-start gap-3.5 sm:gap-4.5">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#C6A66B]/40 bg-[#102820] text-[#C6A66B] sm:h-9 sm:w-9">
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <div>
+                        <h3 className="text-xs font-semibold tracking-[0.16em] text-white uppercase sm:tracking-[0.18em]">
+                          {pillar.title}
+                        </h3>
+                        <p className="mt-1 text-[13.5px] font-light leading-relaxed text-[#F7F4EC]/75 sm:text-sm">
+                          {pillar.text}
+                        </p>
+                      </div>
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

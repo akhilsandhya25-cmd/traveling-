@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, CalendarDays, Info, MapPin, X } from 'lucide-react';
+import { CalendarDays, Info, MapPin, Send, Sparkles, X } from 'lucide-react';
 import type { FeaturedJourney } from '../data/travelData';
 import { getResponsiveImageProps } from '../utils/responsiveMedia';
 
@@ -67,17 +67,21 @@ export function JourneyModal({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#102820] via-[#102820]/45 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-10">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#C6A66B] px-3.5 py-1 text-[10px] font-semibold tracking-[0.2em] text-[#102820] uppercase">
-                    <CalendarDays className="h-3 w-3" />
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#C6A66B] px-3.5 py-1 text-[10px] font-semibold tracking-[0.16em] text-[#102820] uppercase shadow">
+                    <Sparkles className="h-3 w-3" />
+                    {journey.category}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-[#102820]/60 px-3.5 py-1 text-[10px] font-medium tracking-[0.16em] text-white uppercase backdrop-blur-sm">
+                    <CalendarDays className="h-3 w-3 text-[#C6A66B]" />
                     {journey.duration}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-[#102820]/60 px-3.5 py-1 text-[10px] font-medium tracking-[0.2em] text-white uppercase backdrop-blur-sm">
-                    <MapPin className="h-3 w-3 text-[#C6A66B]" />
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] text-[#DCC28E] backdrop-blur-sm">
+                    <MapPin className="h-3 w-3" />
                     {journey.destinationName}
                   </span>
                 </div>
-                <h3 className="font-editorial mt-3 text-4xl font-normal text-white sm:text-5xl">
+                <h3 className="font-editorial mt-3 text-3xl font-normal text-white sm:text-5xl">
                   {journey.title}
                 </h3>
               </div>
@@ -88,21 +92,31 @@ export function JourneyModal({
               <div className="flex items-start gap-3 rounded-2xl border border-[#C6A66B]/45 bg-white/90 p-4 text-xs leading-relaxed text-[#102820]">
                 <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#C6A66B]" />
                 <span>
-                  <strong>Illustrative Prototype Package:</strong>{' '}
-                  {journey.sampleEstimate}. Shown for visual concept
-                  demonstration only—every route, stay, and pace is customisable
-                  for your agency clients.
+                  <strong>Transparent Quotation:</strong> {journey.sampleEstimate}.
+                  Every pilgrimage route, pacing, and vehicle arrangement can be
+                  tailored to your family&apos;s preferred schedule.
                 </span>
               </div>
 
-              <p className="mt-6 text-base font-light leading-relaxed text-[#171B19]/85">
+              <div className="mt-5 text-xs text-[#102820] font-medium tracking-wide">
+                <span className="text-[#9A7B3E] uppercase font-semibold">
+                  Route Corridor:
+                </span>{' '}
+                {journey.routeSummary} &bull;{' '}
+                <span className="text-[#9A7B3E] uppercase font-semibold">
+                  Recommended For:
+                </span>{' '}
+                {journey.suitableFor}
+              </div>
+
+              <p className="mt-4 text-base font-light leading-relaxed text-[#171B19]/85">
                 {journey.summary}
               </p>
 
-              {/* Day-by-Day Editorial Timeline */}
+              {/* Day-by-Day Timeline */}
               <div className="mt-8">
                 <h4 className="text-xs font-semibold tracking-[0.24em] text-[#102820] uppercase">
-                  Sample Day-by-Day Flow
+                  Suggested Pilgrimage Schedule
                 </h4>
                 <div className="mt-5 space-y-4">
                   {journey.itinerary.map((step) => (
@@ -128,16 +142,15 @@ export function JourneyModal({
 
               <div className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-[#102820]/10 pt-6 sm:flex-row sm:items-center">
                 <span className="text-xs text-[#171B19]/60">
-                  Interactive prototype preview &bull; No live booking
-                  commitment
+                  Bhargavi Tour and Travels &bull; Transparent Quotations on Request
                 </span>
                 <button
                   type="button"
-                  onClick={() => onCustomise(journey.destinationName)}
-                  className="inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-[#102820] px-7 py-3.5 text-xs font-semibold tracking-[0.18em] text-[#F7F4EC] uppercase transition hover:bg-[#C6A66B] hover:text-[#102820] sm:w-auto"
+                  onClick={() => onCustomise(journey.title)}
+                  className="inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-[#C6A66B] px-7 py-3.5 text-xs font-semibold tracking-[0.18em] text-[#102820] uppercase shadow transition hover:bg-[#DCC28E] sm:w-auto"
                 >
-                  <span>Customise This Journey</span>
-                  <ArrowRight className="h-4 w-4" />
+                  <Send className="h-4 w-4" />
+                  <span>Request Quotation for This Tour</span>
                 </button>
               </div>
             </div>

@@ -46,7 +46,7 @@ export function FloatingWhatsApp({ hidden = false }: FloatingWhatsAppProps) {
           href={buildWhatsAppUrl(WHATSAPP_CONFIG.defaultGreeting)}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Chat on WhatsApp Concierge (Configurable Placeholder)"
+          aria-label="Chat on WhatsApp with Bhargavi Tour and Travels (+91 7893999764)"
           initial={{ opacity: 0, y: 16, scale: 0.92 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 12, scale: 0.92 }}
@@ -56,7 +56,7 @@ export function FloatingWhatsApp({ hidden = false }: FloatingWhatsAppProps) {
         >
           <MessageCircle className="h-5 w-5 shrink-0 text-[#C6A66B] transition-colors group-hover:text-[#102820] sm:h-4 sm:w-4" />
           <span className="hidden text-[11px] font-semibold tracking-[0.18em] uppercase sm:inline">
-            WhatsApp Concierge
+            WhatsApp Enquiry
           </span>
         </motion.a>
       )}

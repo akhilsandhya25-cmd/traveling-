@@ -1,6 +1,14 @@
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, Calendar, Clock, MapPin, Sparkles, X } from 'lucide-react';
+import {
+  ArrowRight,
+  Calendar,
+  Clock,
+  ExternalLink,
+  MapPin,
+  Sparkles,
+  X,
+} from 'lucide-react';
 import type { Destination } from '../data/travelData';
 import { getResponsiveImageProps } from '../utils/responsiveMedia';
 
@@ -68,10 +76,16 @@ export function DestinationModal({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#102820] via-[#102820]/35 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-10">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#C6A66B]/50 bg-[#102820]/65 px-3.5 py-1 text-[10px] font-medium tracking-[0.22em] text-[#DCC28E] uppercase backdrop-blur-sm">
-                  <MapPin className="h-3 w-3" />
-                  {destination.region}
-                </span>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-[#C6A66B]/50 bg-[#102820]/65 px-3.5 py-1 text-[10px] font-medium tracking-[0.22em] text-[#DCC28E] uppercase backdrop-blur-sm">
+                    <MapPin className="h-3 w-3" />
+                    {destination.region} &bull; {destination.state}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#C6A66B] px-3 py-1 text-[10px] font-semibold tracking-wider text-[#102820] uppercase">
+                    <Sparkles className="h-3 w-3" />
+                    {destination.primaryDeity}
+                  </span>
+                </div>
                 <p className="font-editorial mt-3 text-xl italic text-[#DCC28E]">
                   {destination.tagline}
                 </p>
@@ -87,17 +101,28 @@ export function DestinationModal({
                 <div className="flex items-center gap-2 rounded-full bg-[#102820]/5 px-4 py-2 text-xs text-[#102820]">
                   <Calendar className="h-3.5 w-3.5 text-[#C6A66B]" />
                   <span>
-                    <strong className="font-semibold">Best Time:</strong>{' '}
+                    <strong className="font-semibold">Best Season:</strong>{' '}
                     {destination.bestSeason}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 rounded-full bg-[#102820]/5 px-4 py-2 text-xs text-[#102820]">
                   <Clock className="h-3.5 w-3.5 text-[#C6A66B]" />
                   <span>
-                    <strong className="font-semibold">Ideal Pace:</strong>{' '}
+                    <strong className="font-semibold">Suggested Duration:</strong>{' '}
                     {destination.idealDuration}
                   </span>
                 </div>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                    destination.mapQuery
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-full border border-[#C6A66B]/50 bg-white px-4 py-2 text-xs font-semibold text-[#102820] transition hover:bg-[#F7F4EC]"
+                >
+                  <ExternalLink className="h-3.5 w-3.5 text-[#C6A66B]" />
+                  <span>View on Google Maps</span>
+                </a>
               </div>
 
               <p className="mt-6 text-base font-light leading-relaxed text-[#171B19]/85 sm:text-lg">
@@ -120,7 +145,7 @@ export function DestinationModal({
               <div className="mt-8 rounded-2xl bg-white/80 p-6 ring-1 ring-[#102820]/8">
                 <h4 className="flex items-center gap-2 text-xs font-semibold tracking-[0.22em] text-[#102820] uppercase">
                   <Sparkles className="h-4 w-4 text-[#C6A66B]" />
-                  Illustrative Destination Highlights
+                  Sacred Temple Highlights &amp; Sevas
                 </h4>
                 <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                   {destination.highlights.map((item) => (
@@ -138,15 +163,14 @@ export function DestinationModal({
               {/* Action Bar */}
               <div className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-[#102820]/10 pt-6 sm:flex-row sm:items-center">
                 <p className="text-xs text-[#171B19]/60">
-                  Prototype editorial preview &bull; Customisable for your
-                  agency&apos;s destinations
+                  Bhargavi Tour and Travels &bull; Customised Pilgrimage Itineraries
                 </p>
                 <button
                   type="button"
                   onClick={() => onEnquire(destination.name)}
-                  className="inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-[#102820] px-7 py-3.5 text-xs font-semibold tracking-[0.18em] text-[#F7F4EC] uppercase transition hover:bg-[#C6A66B] hover:text-[#102820] sm:w-auto"
+                  className="inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-[#C6A66B] px-7 py-3.5 text-xs font-semibold tracking-[0.18em] text-[#102820] uppercase shadow transition hover:bg-[#DCC28E] sm:w-auto"
                 >
-                  <span>Enquire About {destination.name}</span>
+                  <span>Plan Pilgrimage to {destination.name}</span>
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </div>

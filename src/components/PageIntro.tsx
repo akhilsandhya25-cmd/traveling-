@@ -39,10 +39,13 @@ export function PageIntro() {
             className="relative z-10 flex flex-col items-center text-center"
           >
             <span className="text-[10px] font-medium tracking-[0.42em] text-[#C6A66B] uppercase">
-              The Art of Travelling
+              Spiritual Pilgrimages &bull; Sacred India
             </span>
-            <span className="font-editorial mt-3 text-4xl tracking-[0.28em] text-white sm:text-5xl">
-              ARANYA
+            <span className="font-editorial mt-3 text-4xl tracking-[0.24em] text-white sm:text-5xl">
+              BHARGAVI
+            </span>
+            <span className="mt-1 text-[9px] font-medium tracking-[0.32em] text-[#DCC28E] uppercase">
+              Tour and Travels
             </span>
             <motion.span
               initial={{ scaleX: 0 }}

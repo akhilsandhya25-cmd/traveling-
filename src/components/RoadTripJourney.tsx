@@ -446,18 +446,18 @@ export function RoadTripJourney({
         <div className="mx-auto max-w-4xl px-4 pt-14 pb-8 text-center sm:px-6 sm:pt-20 sm:pb-10">
           <Reveal className="inline-flex items-center gap-3 text-[10px] font-semibold tracking-[0.28em] text-[#C6A66B] uppercase sm:tracking-[0.36em]">
             <AnimatedRule className="h-px w-6 bg-[#C6A66B] sm:w-8" />
-            <span>The Grand Indian Expedition</span>
+            <span>The Sacred Indian Yatra</span>
             <AnimatedRule className="h-px w-6 bg-[#C6A66B] sm:w-8" />
           </Reveal>
           <h2 className="font-editorial mt-3.5 text-[clamp(2rem,6.5vw,3.9rem)] font-normal leading-[1.08] tracking-[-0.02em] text-white">
             <MaskedLine delay={0.08}>
-              One Winding Road Across Six Worlds.
+              One Sacred Road Across Holy India.
             </MaskedLine>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-[14px] font-light leading-relaxed text-[#F7F4EC]/78 sm:text-base">
-            Scroll gently to drive through misty cedar passes, mirror-still
-            lakes, emerald tea terraces, royal desert forts, palm beaches, and
-            Himalayan skyways.
+            Scroll gently to drive along India’s sacred pilgrimage corridors: from
+            the snow peaks of Kedarnath to holy Kashi on the Ganges, Deccan hill
+            shrines, Tirumala Balaji, Shirdi, and Somnath on the ocean.
           </p>
         </div>
 

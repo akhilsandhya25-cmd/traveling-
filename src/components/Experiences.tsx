@@ -25,18 +25,19 @@ export function Experiences({ onSelectExperience }: ExperiencesProps) {
         <div className="flex flex-col justify-between gap-6 border-b border-[#C6A66B]/20 pb-8 sm:gap-8 sm:pb-12 lg:flex-row lg:items-end">
           <div>
             <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#C6A66B] uppercase sm:tracking-[0.34em]">
-              <span>02</span>
+              <span>07</span>
               <AnimatedRule className="h-px w-7 bg-[#C6A66B] sm:w-8" />
-              <span>Signature Experiences</span>
+              <span>Sacred Rituals &amp; Sevas</span>
             </Reveal>
             <h2 className="font-editorial mt-3.5 text-[clamp(2.15rem,6.8vw,4.5rem)] font-normal leading-[1.06] tracking-[-0.02em] text-white sm:mt-4">
-              <MaskedLine delay={0.08}>Travel Beyond the Ordinary.</MaskedLine>
+              <MaskedLine delay={0.08}>Moments of Divine Grace.</MaskedLine>
             </h2>
           </div>
           <Reveal delay={0.16}>
             <p className="max-w-md text-[15px] font-light leading-relaxed text-[#F7F4EC]/78 sm:text-base">
-              Curated travel moods designed around how you wish to feel—from
-              silent Himalayan passes to candlelit palace courtyards.
+              Experience the profound peace of sacred Indian temple rituals—from
+              the evening brass lamps of Ganga Aarti to peaceful dawn darshans
+              atop holy hilltops.
             </p>
           </Reveal>
         </div>

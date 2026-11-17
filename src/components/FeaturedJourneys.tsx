@@ -1,8 +1,31 @@
-import { motion } from 'framer-motion';
-import { ArrowRight, Info, Send } from 'lucide-react';
-import { FEATURED_JOURNEYS, type FeaturedJourney } from '../data/travelData';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import {
+  CheckCircle2,
+  Clock,
+  FileText,
+  Info,
+  MapPin,
+  Send,
+} from 'lucide-react';
+import {
+  FEATURED_JOURNEYS,
+  type FeaturedJourney,
+  type PackageCategory,
+} from '../data/travelData';
 import { getResponsiveImageProps } from '../utils/responsiveMedia';
 import { AnimatedRule, EDITORIAL_EASE, MaskedLine, Reveal } from './Reveal';
+
+const CATEGORIES: PackageCategory[] = [
+  'All Packages',
+  'Jyotirlinga Tours',
+  'Char Dham Yatra',
+  'South India Temple Tours',
+  'North India Pilgrimage',
+  'Shirdi Sai Baba Tours',
+  'Telangana Temple Tours',
+  'Custom Spiritual Tours',
+];
 
 interface FeaturedJourneysProps {
   onSelectJourney: (journey: FeaturedJourney) => void;
@@ -13,163 +36,197 @@ export function FeaturedJourneys({
   onSelectJourney,
   onEnquireJourney,
 }: FeaturedJourneysProps) {
+  const [activeCategory, setActiveCategory] =
+    useState<PackageCategory>('All Packages');
+
+  const filteredPackages =
+    activeCategory === 'All Packages'
+      ? FEATURED_JOURNEYS
+      : FEATURED_JOURNEYS.filter((p) => p.category === activeCategory);
+
   return (
     <section
-      id="journeys"
+      id="packages"
       className="relative bg-[#F7F4EC] py-16 text-[#171B19] sm:py-24 lg:py-36"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-        {/* Header + Demo Prototype Notice */}
+        {/* Header + Transparent Quotation Notice */}
         <div className="flex flex-col justify-between gap-6 border-b border-[#102820]/15 pb-8 sm:gap-8 sm:pb-12 lg:flex-row lg:items-end">
           <div>
             <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#C6A66B] uppercase sm:tracking-[0.34em]">
-              <span>03</span>
+              <span>04</span>
               <AnimatedRule className="h-px w-7 bg-[#C6A66B] sm:w-8" />
-              <span>Featured Journeys</span>
+              <span>Spiritual Tour Packages</span>
             </Reveal>
             <h2 className="font-editorial mt-3.5 text-[clamp(2.15rem,6.8vw,4.25rem)] font-normal leading-[1.06] tracking-[-0.02em] text-[#102820] sm:mt-4">
-              <MaskedLine delay={0.08}>Curated Sample Itineraries.</MaskedLine>
+              <MaskedLine delay={0.08}>Sacred Pilgrimage Circuits</MaskedLine>
             </h2>
             <Reveal delay={0.16}>
               <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-[#171B19]/75 sm:mt-4 sm:text-base">
-                Thoughtfully paced sample circuits crafted to demonstrate how
-                your agency&apos;s signature tours can be presented online.
+                Curated temple circuits crafted with devotion, unhurried pacing,
+                senior-friendly comfort, and transparent quotations on request.
               </p>
             </Reveal>
           </div>
 
           <Reveal delay={0.14}>
-            <div className="inline-flex max-w-md items-start gap-3 rounded-xl border border-[#C6A66B]/45 bg-[#FCFBF7] px-4 py-3 text-xs leading-relaxed text-[#102820]">
+            <div className="inline-flex max-w-md items-start gap-3 rounded-xl border border-[#C6A66B]/50 bg-[#FCFBF7] p-3.5 text-xs leading-relaxed text-[#102820] shadow-sm">
               <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#C6A66B]" />
               <span>
-                <strong>Prototype Notice:</strong> Packages &amp; estimates
-                below are illustrative demo examples, not confirmed commercial
-                offers.
+                <strong>Transparent Pricing:</strong> We do not publish fixed or
+                unverified prices. Every pilgrimage is customized with an honest,
+                itemized quotation based on group size, vehicle choice, and
+                season.
               </span>
             </div>
           </Reveal>
         </div>
 
-        {/* 5 Featured Journeys — 1-Col Mobile -> 2-Col Tablet -> 2-Up + 3-Up Desktop */}
-        <div className="mt-8 grid grid-cols-1 gap-5 sm:mt-14 sm:gap-7 md:grid-cols-2 lg:grid-cols-12">
-          {FEATURED_JOURNEYS.map((journey, idx) => {
-            const isTopRow = idx < 2;
-            const isLastTablet = idx === FEATURED_JOURNEYS.length - 1;
-            const colSpanClass = isTopRow
-              ? 'lg:col-span-6'
-              : isLastTablet
-                ? 'md:col-span-2 lg:col-span-4'
-                : 'lg:col-span-4';
-
-            const responsiveImg = getResponsiveImageProps(
-              journey.image,
-              '(max-width: 767px) 94vw, (max-width: 1023px) 47vw, 45vw'
-            );
-
+        {/* Category Filter Pills (Scrollable on Mobile) */}
+        <div className="no-scrollbar -mx-4 mt-8 flex flex-nowrap gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:gap-2.5 sm:overflow-visible sm:px-0 sm:pb-0">
+          {CATEGORIES.map((cat) => {
+            const isActive = activeCategory === cat;
             return (
-              <motion.article
-                key={journey.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 'some' }}
-                whileHover={{ y: -4 }}
-                transition={{
-                  duration: 0.7,
-                  delay: Math.min(idx * 0.06, 0.24),
-                  ease: EDITORIAL_EASE,
-                }}
-                className={`group flex flex-col overflow-hidden rounded-2xl border border-[#102820]/10 bg-[#FCFBF7] shadow-[0_20px_50px_-28px_rgba(16,40,32,0.22)] transition-colors duration-500 hover:border-[#C6A66B]/55 hover:shadow-[0_32px_70px_-24px_rgba(16,40,32,0.28)] ${colSpanClass}`}
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setActiveCategory(cat)}
+                className={`min-h-[40px] shrink-0 cursor-pointer rounded-full border px-4 py-2 text-[11px] font-semibold tracking-wider transition-all duration-300 sm:text-xs ${
+                  isActive
+                    ? 'border-[#C6A66B] bg-[#102820] text-[#DCC28E] shadow'
+                    : 'border-[#102820]/15 bg-white text-[#171B19]/70 hover:border-[#C6A66B] hover:text-[#102820]'
+                }`}
               >
-                {/* Destination Photography */}
-                <div
-                  className={`relative aspect-[16/10] w-full overflow-hidden lg:aspect-auto ${
-                    isTopRow ? 'lg:h-84' : 'lg:h-64'
-                  }`}
+                {cat}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Package Cards Grid */}
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          <AnimatePresence mode="popLayout">
+            {filteredPackages.map((journey, idx) => {
+              const responsiveImg = getResponsiveImageProps(
+                journey.image,
+                '(max-width: 639px) 94vw, (max-width: 1023px) 47vw, 32vw'
+              );
+
+              return (
+                <motion.article
+                  key={journey.id}
+                  layout
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+                  viewport={{ once: true, amount: 'some' }}
+                  whileHover={{ y: -4 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: Math.min((idx % 6) * 0.05, 0.2),
+                    ease: EDITORIAL_EASE,
+                  }}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-[#102820]/10 bg-[#FCFBF7] shadow-[0_20px_50px_-28px_rgba(16,40,32,0.22)] transition-all duration-500 hover:border-[#C6A66B]/55 hover:shadow-[0_32px_70px_-24px_rgba(16,40,32,0.3)]"
                 >
-                  <img
-                    {...responsiveImg}
-                    alt={journey.alt}
-                    loading="lazy"
-                    decoding="async"
-                    referrerPolicy="no-referrer"
-                    className="photo-grade h-full w-full object-cover object-center transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:scale-[1.07]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#102820]/88 via-[#102820]/20 to-transparent" />
+                  {/* Package Photography */}
+                  <div
+                    className="relative aspect-[16/10] w-full cursor-pointer overflow-hidden bg-[#102820]"
+                    onClick={() => onSelectJourney(journey)}
+                  >
+                    <img
+                      {...responsiveImg}
+                      alt={journey.alt}
+                      loading="lazy"
+                      decoding="async"
+                      referrerPolicy="no-referrer"
+                      className="photo-grade h-full w-full object-cover object-center transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:scale-[1.07]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#102820]/90 via-[#102820]/25 to-transparent" />
 
-                  {/* Clean Editorial Metadata Line */}
-                  <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-2 border-t border-white/20 pt-2.5 text-[10px] font-medium tracking-[0.2em] text-[#DCC28E] uppercase sm:inset-x-6 sm:bottom-5 sm:pt-3 sm:tracking-[0.24em]">
-                    <span>{journey.destinationName}, India</span>
-                    <span className="shrink-0 text-[#F7F4EC]">
-                      {journey.duration}
-                    </span>
-                  </div>
-                </div>
+                    {/* Category Badge */}
+                    <div className="absolute top-3.5 right-3.5 left-3.5 z-10 flex items-center justify-between">
+                      <span className="rounded-full bg-[#C6A66B] px-3 py-1 text-[9px] font-semibold tracking-wider text-[#102820] uppercase shadow">
+                        {journey.category}
+                      </span>
 
-                {/* Card Body */}
-                <div className="flex flex-1 flex-col justify-between p-5 sm:p-7">
-                  <div>
-                    <h3 className="font-editorial text-[clamp(1.6rem,4.5vw,2rem)] font-normal leading-tight tracking-tight text-[#102820]">
-                      {journey.title}
-                    </h3>
-                    <p className="mt-2.5 text-[14px] font-light leading-relaxed text-[#171B19]/78 sm:mt-3 sm:text-sm">
-                      {journey.summary}
-                    </p>
+                      <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-[#102820]/80 px-2.5 py-1 text-[9px] font-medium text-[#F7F4EC] backdrop-blur-md">
+                        <Clock className="h-2.5 w-2.5 text-[#C6A66B]" />
+                        <span>{journey.duration}</span>
+                      </span>
+                    </div>
 
-                    {/* Numbered Itinerary Highlights */}
-                    <ul className="mt-5 grid grid-cols-1 gap-2 border-t border-[#102820]/10 pt-4 sm:mt-6 sm:grid-cols-2 sm:gap-2.5 sm:pt-5">
-                      {journey.highlights.map((highlight, hIdx) => (
-                        <li
-                          key={highlight}
-                          className="flex items-start gap-2.5 text-[13px] leading-snug text-[#171B19]/82 sm:text-xs"
-                        >
-                          <span className="font-editorial text-sm italic text-[#C6A66B]">
-                            0{hIdx + 1}
-                          </span>
-                          <span>{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="absolute right-3.5 bottom-3 left-3.5 z-10">
+                      <p className="flex items-center gap-1.5 text-[10px] tracking-wider text-[#DCC28E] uppercase">
+                        <MapPin className="h-3 w-3 text-[#C6A66B]" />
+                        <span className="truncate">{journey.destinationName}</span>
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Configured Demo Price + Comfortable View Details & Enquire Now Actions */}
-                  <div className="mt-6 border-t border-[#102820]/10 pt-5 sm:mt-8 sm:pt-6">
-                    {journey.sampleEstimate && (
-                      <div className="mb-4">
-                        <span className="block text-[9px] font-semibold tracking-[0.22em] text-[#C6A66B] uppercase">
-                          Illustrative Demo Content
-                        </span>
-                        <span className="mt-0.5 block text-[13px] font-medium text-[#102820]/85 sm:text-xs">
+                  {/* Body Content */}
+                  <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
+                    <div>
+                      <h3
+                        onClick={() => onSelectJourney(journey)}
+                        className="font-editorial cursor-pointer text-[1.65rem] font-normal leading-tight tracking-tight text-[#102820] transition-colors group-hover:text-[#9A7B3E]"
+                      >
+                        {journey.title}
+                      </h3>
+                      <p className="mt-1.5 text-[11px] font-semibold tracking-wider text-[#9A7B3E] uppercase">
+                        {journey.routeSummary}
+                      </p>
+                      <p className="mt-2.5 text-[13.5px] font-light leading-relaxed text-[#171B19]/75 line-clamp-3">
+                        {journey.summary}
+                      </p>
+
+                      {/* Package Highlights */}
+                      <ul className="mt-4 space-y-1.5 border-t border-[#102820]/10 pt-3">
+                        {journey.highlights.slice(0, 3).map((h, i) => (
+                          <li
+                            key={i}
+                            className="flex items-start gap-2 text-[12.5px] text-[#171B19]/80"
+                          >
+                            <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#C6A66B]" />
+                            <span className="line-clamp-1">{h}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Quotation Status & Action Buttons */}
+                    <div className="mt-5 border-t border-[#102820]/10 pt-4">
+                      <div className="mb-3 flex items-center justify-between text-xs">
+                        <span className="text-[#171B19]/60">Quotation:</span>
+                        <span className="font-semibold text-[#102820]">
                           {journey.sampleEstimate}
                         </span>
                       </div>
-                    )}
 
-                    <div className="grid grid-cols-1 gap-2.5 xs:grid-cols-2">
-                      <motion.button
-                        type="button"
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => onSelectJourney(journey)}
-                        className="luxury-sheen inline-flex min-h-[46px] w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#102820] px-5 py-3 text-[11px] font-semibold tracking-[0.16em] text-[#F7F4EC] uppercase shadow-[0_14px_30px_-14px_rgba(16,40,32,0.5)] transition-colors duration-300 hover:bg-[#C6A66B] hover:text-[#102820]"
-                      >
-                        <span>View Details</span>
-                        <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-                      </motion.button>
+                      <div className="grid grid-cols-2 gap-2.5">
+                        <button
+                          type="button"
+                          onClick={() => onSelectJourney(journey)}
+                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-[#102820]/25 bg-white px-3 py-2 text-[10px] font-semibold tracking-wider text-[#102820] uppercase transition hover:border-[#C6A66B] hover:bg-[#F7F4EC]"
+                        >
+                          <FileText className="h-3 w-3 text-[#C6A66B]" />
+                          <span>View Itinerary</span>
+                        </button>
 
-                      <motion.button
-                        type="button"
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => onEnquireJourney(journey)}
-                        className="inline-flex min-h-[46px] w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-[#102820]/25 bg-transparent px-5 py-3 text-[11px] font-semibold tracking-[0.16em] text-[#102820] uppercase transition-colors duration-300 hover:border-[#C6A66B] hover:bg-[#C6A66B]/15"
-                      >
-                        <Send className="h-3.5 w-3.5 text-[#C6A66B]" />
-                        <span>Enquire Now</span>
-                      </motion.button>
+                        <button
+                          type="button"
+                          onClick={() => onEnquireJourney(journey)}
+                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#C6A66B] px-3 py-2 text-[10px] font-semibold tracking-wider text-[#102820] uppercase shadow transition hover:bg-[#DCC28E]"
+                        >
+                          <Send className="h-3 w-3" />
+                          <span>Get Quotation</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.article>
-            );
-          })}
+                </motion.article>
+              );
+            })}
+          </AnimatePresence>
         </div>
       </div>
     </section>

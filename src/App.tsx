@@ -14,6 +14,7 @@ import { JourneyModal } from './components/JourneyModal';
 import { Navbar } from './components/Navbar';
 import { PageIntro } from './components/PageIntro';
 import { RoadTripJourney } from './components/RoadTripJourney';
+import { SpiritualMap } from './components/SpiritualMap';
 import {
   DESTINATIONS,
   type Destination,
@@ -45,7 +46,7 @@ export default function App() {
     setEnquiryDestination(destinationName);
 
     requestAnimationFrame(() => {
-      const el = document.querySelector('#enquiry');
+      const el = document.querySelector('#contact');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     });
   };
@@ -66,7 +67,10 @@ export default function App() {
         <Navbar onMobileMenuChange={setMobileMenuOpen} />
 
         <main>
+          {/* Section A: Hero */}
           <Hero />
+
+          {/* Preserved Cinematic Scroll-Driven Car Road Trip Yatra */}
           <RoadTripJourney
             onSelectDestinationById={(destinationId) => {
               const match = DESTINATIONS.find((d) => d.id === destinationId);
@@ -76,20 +80,41 @@ export default function App() {
               const el = document.querySelector('#destinations');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
-            onPlanTrip={() => jumpToEnquiry('Custom Multi-Region Journey')}
+            onPlanTrip={() => jumpToEnquiry('Custom Spiritual Pilgrimage')}
           />
-          <Destinations onSelectDestination={setActiveDestination} />
-          <Experiences
-            onSelectExperience={() =>
-              jumpToEnquiry('Custom Multi-Region Journey')
-            }
+
+          {/* Section B & F: About Us & Why Choose Us */}
+          <About />
+
+          {/* Section C: Popular Spiritual Destinations */}
+          <Destinations
+            onSelectDestination={setActiveDestination}
+            onPlanTrip={jumpToEnquiry}
           />
+
+          {/* Section D: Spiritual Tour Packages */}
           <FeaturedJourneys
             onSelectJourney={setActiveJourney}
-            onEnquireJourney={(journey) => jumpToEnquiry(journey.destinationName)}
+            onEnquireJourney={(journey) => jumpToEnquiry(journey.title)}
           />
-          <About />
+
+          {/* Section E: Interactive Google Maps Pilgrimage Section */}
+          <SpiritualMap
+            onPlanTrip={jumpToEnquiry}
+            onExploreMore={setActiveDestination}
+          />
+
+          {/* Sacred Rituals & Experiences */}
+          <Experiences
+            onSelectExperience={() =>
+              jumpToEnquiry('Custom Spiritual Pilgrimage')
+            }
+          />
+
+          {/* Temple Photography Gallery */}
           <Gallery />
+
+          {/* Section G: Contact & Enquiry */}
           <EnquirySection preselectedDestination={enquiryDestination} />
         </main>
 

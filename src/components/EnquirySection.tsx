@@ -2,34 +2,24 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   AlertCircle,
-  Calendar,
   CheckCircle2,
   ChevronDown,
+  Mail,
+  MapPin,
   MessageCircle,
   Minus,
+  Phone,
   Plus,
   RotateCcw,
   Send,
-  ShieldAlert,
+  Sparkles,
 } from 'lucide-react';
-import { WHATSAPP_CONFIG, buildWhatsAppUrl } from '../config/concierge';
+import {
+  BUSINESS_INFO,
+  buildPilgrimageWhatsAppUrl,
+} from '../config/concierge';
 import { DESTINATIONS } from '../data/travelData';
 import { AnimatedRule, EDITORIAL_EASE, MaskedLine, Reveal } from './Reveal';
-
-const MONTHS = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
 
 interface EnquirySectionProps {
   preselectedDestination: string;
@@ -39,17 +29,17 @@ interface FormValues {
   name: string;
   phone: string;
   destination: string;
-  travellers: string;
   travelDate: string;
-  month: string;
+  travellers: string;
+  requirements: string;
 }
 
 interface FormErrors {
   name?: string;
   phone?: string;
   destination?: string;
+  travelDate?: string;
   travellers?: string;
-  month?: string;
 }
 
 const INPUT_CLASS =
@@ -62,9 +52,9 @@ export function EnquirySection({
     name: '',
     phone: '',
     destination: preselectedDestination || '',
-    travellers: '2',
     travelDate: '',
-    month: '',
+    travellers: '2',
+    requirements: '',
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submittedSnapshot, setSubmittedSnapshot] = useState<FormValues | null>(
@@ -83,49 +73,28 @@ export function EnquirySection({
   const validate = (): FormErrors => {
     const nextErrors: FormErrors = {};
     if (!values.name.trim() || values.name.trim().length < 2) {
-      nextErrors.name = 'Please enter a valid name (at least 2 characters).';
+      nextErrors.name = 'Please enter your name (at least 2 characters).';
     }
     const digitsOnly = values.phone.replace(/\D/g, '');
-    if (digitsOnly.length < 7 || digitsOnly.length > 15) {
+    if (digitsOnly.length < 10 || digitsOnly.length > 15) {
       nextErrors.phone =
-        'Please enter a valid phone number (7 to 15 digits).';
+        'Please enter a valid 10-digit mobile number for WhatsApp & booking.';
     }
     if (!values.destination) {
-      nextErrors.destination = 'Please choose a preferred destination.';
+      nextErrors.destination = 'Please choose a preferred pilgrimage destination.';
     }
     const count = Number(values.travellers);
-    if (!values.travellers || Number.isNaN(count) || count < 1 || count > 30) {
-      nextErrors.travellers = 'Please enter between 1 and 30 travellers.';
-    }
-    if (!values.month) {
-      nextErrors.month = 'Please select your preferred travel month.';
+    if (!values.travellers || Number.isNaN(count) || count < 1 || count > 50) {
+      nextErrors.travellers = 'Please enter between 1 and 50 travellers.';
     }
     return nextErrors;
   };
 
   const adjustTravellers = (delta: number) => {
     const current = Number(values.travellers) || 1;
-    const next = Math.min(30, Math.max(1, current + delta));
+    const next = Math.min(50, Math.max(1, current + delta));
     setValues((prev) => ({ ...prev, travellers: String(next) }));
     if (errors.travellers) setErrors({ ...errors, travellers: undefined });
-  };
-
-  const handleDateChange = (dateStr: string) => {
-    let derivedMonth = values.month;
-    if (dateStr) {
-      const parsed = new Date(`${dateStr}T00:00:00`);
-      if (!Number.isNaN(parsed.getTime())) {
-        derivedMonth = MONTHS[parsed.getMonth()];
-      }
-    }
-    setValues((prev) => ({
-      ...prev,
-      travelDate: dateStr,
-      month: derivedMonth,
-    }));
-    if (errors.month && derivedMonth) {
-      setErrors((prev) => ({ ...prev, month: undefined }));
-    }
   };
 
   const handleSubmit = (e: FormEvent) => {
@@ -145,463 +114,489 @@ export function EnquirySection({
       name: '',
       phone: '',
       destination: '',
-      travellers: '2',
       travelDate: '',
-      month: '',
+      travellers: '2',
+      requirements: '',
     });
   };
 
-  const whatsappMessage = `Hello! (Prototype Demo Enquiry) I am interested in exploring ${
-    values.destination || 'India'
-  } for ${values.travellers || '2'} travellers${
-    values.month ? ` around ${values.month}` : ''
-  }.`;
+  const dynamicWhatsAppUrl = buildPilgrimageWhatsAppUrl({
+    destination: values.destination || undefined,
+    name: values.name || undefined,
+    travelDate: values.travelDate || undefined,
+    travellers: values.travellers || '2',
+    notes: values.requirements || undefined,
+  });
 
   return (
     <section
-      id="enquiry"
+      id="contact"
       className="editorial-grain relative overflow-hidden bg-[#102820] py-16 text-[#F7F4EC] sm:py-24 lg:py-36"
     >
-      {/* Subtle Ambient Light */}
+      <div id="enquiry" className="absolute -top-12 left-0" />
+
+      {/* Ambient Lighting */}
       <div className="atelier-glow pointer-events-none absolute -bottom-32 -left-24 h-96 w-96 rounded-full bg-[#C6A66B]/16 blur-[140px]" />
       <div className="atelier-glow pointer-events-none absolute -top-24 right-0 h-80 w-80 rounded-full bg-[#C6A66B]/10 blur-[150px]" />
 
       <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:gap-14 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
-        {/* Left Editorial Column */}
+        {/* Left Column: Business Contact Information & Direct WhatsApp */}
         <div className="flex flex-col justify-between lg:col-span-5">
           <div>
             <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#C6A66B] uppercase sm:tracking-[0.34em]">
               <span>06</span>
               <AnimatedRule className="h-px w-7 bg-[#C6A66B] sm:w-8" />
-              <span>Trip Enquiry Prototype</span>
+              <span>Contact &amp; Enquiry</span>
             </Reveal>
             <h2 className="font-editorial mt-4 text-[clamp(2.15rem,6.8vw,3.85rem)] font-normal leading-[1.06] tracking-[-0.02em] text-white sm:mt-5">
-              <MaskedLine delay={0.08}>Where will your next</MaskedLine>
+              <MaskedLine delay={0.08}>Plan Your Sacred</MaskedLine>
               <MaskedLine delay={0.18} className="italic text-[#DCC28E]">
-                story begin?
+                Pilgrimage Journey
               </MaskedLine>
             </h2>
 
             <Reveal delay={0.12}>
               <p className="mt-4 text-[15px] font-light leading-relaxed text-[#F7F4EC]/80 sm:mt-6 sm:text-base">
-                Share the contours of your ideal Indian escape. This interactive
-                form demonstrates how client enquiries can be captured cleanly
-                and seamlessly routed to your travel concierge.
+                Connect directly with <strong>Bhargavi Tour and Travels</strong>.
+                Whether you are arranging a family darshan, Jyotirlinga yatra, or
+                senior citizen pilgrimage, we provide transparent quotations and
+                devoted travel arrangements.
               </p>
             </Reveal>
+
+            {/* Official Contact Cards */}
+            <div className="mt-8 space-y-4">
+              {/* Phone */}
+              <a
+                href={BUSINESS_INFO.phoneTel}
+                className="group flex items-start gap-3.5 rounded-xl border border-white/10 bg-[#18392e]/50 p-4 transition-all duration-300 hover:border-[#C6A66B] hover:bg-[#18392e]/80"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#C6A66B] text-[#102820]">
+                  <Phone className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className="text-[10px] font-semibold tracking-wider text-[#C6A66B] uppercase">
+                    Call Us (Direct)
+                  </p>
+                  <p className="mt-0.5 text-base font-semibold text-white group-hover:text-[#DCC28E]">
+                    {BUSINESS_INFO.phone}
+                  </p>
+                  <p className="text-xs text-[#F7F4EC]/65">
+                    Monday to Sunday &bull; 24/7 Enquiry Support
+                  </p>
+                </div>
+              </a>
+
+              {/* Email */}
+              <a
+                href={BUSINESS_INFO.emailMailto}
+                className="group flex items-start gap-3.5 rounded-xl border border-white/10 bg-[#18392e]/50 p-4 transition-all duration-300 hover:border-[#C6A66B] hover:bg-[#18392e]/80"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#C6A66B]/50 bg-white/5 text-[#C6A66B]">
+                  <Mail className="h-5 w-5" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[10px] font-semibold tracking-wider text-[#C6A66B] uppercase">
+                    Email Enquiries
+                  </p>
+                  <p className="mt-0.5 truncate text-sm font-semibold text-white group-hover:text-[#DCC28E]">
+                    {BUSINESS_INFO.email}
+                  </p>
+                  <p className="text-xs text-[#F7F4EC]/65">
+                    Written Quotations &amp; Custom Itinerary Requests
+                  </p>
+                </div>
+              </a>
+
+              {/* Address */}
+              <div className="flex items-start gap-3.5 rounded-xl border border-white/10 bg-[#18392e]/50 p-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#C6A66B]/50 bg-white/5 text-[#C6A66B]">
+                  <MapPin className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className="text-[10px] font-semibold tracking-wider text-[#C6A66B] uppercase">
+                    Office Address
+                  </p>
+                  <p className="mt-1 text-sm leading-relaxed text-white">
+                    {BUSINESS_INFO.address.line1}, {BUSINESS_INFO.address.line2},{' '}
+                    {BUSINESS_INFO.address.area}, {BUSINESS_INFO.address.state},{' '}
+                    {BUSINESS_INFO.address.country}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Configurable WhatsApp Concierge Placeholder */}
-          <Reveal delay={0.2} className="mt-8 sm:mt-10">
-            <div className="rounded-2xl border border-[#C6A66B]/35 bg-[#18392e]/60 p-5 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.6)] ring-1 ring-inset ring-white/5 backdrop-blur-md sm:p-7">
-              <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3">
-                <span className="text-[10px] font-semibold tracking-[0.22em] text-[#C6A66B] uppercase sm:tracking-[0.26em]">
-                  Direct Concierge Integration
-                </span>
-                <span className="text-[10px] tracking-[0.2em] text-[#F7F4EC]/55 uppercase">
-                  Placeholder
-                </span>
+          {/* Quick WhatsApp Link Card */}
+          <Reveal delay={0.2} className="mt-8">
+            <div className="rounded-2xl border border-[#C6A66B]/40 bg-[#18392e]/80 p-5 shadow-xl">
+              <div className="flex items-center gap-2 text-xs font-semibold tracking-wider text-[#C6A66B] uppercase">
+                <MessageCircle className="h-4 w-4" />
+                <span>Instant WhatsApp Enquiry</span>
               </div>
-
-              <p className="mt-4 text-sm font-light leading-relaxed text-[#F7F4EC]/82">
-                Connect directly to your agency&apos;s official WhatsApp
-                Business desk. Replace the placeholder below before going live:
+              <p className="mt-2 text-xs leading-relaxed text-[#F7F4EC]/80">
+                Chat with our pilgrimage coordinator directly on WhatsApp.
+                Prefilled with your selected destination:
               </p>
-
-              <p className="mt-2 font-mono text-xs text-[#DCC28E]">
-                Configurable Number: {WHATSAPP_CONFIG.displayNumber}
-              </p>
-
               <a
-                href={buildWhatsAppUrl(whatsappMessage)}
+                href={dynamicWhatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="luxury-sheen mt-5 inline-flex min-h-[48px] w-full items-center justify-center gap-2.5 rounded-full border border-[#C6A66B] bg-[#C6A66B] px-6 py-3.5 text-[11px] font-semibold tracking-[0.18em] text-[#102820] uppercase transition duration-300 active:scale-[0.98] hover:bg-[#F7F4EC] sm:mt-6 sm:tracking-[0.2em]"
+                className="luxury-sheen mt-4 inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full bg-[#C6A66B] px-5 py-3 text-[11px] font-semibold tracking-wider text-[#102820] uppercase shadow transition hover:bg-[#F7F4EC]"
               >
                 <MessageCircle className="h-4 w-4" />
-                <span>WhatsApp Concierge (Placeholder)</span>
+                <span>WhatsApp: {BUSINESS_INFO.phone}</span>
               </a>
             </div>
           </Reveal>
         </div>
 
-        {/* Right Bespoke Concierge Form Card */}
+        {/* Right Column: Interactive Pilgrimage Enquiry Form */}
         <div className="lg:col-span-7">
-          <Reveal delay={0.1}>
-            <div className="relative overflow-hidden rounded-2xl border border-[#C6A66B]/35 bg-gradient-to-br from-[#FCFBF7] via-[#FAF6EB] to-[#F3ECDC] p-5 text-[#171B19] shadow-[0_40px_100px_-28px_rgba(0,0,0,0.72)] ring-1 ring-inset ring-[#C6A66B]/20 sm:p-9 lg:p-12">
-              {/* Subtle Animated Corner Gold Accents */}
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute top-3 left-3 h-5 w-5 border-t border-l border-[#C6A66B]/45"
-              />
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute right-3 bottom-3 h-5 w-5 border-r border-b border-[#C6A66B]/45"
-              />
+          <Reveal delay={0.16}>
+            <div className="rounded-2xl border border-[#C6A66B]/35 bg-[#FCFBF7] p-6 text-[#171B19] shadow-[0_32px_80px_-24px_rgba(0,0,0,0.5)] sm:p-9 lg:p-10">
+              <div className="flex items-center justify-between border-b border-[#102820]/10 pb-4">
+                <div>
+                  <h3 className="font-editorial text-2xl font-normal text-[#102820] sm:text-3xl">
+                    Request a Pilgrimage Quotation
+                  </h3>
+                  <p className="mt-1 text-xs text-[#171B19]/65">
+                    Fill in your details for a transparent, customized itinerary.
+                  </p>
+                </div>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#C6A66B]/20 text-[#9A7B3E]">
+                  <Sparkles className="h-4 w-4" />
+                </span>
+              </div>
+
+              {/* Success / Quotation Summary State */}
               <AnimatePresence mode="wait">
                 {submittedSnapshot ? (
                   <motion.div
-                    key="demo-success"
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -12 }}
-                    transition={{ duration: 0.4 }}
-                    className="py-1"
+                    key="submitted-card"
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.35, ease: EDITORIAL_EASE }}
+                    className="py-6"
                   >
-                    <div className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.2em] text-[#102820] uppercase sm:tracking-[0.24em]">
-                      <CheckCircle2 className="h-4 w-4 text-[#C6A66B]" />
-                      <span>Demo Form Validation Passed</span>
-                    </div>
-
-                    <h3 className="font-editorial mt-3 text-[clamp(1.85rem,5vw,2.5rem)] font-normal leading-tight text-[#102820] sm:mt-4">
-                      Prototype Preview Ready, {submittedSnapshot.name}.
-                    </h3>
-
-                    <div className="mt-5 flex items-start gap-3 rounded-xl border border-[#C6A66B]/55 bg-[#C6A66B]/10 p-4 text-xs leading-relaxed text-[#102820]">
-                      <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0 text-[#102820]" />
-                      <span>
-                        <strong>Prototype Demonstration Notice:</strong> This is
-                        a visual demo confirmation.{' '}
-                        <strong>
-                          No enquiry was actually sent, emailed, or stored
-                        </strong>{' '}
-                        by this prototype.
-                      </span>
-                    </div>
-
-                    <dl className="mt-6 grid grid-cols-1 gap-4 border-t border-b border-[#102820]/12 py-5 sm:mt-7 sm:grid-cols-2 sm:gap-5 sm:py-6">
-                      <div>
-                        <dt className="text-[10px] font-semibold tracking-[0.22em] text-[#171B19]/50 uppercase">
-                          Traveller Name
-                        </dt>
-                        <dd className="mt-1 text-sm font-medium text-[#102820]">
-                          {submittedSnapshot.name}
-                        </dd>
+                    <div className="rounded-2xl border border-emerald-600/30 bg-emerald-50/70 p-6">
+                      <div className="flex items-center gap-3 text-emerald-800">
+                        <CheckCircle2 className="h-6 w-6 shrink-0 text-emerald-600" />
+                        <div>
+                          <h4 className="text-base font-semibold">
+                            Enquiry Received with Reverence!
+                          </h4>
+                          <p className="text-xs text-emerald-700">
+                            Thank you, {submittedSnapshot.name}. Our pilgrimage
+                            concierge will review your requirements.
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <dt className="text-[10px] font-semibold tracking-[0.22em] text-[#171B19]/50 uppercase">
-                          Phone Number
-                        </dt>
-                        <dd className="mt-1 text-sm font-medium text-[#102820]">
-                          {submittedSnapshot.phone}
-                        </dd>
-                      </div>
-                      <div>
-                        <dt className="text-[10px] font-semibold tracking-[0.22em] text-[#171B19]/50 uppercase">
-                          Preferred Destination
-                        </dt>
-                        <dd className="mt-1 text-sm font-medium text-[#102820]">
+
+                      <div className="mt-5 space-y-2 border-t border-emerald-200/60 pt-4 text-xs text-emerald-900">
+                        <p>
+                          <strong>Destination:</strong>{' '}
                           {submittedSnapshot.destination}
-                        </dd>
+                        </p>
+                        <p>
+                          <strong>Contact Mobile:</strong>{' '}
+                          {submittedSnapshot.phone}
+                        </p>
+                        {submittedSnapshot.travelDate && (
+                          <p>
+                            <strong>Preferred Travel Date:</strong>{' '}
+                            {submittedSnapshot.travelDate}
+                          </p>
+                        )}
+                        <p>
+                          <strong>Number of Travellers:</strong>{' '}
+                          {submittedSnapshot.travellers}
+                        </p>
+                        {submittedSnapshot.requirements && (
+                          <p>
+                            <strong>Requirements:</strong>{' '}
+                            {submittedSnapshot.requirements}
+                          </p>
+                        )}
                       </div>
-                      <div>
-                        <dt className="text-[10px] font-semibold tracking-[0.22em] text-[#171B19]/50 uppercase">
-                          Travellers &amp; Timing
-                        </dt>
-                        <dd className="mt-1 text-sm font-medium text-[#102820]">
-                          {submittedSnapshot.travellers} Guest(s) &bull;{' '}
-                          {submittedSnapshot.month}
-                          {submittedSnapshot.travelDate
-                            ? ` (${submittedSnapshot.travelDate})`
-                            : ''}
-                        </dd>
-                      </div>
-                    </dl>
 
-                    <button
-                      type="button"
-                      onClick={handleReset}
-                      className="mt-7 inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#102820] px-7 py-3.5 text-[11px] font-semibold tracking-[0.2em] text-[#F7F4EC] uppercase transition hover:bg-[#C6A66B] hover:text-[#102820] sm:mt-8 sm:w-auto"
-                    >
-                      <RotateCcw className="h-3.5 w-3.5" />
-                      <span>Test Another Enquiry</span>
-                    </button>
+                      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                        <a
+                          href={buildPilgrimageWhatsAppUrl({
+                            destination: submittedSnapshot.destination,
+                            name: submittedSnapshot.name,
+                            travelDate: submittedSnapshot.travelDate,
+                            travellers: submittedSnapshot.travellers,
+                            notes: submittedSnapshot.requirements,
+                          })}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-[46px] flex-1 items-center justify-center gap-2 rounded-full bg-[#C6A66B] px-5 py-2.5 text-xs font-semibold tracking-wider text-[#102820] uppercase shadow transition hover:bg-[#DCC28E]"
+                        >
+                          <MessageCircle className="h-4 w-4" />
+                          <span>Forward on WhatsApp Now</span>
+                        </a>
+
+                        <button
+                          type="button"
+                          onClick={handleReset}
+                          className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full border border-emerald-800/20 bg-white px-5 py-2.5 text-xs font-semibold tracking-wider text-emerald-900 uppercase transition hover:bg-emerald-100"
+                        >
+                          <RotateCcw className="h-4 w-4" />
+                          <span>New Enquiry</span>
+                        </button>
+                      </div>
+                    </div>
                   </motion.div>
                 ) : (
-                  <motion.form
-                    key="enquiry-form"
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.45, ease: EDITORIAL_EASE }}
+                  /* Pilgrimage Form */
+                  <form
                     onSubmit={handleSubmit}
                     noValidate
-                    className="space-y-6 sm:space-y-7"
+                    className="mt-6 space-y-5"
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#102820]/12 pb-4">
-                      <div className="flex items-center gap-2.5 text-[10px] font-semibold tracking-[0.24em] text-[#9A7B42] uppercase">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#C6A66B]" />
-                        <span>Private Concierge Atelier</span>
-                      </div>
-                      <p className="text-[11px] leading-relaxed text-[#171B19]/60">
-                        Interactive demo &bull; Validates locally
-                      </p>
+                    {/* 1. Customer Name */}
+                    <div>
+                      <label
+                        htmlFor="enquiry-name"
+                        className="block text-xs font-semibold tracking-wider text-[#102820] uppercase"
+                      >
+                        Your Full Name <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="enquiry-name"
+                        type="text"
+                        autoComplete="name"
+                        value={values.name}
+                        onChange={(e) => {
+                          setValues({ ...values, name: e.target.value });
+                          if (errors.name) setErrors({ ...errors, name: undefined });
+                        }}
+                        placeholder="e.g. Ramesh Sharma"
+                        className={INPUT_CLASS}
+                      />
+                      {errors.name && (
+                        <p className="mt-1.5 flex items-center gap-1 text-xs text-red-600">
+                          <AlertCircle className="h-3.5 w-3.5" />
+                          <span>{errors.name}</span>
+                        </p>
+                      )}
                     </div>
 
-                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
-                      {/* Name */}
-                      <div>
-                        <label
-                          htmlFor="enquiry-name"
-                          className="block text-[11px] font-semibold tracking-[0.18em] text-[#102820] uppercase"
-                        >
-                          Full Name
-                        </label>
-                        <input
-                          id="enquiry-name"
-                          type="text"
-                          autoComplete="name"
-                          placeholder="e.g. Aarav Mehta"
-                          aria-invalid={Boolean(errors.name)}
-                          value={values.name}
-                          onChange={(e) => {
-                            setValues({ ...values, name: e.target.value });
-                            if (errors.name)
-                              setErrors({ ...errors, name: undefined });
-                          }}
-                          className={`${INPUT_CLASS} ${
-                            errors.name ? 'border-red-600 focus:border-red-600' : ''
-                          }`}
-                        />
-                        {errors.name && (
-                          <p
-                            role="alert"
-                            className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-700"
-                          >
-                            <AlertCircle className="h-3.5 w-3.5 shrink-0" />
-                            <span>{errors.name}</span>
-                          </p>
-                        )}
-                      </div>
-
-                      {/* Phone Number */}
-                      <div>
-                        <label
-                          htmlFor="enquiry-phone"
-                          className="block text-[11px] font-semibold tracking-[0.18em] text-[#102820] uppercase"
-                        >
-                          Phone Number
-                        </label>
-                        <input
-                          id="enquiry-phone"
-                          type="tel"
-                          inputMode="tel"
-                          autoComplete="tel"
-                          placeholder="+91 98XXX XXXXX"
-                          aria-invalid={Boolean(errors.phone)}
-                          value={values.phone}
-                          onChange={(e) => {
-                            setValues({ ...values, phone: e.target.value });
-                            if (errors.phone)
-                              setErrors({ ...errors, phone: undefined });
-                          }}
-                          className={`${INPUT_CLASS} ${
-                            errors.phone
-                              ? 'border-red-600 focus:border-red-600'
-                              : ''
-                          }`}
-                        />
-                        {errors.phone && (
-                          <p
-                            role="alert"
-                            className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-700"
-                          >
-                            <AlertCircle className="h-3.5 w-3.5 shrink-0" />
-                            <span>{errors.phone}</span>
-                          </p>
-                        )}
-                      </div>
+                    {/* 2. Phone Number */}
+                    <div>
+                      <label
+                        htmlFor="enquiry-phone"
+                        className="block text-xs font-semibold tracking-wider text-[#102820] uppercase"
+                      >
+                        Mobile / WhatsApp Number{' '}
+                        <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="enquiry-phone"
+                        type="tel"
+                        autoComplete="tel"
+                        value={values.phone}
+                        onChange={(e) => {
+                          setValues({ ...values, phone: e.target.value });
+                          if (errors.phone)
+                            setErrors({ ...errors, phone: undefined });
+                        }}
+                        placeholder="e.g. 9876543210"
+                        className={INPUT_CLASS}
+                      />
+                      {errors.phone && (
+                        <p className="mt-1.5 flex items-center gap-1 text-xs text-red-600">
+                          <AlertCircle className="h-3.5 w-3.5" />
+                          <span>{errors.phone}</span>
+                        </p>
+                      )}
                     </div>
 
-                    {/* Preferred Destination */}
+                    {/* 3. Destination Selector */}
                     <div>
                       <label
                         htmlFor="enquiry-destination"
-                        className="block text-[11px] font-semibold tracking-[0.18em] text-[#102820] uppercase"
+                        className="block text-xs font-semibold tracking-wider text-[#102820] uppercase"
                       >
-                        Preferred Destination
+                        Pilgrimage Destination{' '}
+                        <span className="text-red-500">*</span>
                       </label>
-                      <div className="relative mt-2">
+                      <div className="relative">
                         <select
                           id="enquiry-destination"
-                          aria-invalid={Boolean(errors.destination)}
                           value={values.destination}
                           onChange={(e) => {
-                            setValues({
-                              ...values,
-                              destination: e.target.value,
-                            });
+                            setValues({ ...values, destination: e.target.value });
                             if (errors.destination)
                               setErrors({ ...errors, destination: undefined });
                           }}
-                          className={`min-h-[50px] w-full appearance-none rounded-xl border border-[#102820]/18 bg-white py-3 pr-11 pl-4 text-base text-[#171B19] shadow-[0_1px_2px_rgba(16,40,32,0.04)] transition outline-none focus:border-[#C6A66B] focus:ring-2 focus:ring-[#C6A66B]/20 ${
-                            errors.destination
-                              ? 'border-red-600 focus:border-red-600'
-                              : ''
-                          }`}
+                          className={`${INPUT_CLASS} appearance-none pr-10`}
                         >
-                          <option value="">
-                            Select an Indian destination...
-                          </option>
-                          {DESTINATIONS.map((dest) => (
-                            <option key={dest.id} value={dest.name}>
-                              {dest.name} — {dest.tagline}
+                          <option value="">Select Sacred Destination</option>
+                          <optgroup label="South India Temples">
+                            {DESTINATIONS.filter(
+                              (d) => d.region === 'South India'
+                            ).map((d) => (
+                              <option key={d.id} value={d.name}>
+                                {d.name} ({d.primaryDeity})
+                              </option>
+                            ))}
+                          </optgroup>
+                          <optgroup label="North India Yatras">
+                            {DESTINATIONS.filter(
+                              (d) => d.region === 'North India'
+                            ).map((d) => (
+                              <option key={d.id} value={d.name}>
+                                {d.name} ({d.primaryDeity})
+                              </option>
+                            ))}
+                          </optgroup>
+                          <optgroup label="West & Central Jyotirlingas">
+                            {DESTINATIONS.filter(
+                              (d) => d.region === 'West & Central India'
+                            ).map((d) => (
+                              <option key={d.id} value={d.name}>
+                                {d.name} ({d.primaryDeity})
+                              </option>
+                            ))}
+                          </optgroup>
+                          <optgroup label="East India Shrines">
+                            {DESTINATIONS.filter(
+                              (d) => d.region === 'East India'
+                            ).map((d) => (
+                              <option key={d.id} value={d.name}>
+                                {d.name} ({d.primaryDeity})
+                              </option>
+                            ))}
+                          </optgroup>
+                          <optgroup label="Special Circuits">
+                            <option value="12 Jyotirlinga Darshan">
+                              12 Jyotirlinga Darshan Circuit
                             </option>
-                          ))}
-                          <option value="Custom Multi-Region Journey">
-                            Custom Multi-Region Journey across India
-                          </option>
+                            <option value="Himalayan Char Dham Yatra">
+                              Himalayan Char Dham Yatra
+                            </option>
+                            <option value="Shirdi Sai Baba & Shani Shingnapur">
+                              Shirdi Sai Baba &amp; Shani Shingnapur
+                            </option>
+                            <option value="Telangana Temple Tour">
+                              Telangana Temple Tour (Yadagirigutta, Swarnagiri)
+                            </option>
+                            <option value="Custom Spiritual Pilgrimage">
+                              Custom Spiritual Pilgrimage (Other)
+                            </option>
+                          </optgroup>
                         </select>
-                        <ChevronDown className="pointer-events-none absolute top-1/2 right-3.5 h-4 w-4 -translate-y-1/2 text-[#102820]/60" />
+                        <ChevronDown className="pointer-events-none absolute right-3.5 top-5 h-4 w-4 text-[#102820]/60" />
                       </div>
                       {errors.destination && (
-                        <p
-                          role="alert"
-                          className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-700"
-                        >
-                          <AlertCircle className="h-3.5 w-3.5 shrink-0" />
+                        <p className="mt-1.5 flex items-center gap-1 text-xs text-red-600">
+                          <AlertCircle className="h-3.5 w-3.5" />
                           <span>{errors.destination}</span>
                         </p>
                       )}
                     </div>
 
-                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
-                      {/* One-Handed Number of Travellers Stepper */}
+                    {/* 4. Travel Date & Number of Travellers */}
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <div>
+                        <label
+                          htmlFor="enquiry-date"
+                          className="block text-xs font-semibold tracking-wider text-[#102820] uppercase"
+                        >
+                          Preferred Travel Date
+                        </label>
+                        <div className="relative">
+                          <input
+                            id="enquiry-date"
+                            type="date"
+                            min={todayIso}
+                            value={values.travelDate}
+                            onChange={(e) =>
+                              setValues({ ...values, travelDate: e.target.value })
+                            }
+                            className={INPUT_CLASS}
+                          />
+                        </div>
+                      </div>
+
                       <div>
                         <label
                           htmlFor="enquiry-travellers"
-                          className="block text-[11px] font-semibold tracking-[0.18em] text-[#102820] uppercase"
+                          className="block text-xs font-semibold tracking-wider text-[#102820] uppercase"
                         >
                           Number of Travellers
                         </label>
-                        <div className="mt-2 flex min-h-[50px] items-center overflow-hidden rounded-xl border border-[#102820]/18 bg-white shadow-[0_1px_2px_rgba(16,40,32,0.04)] focus-within:border-[#C6A66B] focus-within:ring-2 focus-within:ring-[#C6A66B]/20">
+                        <div className="mt-2 flex items-center rounded-xl border border-[#102820]/18 bg-white p-1">
                           <button
                             type="button"
                             onClick={() => adjustTravellers(-1)}
-                            aria-label="Decrease number of travellers"
-                            className="flex h-[50px] w-12 shrink-0 cursor-pointer items-center justify-center border-r border-[#102820]/10 text-[#102820] transition active:bg-[#102820]/10 hover:bg-[#102820]/5"
+                            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg text-[#102820] hover:bg-neutral-100"
+                            aria-label="Decrease travellers"
                           >
                             <Minus className="h-4 w-4" />
                           </button>
                           <input
                             id="enquiry-travellers"
                             type="number"
-                            inputMode="numeric"
-                            min={1}
-                            max={30}
-                            aria-invalid={Boolean(errors.travellers)}
+                            min="1"
+                            max="50"
                             value={values.travellers}
-                            onChange={(e) => {
-                              setValues({
-                                ...values,
-                                travellers: e.target.value,
-                              });
-                              if (errors.travellers)
-                                setErrors({ ...errors, travellers: undefined });
-                            }}
-                            className="h-[50px] w-full bg-transparent text-center text-base font-medium text-[#171B19] outline-none"
+                            onChange={(e) =>
+                              setValues({ ...values, travellers: e.target.value })
+                            }
+                            className="w-full text-center text-sm font-semibold text-[#102820] outline-none"
                           />
                           <button
                             type="button"
                             onClick={() => adjustTravellers(1)}
-                            aria-label="Increase number of travellers"
-                            className="flex h-[50px] w-12 shrink-0 cursor-pointer items-center justify-center border-l border-[#102820]/10 text-[#102820] transition active:bg-[#102820]/10 hover:bg-[#102820]/5"
+                            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg text-[#102820] hover:bg-neutral-100"
+                            aria-label="Increase travellers"
                           >
                             <Plus className="h-4 w-4" />
                           </button>
                         </div>
-                        {errors.travellers && (
-                          <p
-                            role="alert"
-                            className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-700"
-                          >
-                            <AlertCircle className="h-3.5 w-3.5 shrink-0" />
-                            <span>{errors.travellers}</span>
-                          </p>
-                        )}
-                      </div>
-
-                      {/* Native Mobile-Friendly Start Date (Auto-syncs Travel Month) */}
-                      <div>
-                        <label
-                          htmlFor="enquiry-date"
-                          className="block text-[11px] font-semibold tracking-[0.18em] text-[#102820] uppercase"
-                        >
-                          Preferred Start Date{' '}
-                          <span className="font-normal text-[#171B19]/45 lowercase">
-                            (optional)
-                          </span>
-                        </label>
-                        <div className="relative mt-2">
-                          <input
-                            id="enquiry-date"
-                            type="date"
-                            min={todayIso}
-                            value={values.travelDate}
-                            onChange={(e) => handleDateChange(e.target.value)}
-                            className="min-h-[50px] w-full rounded-xl border border-[#102820]/18 bg-white px-4 py-3 text-base text-[#171B19] shadow-[0_1px_2px_rgba(16,40,32,0.04)] transition outline-none focus:border-[#C6A66B] focus:ring-2 focus:ring-[#C6A66B]/20"
-                          />
-                          <Calendar className="pointer-events-none absolute top-1/2 right-3.5 hidden h-4 w-4 -translate-y-1/2 text-[#102820]/45 sm:block" />
-                        </div>
                       </div>
                     </div>
 
-                    {/* Preferred Travel Month Dropdown */}
+                    {/* 5. Additional Requirements */}
                     <div>
                       <label
-                        htmlFor="enquiry-month"
-                        className="block text-[11px] font-semibold tracking-[0.18em] text-[#102820] uppercase"
+                        htmlFor="enquiry-requirements"
+                        className="block text-xs font-semibold tracking-wider text-[#102820] uppercase"
                       >
-                        Preferred Travel Month
+                        Additional Requirements
                       </label>
-                      <div className="relative mt-2">
-                        <select
-                          id="enquiry-month"
-                          aria-invalid={Boolean(errors.month)}
-                          value={values.month}
-                          onChange={(e) => {
-                            setValues({ ...values, month: e.target.value });
-                            if (errors.month)
-                              setErrors({ ...errors, month: undefined });
-                          }}
-                          className={`min-h-[50px] w-full appearance-none rounded-xl border border-[#102820]/18 bg-white py-3 pr-11 pl-4 text-base text-[#171B19] shadow-[0_1px_2px_rgba(16,40,32,0.04)] transition outline-none focus:border-[#C6A66B] focus:ring-2 focus:ring-[#C6A66B]/20 ${
-                            errors.month
-                              ? 'border-red-600 focus:border-red-600'
-                              : ''
-                          }`}
-                        >
-                          <option value="">Select month...</option>
-                          {MONTHS.map((m) => (
-                            <option key={m} value={m}>
-                              {m}
-                            </option>
-                          ))}
-                        </select>
-                        <ChevronDown className="pointer-events-none absolute top-1/2 right-3.5 h-4 w-4 -translate-y-1/2 text-[#102820]/60" />
-                      </div>
-                      {errors.month && (
-                        <p
-                          role="alert"
-                          className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-700"
-                        >
-                          <AlertCircle className="h-3.5 w-3.5 shrink-0" />
-                          <span>{errors.month}</span>
-                        </p>
-                      )}
+                      <textarea
+                        id="enquiry-requirements"
+                        rows={3}
+                        value={values.requirements}
+                        onChange={(e) =>
+                          setValues({ ...values, requirements: e.target.value })
+                        }
+                        placeholder="e.g. Senior citizens travelling, special darshan guidance, AC vehicle preference, pure veg food stops..."
+                        className="mt-2 w-full rounded-xl border border-[#102820]/18 bg-white px-4 py-3 text-sm text-[#171B19] placeholder:text-[#171B19]/40 outline-none focus:border-[#C6A66B] focus:ring-2 focus:ring-[#C6A66B]/20"
+                      />
                     </div>
 
+                    {/* Submit Button & Direct WhatsApp Trigger */}
                     <div className="pt-2">
-                      <motion.button
+                      <button
                         type="submit"
-                        whileHover={{ y: -1 }}
-                        whileTap={{ scale: 0.99 }}
-                        className="luxury-sheen inline-flex min-h-[52px] w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-[#102820] px-8 py-4 text-xs font-semibold tracking-[0.2em] text-[#F7F4EC] uppercase shadow-[0_18px_40px_-14px_rgba(16,40,32,0.55)] transition-colors duration-300 hover:bg-[#C6A66B] hover:text-[#102820]"
+                        className="luxury-sheen flex min-h-[50px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#C6A66B] px-6 py-3.5 text-xs font-semibold tracking-wider text-[#102820] uppercase shadow transition hover:bg-[#DCC28E]"
                       >
                         <Send className="h-4 w-4" />
-                        <span>Preview Trip Enquiry (Demo)</span>
-                      </motion.button>
+                        <span>Request Custom Quotation</span>
+                      </button>
                     </div>
-                  </motion.form>
+
+                    <p className="text-center text-[10px] text-[#171B19]/55">
+                      Bhargavi Tour and Travels &bull; Phone: {BUSINESS_INFO.phone} &bull; Email:{' '}
+                      {BUSINESS_INFO.email}
+                    </p>
+                  </form>
                 )}
               </AnimatePresence>
             </div>

@@ -61,18 +61,18 @@ export function Gallery() {
         <div className="flex flex-col justify-between gap-5 border-b border-[#102820]/15 pb-8 sm:gap-6 sm:pb-12 md:flex-row md:items-end">
           <div>
             <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#C6A66B] uppercase sm:tracking-[0.34em]">
-              <span>05</span>
+              <span>08</span>
               <AnimatedRule className="h-px w-7 bg-[#C6A66B] sm:w-8" />
-              <span>Visual Journal</span>
+              <span>Sacred Visual Journal</span>
             </Reveal>
             <h2 className="font-editorial mt-3.5 text-[clamp(2.15rem,6.8vw,4.25rem)] font-normal leading-[1.06] tracking-[-0.02em] text-[#102820] sm:mt-4">
-              <MaskedLine delay={0.08}>Frames From Across India.</MaskedLine>
+              <MaskedLine delay={0.08}>Sanctums of Sacred India.</MaskedLine>
             </h2>
           </div>
           <Reveal delay={0.14}>
             <p className="max-w-xs text-[14px] font-light leading-relaxed text-[#171B19]/70 sm:text-sm">
-              Tap any photograph to inspect it in the fullscreen editorial
-              lightbox.
+              Tap any sacred photograph to inspect temple architecture and holy
+              riverbanks in the fullscreen lightbox.
             </p>
           </Reveal>
         </div>

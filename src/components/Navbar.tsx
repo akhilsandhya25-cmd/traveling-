@@ -5,16 +5,17 @@ import {
   useScroll,
   useSpring,
 } from 'framer-motion';
-import { ArrowUpRight, Compass, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Compass, Menu, Phone, X } from 'lucide-react';
+import { BUSINESS_INFO } from '../config/concierge';
 import { EDITORIAL_EASE } from './Reveal';
 
 const NAV_LINKS = [
-  { label: 'The Drive', href: '#road-trip' },
+  { label: 'Home', href: '#hero' },
+  { label: 'About Us', href: '#about' },
   { label: 'Destinations', href: '#destinations' },
-  { label: 'Experiences', href: '#experiences' },
-  { label: 'Journeys', href: '#journeys' },
-  { label: 'Philosophy', href: '#about' },
-  { label: 'Journal', href: '#gallery' },
+  { label: 'Tour Packages', href: '#packages' },
+  { label: 'Spiritual Map', href: '#spiritual-map' },
+  { label: 'Contact Us', href: '#contact' },
 ];
 
 interface NavbarProps {
@@ -76,7 +77,7 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
         />
 
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
-          {/* Compact Brand Wordmark on Mobile, Editorial on Desktop */}
+          {/* Brand Wordmark & Spiritual Seal */}
           <a
             href="#hero"
             onClick={(e) => {
@@ -89,17 +90,17 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
               <Compass className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={1.35} />
             </span>
             <div className="flex flex-col leading-none">
-              <span className="font-editorial text-lg font-medium tracking-[0.2em] text-white sm:text-2xl sm:tracking-[0.26em]">
-                ARANYA
+              <span className="font-editorial text-lg font-medium tracking-[0.14em] text-white sm:text-2xl sm:tracking-[0.18em]">
+                BHARGAVI
               </span>
-              <span className="mt-0.5 text-[7px] font-medium tracking-[0.24em] text-[#C6A66B]/90 uppercase sm:mt-1 sm:text-[8px] sm:tracking-[0.38em]">
-                Private India &bull; Prototype
+              <span className="mt-0.5 text-[7px] font-medium tracking-[0.22em] text-[#C6A66B]/90 uppercase sm:mt-1 sm:text-[8px] sm:tracking-[0.3em]">
+                Tour &amp; Travels &bull; Sacred India
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-7 xl:gap-8 lg:flex" aria-label="Primary">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
@@ -108,7 +109,7 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
                   e.preventDefault();
                   handleLinkClick(link.href);
                 }}
-                className="group relative text-[11px] font-medium tracking-[0.22em] text-[#F7F4EC]/88 uppercase transition-colors hover:text-[#DCC28E]"
+                className="group relative text-[11px] font-medium tracking-[0.2em] text-[#F7F4EC]/88 uppercase transition-colors hover:text-[#DCC28E]"
               >
                 {link.label}
                 <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-[#C6A66B] transition-all duration-300 group-hover:w-full" />
@@ -116,15 +117,23 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
             ))}
           </nav>
 
-          {/* Desktop CTA & Mobile Menu Toggle */}
+          {/* Desktop CTA & Direct Phone */}
           <div className="flex items-center gap-2.5 sm:gap-4">
+            <a
+              href={BUSINESS_INFO.phoneTel}
+              className="hidden items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3.5 py-2 text-[11px] font-medium tracking-wider text-[#F7F4EC] transition-colors hover:border-[#C6A66B] hover:text-[#C6A66B] md:inline-flex"
+            >
+              <Phone className="h-3.5 w-3.5 text-[#C6A66B]" />
+              <span>{BUSINESS_INFO.phone}</span>
+            </a>
+
             <a
               href="#enquiry"
               onClick={(e) => {
                 e.preventDefault();
                 handleLinkClick('#enquiry');
               }}
-              className="luxury-sheen hidden min-h-[40px] items-center justify-center rounded-full border border-[#C6A66B]/65 px-5 py-2 text-[10px] font-medium tracking-[0.18em] text-[#F7F4EC] uppercase transition-all duration-300 hover:bg-[#C6A66B] hover:text-[#102820] xs:inline-flex sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[0.2em]"
+              className="luxury-sheen hidden min-h-[40px] items-center justify-center rounded-full border border-[#C6A66B] bg-[#C6A66B] px-5 py-2 text-[10px] font-semibold tracking-[0.18em] text-[#102820] uppercase transition-all duration-300 hover:bg-[#F7F4EC] xs:inline-flex sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[0.2em]"
             >
               Plan Your Trip
             </a>
@@ -158,7 +167,7 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
               aria-hidden="true"
             />
 
-            {/* Slide-Out Panel (Full width on smartphones, max-w-md on tablets) */}
+            {/* Slide-Out Panel */}
             <motion.aside
               id="mobile-nav-drawer"
               role="dialog"
@@ -177,11 +186,11 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
                     <Compass className="h-4 w-4" strokeWidth={1.35} />
                   </span>
                   <div className="flex flex-col">
-                    <span className="font-editorial text-xl tracking-[0.22em] text-white sm:text-2xl">
-                      ARANYA
+                    <span className="font-editorial text-xl tracking-[0.16em] text-white sm:text-2xl">
+                      BHARGAVI
                     </span>
-                    <span className="mt-1 text-[8px] tracking-[0.28em] text-[#C6A66B] uppercase">
-                      Private India &bull; Prototype
+                    <span className="mt-1 text-[8px] tracking-[0.24em] text-[#C6A66B] uppercase">
+                      Tour &amp; Travels &bull; Pilgrimages
                     </span>
                   </div>
                 </div>
@@ -208,7 +217,7 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
                     initial={{ opacity: 0, x: 18 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{
-                      delay: 0.06 + idx * 0.045,
+                      delay: 0.05 + idx * 0.04,
                       duration: 0.35,
                       ease: EDITORIAL_EASE,
                     }}
@@ -216,13 +225,13 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
                       e.preventDefault();
                       handleLinkClick(link.href);
                     }}
-                    className="group flex min-h-[58px] items-center justify-between py-3 text-[#F7F4EC] transition active:opacity-75 hover:text-[#DCC28E]"
+                    className="group flex min-h-[52px] items-center justify-between py-3 text-[#F7F4EC] transition active:opacity-75 hover:text-[#DCC28E]"
                   >
                     <div className="flex items-baseline gap-4">
                       <span className="font-sans text-[11px] font-medium tracking-[0.26em] text-[#C6A66B]/80">
                         0{idx + 1}
                       </span>
-                      <span className="font-editorial text-[1.75rem] font-normal tracking-wide sm:text-[2.15rem]">
+                      <span className="font-editorial text-[1.55rem] font-normal tracking-wide sm:text-[1.95rem]">
                         {link.label}
                       </span>
                     </div>
@@ -231,21 +240,30 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
                 ))}
               </nav>
 
-              {/* Prominent Mobile Trip Action */}
-              <div className="relative z-10 border-t border-[#C6A66B]/20 pt-5">
+              {/* Mobile Quick Contact & Plan Your Trip Button */}
+              <div className="relative z-10 space-y-3 border-t border-[#C6A66B]/20 pt-4">
+                <a
+                  href={BUSINESS_INFO.phoneTel}
+                  className="flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2.5 text-xs tracking-wider text-[#F7F4EC] transition hover:border-[#C6A66B]"
+                >
+                  <Phone className="h-3.5 w-3.5 text-[#C6A66B]" />
+                  <span>Call: {BUSINESS_INFO.phone}</span>
+                </a>
+
                 <a
                   href="#enquiry"
                   onClick={(e) => {
                     e.preventDefault();
                     handleLinkClick('#enquiry');
                   }}
-                  className="flex min-h-[52px] w-full items-center justify-center gap-2 rounded-full bg-[#C6A66B] px-6 py-3.5 text-xs font-semibold tracking-[0.2em] text-[#102820] uppercase shadow-lg transition active:scale-[0.98] hover:bg-[#DCC28E]"
+                  className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[#C6A66B] px-6 py-3 text-xs font-semibold tracking-[0.2em] text-[#102820] uppercase shadow-lg transition active:scale-[0.98] hover:bg-[#DCC28E]"
                 >
                   <span>Plan Your Trip</span>
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
-                <p className="mt-3.5 text-center text-[10px] tracking-[0.24em] text-[#F7F4EC]/50 uppercase">
-                  Curated India Travel Showcase
+
+                <p className="pt-1 text-center text-[9px] tracking-[0.2em] text-[#F7F4EC]/60 uppercase">
+                  Bhargavi Tour and Travels &bull; Telangana
                 </p>
               </div>
             </motion.aside>
