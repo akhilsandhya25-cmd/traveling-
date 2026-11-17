@@ -92,8 +92,8 @@ export function FeaturedJourneys({
                 onClick={() => setActiveCategory(cat)}
                 className={`min-h-[40px] shrink-0 cursor-pointer rounded-full border px-4 py-2 text-[11px] font-semibold tracking-wider transition-all duration-300 sm:text-xs ${
                   isActive
-                    ? 'border-[#C6A66B] bg-[#102820] text-[#DCC28E] shadow'
-                    : 'border-[#102820]/15 bg-white text-[#171B19]/70 hover:border-[#C6A66B] hover:text-[#102820]'
+                    ? 'border-[#F59E0B] bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] text-[#0F172A] font-bold shadow-[0_4px_14px_rgba(245,158,11,0.4)]'
+                    : 'border-amber-900/15 bg-white text-[#171B19]/75 hover:border-amber-400 hover:text-amber-900'
                 }`}
               >
                 {cat}
@@ -125,7 +125,7 @@ export function FeaturedJourneys({
                     delay: Math.min((idx % 6) * 0.05, 0.2),
                     ease: EDITORIAL_EASE,
                   }}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-[#102820]/10 bg-[#FCFBF7] shadow-[0_20px_50px_-28px_rgba(16,40,32,0.22)] transition-all duration-500 hover:border-[#C6A66B]/55 hover:shadow-[0_32px_70px_-24px_rgba(16,40,32,0.3)]"
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-amber-900/10 bg-gradient-to-b from-[#FFFDF9] to-[#FAF6EE] shadow-[0_20px_50px_-28px_rgba(217,119,6,0.18)] transition-all duration-500 hover:border-amber-400 hover:shadow-[0_32px_70px_-24px_rgba(217,119,6,0.3)]"
                 >
                   {/* Package Photography */}
                   <div
@@ -205,16 +205,16 @@ export function FeaturedJourneys({
                         <button
                           type="button"
                           onClick={() => onSelectJourney(journey)}
-                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-[#102820]/25 bg-white px-3 py-2 text-[10px] font-semibold tracking-wider text-[#102820] uppercase transition hover:border-[#C6A66B] hover:bg-[#F7F4EC]"
+                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-amber-700/30 bg-amber-50/70 px-3 py-2 text-[10px] font-bold tracking-wider text-amber-950 uppercase transition hover:border-amber-500 hover:bg-amber-100"
                         >
-                          <FileText className="h-3 w-3 text-[#C6A66B]" />
+                          <FileText className="h-3 w-3 text-amber-600" />
                           <span>View Itinerary</span>
                         </button>
 
                         <button
                           type="button"
                           onClick={() => onEnquireJourney(journey)}
-                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#C6A66B] px-3 py-2 text-[10px] font-semibold tracking-wider text-[#102820] uppercase shadow transition hover:bg-[#DCC28E]"
+                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] px-3 py-2 text-[10px] font-bold tracking-wider text-[#0F172A] uppercase shadow-[0_4px_14px_rgba(245,158,11,0.35)] transition-all hover:shadow-[0_6px_20px_rgba(245,158,11,0.55)] hover:brightness-105"
                         >
                           <Send className="h-3 w-3" />
                           <span>Get Quotation</span>

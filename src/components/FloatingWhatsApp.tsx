@@ -52,10 +52,13 @@ export function FloatingWhatsApp({ hidden = false }: FloatingWhatsAppProps) {
           exit={{ opacity: 0, y: 12, scale: 0.92 }}
           transition={{ duration: 0.28, ease: EDITORIAL_EASE }}
           whileTap={{ scale: 0.94 }}
-          className="group fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 inline-flex h-[52px] min-w-[52px] items-center justify-center gap-2.5 rounded-full border border-[#C6A66B]/60 bg-[#102820]/95 px-3.5 text-[#F7F4EC] shadow-[0_14px_34px_-6px_rgba(16,40,32,0.65)] backdrop-blur-md transition-colors hover:bg-[#C6A66B] hover:text-[#102820] sm:right-6 sm:bottom-6 sm:h-auto sm:px-5 sm:py-3.5"
+          className="group fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 inline-flex h-[52px] min-w-[52px] items-center justify-center gap-2.5 rounded-full border border-emerald-300/40 bg-gradient-to-r from-[#25D366] via-[#1EB859] to-[#0E7A66] px-3.5 text-white shadow-[0_12px_30px_rgba(37,211,102,0.45)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:shadow-[0_16px_36px_rgba(37,211,102,0.6)] sm:right-6 sm:bottom-6 sm:h-auto sm:px-5 sm:py-3.5"
         >
-          <MessageCircle className="h-5 w-5 shrink-0 text-[#C6A66B] transition-colors group-hover:text-[#102820] sm:h-4 sm:w-4" />
-          <span className="hidden text-[11px] font-semibold tracking-[0.18em] uppercase sm:inline">
+          <span className="relative flex h-5 w-5 shrink-0 items-center justify-center">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/40 duration-1000"></span>
+            <MessageCircle className="relative h-5 w-5 shrink-0 text-white sm:h-4 sm:w-4" />
+          </span>
+          <span className="hidden text-[11px] font-bold tracking-[0.16em] uppercase text-white drop-shadow-sm sm:inline">
             WhatsApp Enquiry
           </span>
         </motion.a>

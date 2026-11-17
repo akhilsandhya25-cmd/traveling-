@@ -11,11 +11,8 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import { getResponsiveImageProps } from '../utils/responsiveMedia';
 import { AnimatedRule, EDITORIAL_EASE, MaskedLine, Reveal } from './Reveal';
 
-const MAIN_ABOUT_IMAGE =
-  'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1600&q=85';
-
-const SECONDARY_ABOUT_IMAGE =
-  'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1600&q=85';
+const MAIN_ABOUT_IMAGE = '/images/destinations/ayodhya.jpg';
+const SECONDARY_ABOUT_IMAGE = '/images/destinations/shirdi.jpg';
 
 const WHY_CHOOSE_US_PILLARS = [
   {
@@ -23,30 +20,35 @@ const WHY_CHOOSE_US_PILLARS = [
     title: 'Personalised Pilgrimage Planning',
     text: 'Every devotee has unique spiritual intentions. We tailor darshan queues, special seva timings, and sacred river snan rituals to your family’s preferences.',
     icon: Sparkles,
+    color: 'text-amber-400 border-amber-500/50 bg-amber-950/50 shadow-[0_0_15px_rgba(245,158,11,0.25)]',
   },
   {
     number: '02',
     title: 'Comfortable Travel Arrangements',
     text: 'Clean, sanitized AC vehicles, experienced courteous drivers, senior-citizen friendly pacing with wheelchair guidance, and hygienic pure-vegetarian dining stops.',
     icon: Shield,
+    color: 'text-emerald-400 border-emerald-500/50 bg-emerald-950/50 shadow-[0_0_15px_rgba(16,185,129,0.25)]',
   },
   {
     number: '03',
     title: 'Customised Spiritual Journeys',
-    text: 'From Telangana hill shrines to South Indian gopurams, Maharashtra Jyotirlingas, and Himalayan Char Dham, we craft circuits around your sacred schedule.',
+    text: 'From Telangana hill shrines to South Indian gopurams, Maharashtra Jyotirlingas, and Ayodhya Dham, we craft circuits around your sacred schedule.',
     icon: MapPin,
+    color: 'text-sky-400 border-sky-500/50 bg-sky-950/50 shadow-[0_0_15px_rgba(14,165,233,0.25)]',
   },
   {
     number: '04',
     title: 'Dedicated Customer Support',
     text: 'Attentive telephone assistance and continuous coordination before, during, and after your pilgrimage so you can focus entirely on divine contemplation.',
     icon: HeartHandshake,
+    color: 'text-rose-400 border-rose-500/50 bg-rose-950/50 shadow-[0_0_15px_rgba(244,63,94,0.25)]',
   },
   {
     number: '05',
     title: 'Transparent Quotations',
     text: 'Honest, itemized quotations with zero hidden surprises or forced commercial stops. We never invent package prices or claim unverified guarantees.',
     icon: CheckCircle2,
+    color: 'text-[#FDE047] border-[#F59E0B]/50 bg-amber-950/50 shadow-[0_0_15px_rgba(245,158,11,0.25)]',
   },
 ];
 
@@ -191,7 +193,7 @@ export function About() {
                 return (
                   <Reveal key={pillar.number} delay={0.15 + idx * 0.05}>
                     <div className="group flex items-start gap-3.5 sm:gap-4.5">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#C6A66B]/40 bg-[#102820] text-[#C6A66B] sm:h-9 sm:w-9">
+                      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border sm:h-9 sm:w-9 ${pillar.color}`}>
                         <Icon className="h-4 w-4" />
                       </span>
                       <div>

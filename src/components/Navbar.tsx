@@ -66,14 +66,17 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'border-b border-[#C6A66B]/20 bg-[#102820]/95 py-2.5 shadow-[0_14px_45px_-16px_rgba(0,0,0,0.5)] backdrop-blur-md sm:py-3.5'
-            : 'bg-gradient-to-b from-[#102820]/80 via-[#102820]/35 to-transparent py-3.5 sm:py-6'
+            ? 'border-b border-[#F59E0B]/30 bg-[#0B1A15]/95 py-2.5 shadow-[0_14px_45px_-16px_rgba(0,0,0,0.6)] backdrop-blur-md sm:py-3.5'
+            : 'bg-gradient-to-b from-[#0B1A15]/85 via-[#0B1A15]/40 to-transparent py-3.5 sm:py-6'
         }`}
       >
+        {/* Radiant Saffron, Marigold & Crimson Header Accent Bar */}
+        <div className="absolute top-0 right-0 left-0 h-[2.5px] bg-gradient-to-r from-[#D97706] via-[#F59E0B] via-[#E11D48] to-[#D97706]" />
+
         {/* Ultra-thin Editorial Scroll Progress Hairline */}
         <motion.div
           style={{ scaleX }}
-          className="fixed top-0 right-0 left-0 z-50 h-[2px] origin-left bg-[#C6A66B]"
+          className="fixed top-0 right-0 left-0 z-50 h-[2.5px] origin-left bg-gradient-to-r from-[#F59E0B] via-[#FDE047] to-[#E11D48]"
         />
 
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
@@ -121,9 +124,9 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
           <div className="flex items-center gap-2.5 sm:gap-4">
             <a
               href={BUSINESS_INFO.phoneTel}
-              className="hidden items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3.5 py-2 text-[11px] font-medium tracking-wider text-[#F7F4EC] transition-colors hover:border-[#C6A66B] hover:text-[#C6A66B] md:inline-flex"
+              className="hidden items-center gap-2 rounded-full border border-[#F59E0B]/40 bg-[#F59E0B]/10 px-3.5 py-2 text-[11px] font-semibold tracking-wider text-[#FEF3C7] transition-all hover:border-[#F59E0B] hover:bg-[#F59E0B]/25 hover:text-white md:inline-flex"
             >
-              <Phone className="h-3.5 w-3.5 text-[#C6A66B]" />
+              <Phone className="h-3.5 w-3.5 text-[#F59E0B]" />
               <span>{BUSINESS_INFO.phone}</span>
             </a>
 
@@ -133,7 +136,7 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
                 e.preventDefault();
                 handleLinkClick('#enquiry');
               }}
-              className="luxury-sheen hidden min-h-[40px] items-center justify-center rounded-full border border-[#C6A66B] bg-[#C6A66B] px-5 py-2 text-[10px] font-semibold tracking-[0.18em] text-[#102820] uppercase transition-all duration-300 hover:bg-[#F7F4EC] xs:inline-flex sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[0.2em]"
+              className="hidden min-h-[40px] items-center justify-center rounded-full bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] px-5 py-2 text-[10px] font-bold tracking-[0.18em] text-[#0F172A] uppercase shadow-[0_4px_16px_rgba(245,158,11,0.45)] transition-all duration-300 hover:shadow-[0_6px_22px_rgba(245,158,11,0.65)] hover:brightness-105 xs:inline-flex sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[0.2em]"
             >
               Plan Your Trip
             </a>

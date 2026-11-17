@@ -11,7 +11,7 @@ import { getResponsiveImageProps } from '../utils/responsiveMedia';
 import { LuxuryExpeditionSUV } from './LuxuryExpeditionSUV';
 import { EDITORIAL_EASE } from './Reveal';
 
-const HERO_IMAGE = '/images/destinations/tirupati.jpg';
+const HERO_IMAGE = '/images/hero-temple.jpg';
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -51,25 +51,28 @@ export function Hero() {
       >
         <motion.img
           {...responsiveHero}
-          alt="Golden spires and sacred temple sanctum of Sri Venkateswara Balaji - Bhargavi Tour and Travels"
+          alt="Magnificent coastal temple sanctum with ocean and sacred gopurams - Bhargavi Tour and Travels"
           fetchPriority="high"
           decoding="async"
           referrerPolicy="no-referrer"
           initial={
             prefersReduced
               ? { opacity: 1 }
-              : { scale: isMobile ? 1.05 : 1.14, opacity: 0.75 }
+              : { scale: isMobile ? 1.05 : 1.14, opacity: 0.85 }
           }
           animate={{ scale: 1.0, opacity: 1 }}
           transition={{ duration: isMobile ? 1.2 : 2.2, ease: EDITORIAL_EASE }}
-          className="photo-grade h-full w-full object-cover object-[52%_38%] md:object-center will-change-transform"
+          className="photo-grade h-full w-full object-cover object-[50%_35%] md:object-center will-change-transform"
         />
       </motion.div>
 
-      {/* Dark Cinematic Multi-layer Scrim (stronger vertical contrast on portrait mobile) */}
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[#102820]/82 via-[#171B19]/48 to-[#102820]/94 md:from-[#102820]/75 md:via-[#171B19]/42 md:to-[#102820]/92" />
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-[#102820]/65 via-transparent to-[#102820]/55" />
-      <div className="atelier-glow pointer-events-none absolute top-1/3 left-1/2 z-10 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#C6A66B]/10 blur-[140px]" />
+      {/* Luminous Spiritual Dawn Scrim - preserving temple and ocean brilliance */}
+      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[#0F1E19]/60 via-[#10241E]/30 to-[#0A1813]/88 md:from-[#0F1E19]/50 md:via-transparent md:to-[#0A1813]/82" />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-[#0F1E19]/55 via-transparent to-[#0F1E19]/45" />
+      
+      {/* Radiant Saffron & Gold Temple Aura Lights */}
+      <div className="atelier-glow pointer-events-none absolute top-1/4 left-1/2 z-10 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-gradient-to-tr from-[#F59E0B]/22 via-[#D97706]/15 to-transparent blur-[120px]" />
+      <div className="atelier-glow pointer-events-none absolute -bottom-10 right-10 z-10 h-64 w-64 rounded-full bg-[#E11D48]/14 blur-[100px]" />
 
       {/* Subtle Architectural Inset Frame on Larger Viewports */}
       <motion.div
@@ -179,7 +182,7 @@ export function Hero() {
                 delay: isMobile ? 0.48 : 1.0,
                 ease: EDITORIAL_EASE,
               }}
-              className="block italic text-[#DCC28E] will-change-transform"
+              className="block italic bg-gradient-to-r from-[#FDE047] via-[#F59E0B] to-[#FBBF24] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(245,158,11,0.35)] will-change-transform"
             >
               Sacred Destinations
             </motion.span>
@@ -194,7 +197,7 @@ export function Hero() {
             delay: isMobile ? 0.58 : 1.15,
             ease: EDITORIAL_EASE,
           }}
-          className="mt-5 max-w-xl text-[clamp(0.95rem,2.5vw,1.15rem)] font-light leading-relaxed tracking-wide text-[#F7F4EC]/88 sm:mt-8"
+          className="mt-5 max-w-xl text-[clamp(0.95rem,2.5vw,1.15rem)] font-light leading-relaxed tracking-wide text-[#F7F4EC]/92 drop-shadow sm:mt-8"
         >
           Experience divine journeys, ancient temples and unforgettable
           spiritual pilgrimages with Bhargavi Tour and Travels.
@@ -216,7 +219,7 @@ export function Hero() {
             whileHover={isMobile ? undefined : { y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => scrollToSection('#destinations')}
-            className="luxury-sheen group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-[#F7F4EC] px-7 py-3.5 text-[11px] font-semibold tracking-[0.2em] text-[#102820] uppercase shadow-[0_20px_45px_-12px_rgba(0,0,0,0.45)] transition-colors duration-300 hover:bg-[#C6A66B] hover:text-[#102820] sm:w-auto sm:px-8 sm:py-4"
+            className="group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] px-7 py-3.5 text-[11px] font-bold tracking-[0.2em] text-[#0F172A] uppercase shadow-[0_12px_32px_-4px_rgba(245,158,11,0.5)] transition-all duration-300 hover:shadow-[0_16px_38px_-4px_rgba(245,158,11,0.7)] hover:brightness-105 sm:w-auto sm:px-8 sm:py-4"
           >
             <span>Explore Spiritual Destinations</span>
             <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
@@ -227,9 +230,9 @@ export function Hero() {
             whileHover={isMobile ? undefined : { y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => scrollToSection('#enquiry')}
-            className="group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full border border-[#F7F4EC]/45 bg-[#102820]/40 px-7 py-3.5 text-[11px] font-medium tracking-[0.2em] text-[#F7F4EC] uppercase backdrop-blur-md transition-colors duration-300 hover:border-[#C6A66B] hover:bg-[#102820]/75 hover:text-[#DCC28E] sm:w-auto sm:px-8 sm:py-4"
+            className="group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full border-2 border-[#F59E0B]/75 bg-[#0F231C]/65 px-7 py-3.5 text-[11px] font-semibold tracking-[0.2em] text-[#FEF3C7] uppercase backdrop-blur-md transition-all duration-300 hover:border-[#FBBF24] hover:bg-[#F59E0B]/25 hover:text-white shadow-lg sm:w-auto sm:px-8 sm:py-4"
           >
-            <Compass className="h-4 w-4 text-[#C6A66B] transition-transform duration-700 group-hover:rotate-45" />
+            <Compass className="h-4 w-4 text-[#FBBF24] transition-transform duration-700 group-hover:rotate-45" />
             <span>Plan Your Journey</span>
           </motion.button>
         </motion.div>

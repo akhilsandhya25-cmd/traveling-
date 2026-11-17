@@ -332,9 +332,9 @@ export function EnquirySection({
                           })}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex min-h-[46px] flex-1 items-center justify-center gap-2 rounded-full bg-[#C6A66B] px-5 py-2.5 text-xs font-semibold tracking-wider text-[#102820] uppercase shadow transition hover:bg-[#DCC28E]"
+                          className="inline-flex min-h-[46px] flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#25D366] via-[#1EB859] to-[#0E7A66] px-5 py-2.5 text-xs font-bold tracking-wider text-white uppercase shadow-[0_8px_20px_rgba(37,211,102,0.4)] transition hover:brightness-110"
                         >
-                          <MessageCircle className="h-4 w-4" />
+                          <MessageCircle className="h-4 w-4 text-white" />
                           <span>Forward on WhatsApp Now</span>
                         </a>
 
@@ -576,9 +576,9 @@ export function EnquirySection({
                     <div className="pt-2">
                       <button
                         type="submit"
-                        className="luxury-sheen flex min-h-[50px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#C6A66B] px-6 py-3.5 text-xs font-semibold tracking-wider text-[#102820] uppercase shadow transition hover:bg-[#DCC28E]"
+                        className="luxury-sheen flex min-h-[50px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] px-6 py-3.5 text-xs font-bold tracking-wider text-[#10241E] uppercase shadow-[0_10px_24px_rgba(245,158,11,0.35)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_14px_30px_rgba(245,158,11,0.5)]"
                       >
-                        <Send className="h-4 w-4" />
+                        <Send className="h-4 w-4 text-[#10241E]" />
                         <span>Request Custom Quotation</span>
                       </button>
                     </div>
