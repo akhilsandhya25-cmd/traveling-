@@ -45,10 +45,6 @@ export function SpiritualMap({ onPlanTrip, onExploreMore }: SpiritualMapProps) {
       id="spiritual-map"
       className="editorial-grain relative overflow-hidden bg-[#102820] py-16 text-[#F7F4EC] sm:py-24 lg:py-36"
     >
-      {/* Ambient background glows */}
-      <div className="atelier-glow pointer-events-none absolute -top-24 left-1/4 h-96 w-96 rounded-full bg-[#C6A66B]/15 blur-[140px]" />
-      <div className="atelier-glow pointer-events-none absolute -bottom-24 right-1/4 h-80 w-80 rounded-full bg-[#C6A66B]/10 blur-[130px]" />
-
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         {/* Section Header */}
         <div className="flex flex-col justify-between gap-6 border-b border-white/10 pb-8 sm:gap-8 sm:pb-12 lg:flex-row lg:items-end">

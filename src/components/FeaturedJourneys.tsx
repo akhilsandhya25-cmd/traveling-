@@ -46,15 +46,11 @@ export function FeaturedJourneys({
   return (
     <section
       id="packages"
-      className="relative overflow-hidden bg-gradient-to-b from-[#FCECDC] via-[#FBF0E4] to-[#F8E7D4] py-16 text-[#171B19] sm:py-24 lg:py-36"
+      className="relative overflow-hidden bg-[#F8F5EE] py-16 text-[#171B19] sm:py-24 lg:py-36"
     >
-      {/* Sunset Ambient Atmospheric Glows */}
-      <div className="pointer-events-none absolute -top-32 right-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-[#F59E0B]/20 via-[#FB923C]/15 to-[#E11D48]/10 blur-[130px] animate-pulse" />
-      <div className="pointer-events-none absolute -bottom-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-[#EA580C]/18 via-[#FBBF24]/15 to-[#F59E0B]/10 blur-[140px]" />
-
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         {/* Header + Transparent Quotation Notice */}
-        <div className="flex flex-col justify-between gap-6 border-b border-[#EA580C]/20 pb-8 sm:gap-8 sm:pb-12 lg:flex-row lg:items-end">
+        <div className="flex flex-col justify-between gap-6 border-b border-[#102820]/15 pb-8 sm:gap-8 sm:pb-12 lg:flex-row lg:items-end">
           <div>
             <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#D97706] uppercase sm:tracking-[0.34em]">
               <span>04</span>
@@ -95,7 +91,7 @@ export function FeaturedJourneys({
                 onClick={() => setActiveCategory(cat)}
                 className={`min-h-[40px] shrink-0 cursor-pointer rounded-full border px-4 py-2 text-[11px] font-semibold tracking-wider transition-all duration-300 sm:text-xs ${
                   isActive
-                    ? 'border-[#F59E0B] bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] text-[#0F172A] font-bold shadow-[0_4px_14px_rgba(245,158,11,0.4)]'
+                    ? 'border-[#C6A66B] bg-[#C6A66B] text-[#10241E] font-bold shadow-sm'
                     : 'border-amber-900/15 bg-white text-[#171B19]/75 hover:border-amber-400 hover:text-amber-900'
                 }`}
               >
@@ -128,11 +124,8 @@ export function FeaturedJourneys({
                     delay: Math.min((idx % 6) * 0.05, 0.2),
                     ease: EDITORIAL_EASE,
                   }}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-amber-300/60 bg-gradient-to-b from-[#FFFBF5] via-[#FFF5EA] to-[#FEEED8] shadow-[0_16px_40px_-14px_rgba(217,119,6,0.22)] ring-1 ring-inset ring-white/60 transition-all duration-400 hover:border-amber-500 hover:shadow-[0_28px_65px_-12px_rgba(234,88,12,0.36)]"
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-[#E7DFD0] bg-[#FFFDF9] shadow-sm transition-all duration-300 hover:border-[#C6A66B] hover:shadow-lg"
                 >
-                  {/* Top Sunset Glow Gradient Accent Bar */}
-                  <div className="h-1.5 w-full bg-gradient-to-r from-[#F59E0B] via-[#FB923C] to-[#E11D48] transition-all duration-300 group-hover:h-2" />
-
                   {/* Package Photography */}
                   <div
                     className="relative aspect-[16/10] w-full cursor-pointer overflow-hidden bg-[#102820]"
@@ -150,12 +143,12 @@ export function FeaturedJourneys({
 
                     {/* Category Badge */}
                     <div className="absolute top-3.5 right-3.5 left-3.5 z-10 flex items-center justify-between">
-                      <span className="rounded-full bg-gradient-to-r from-[#F59E0B] to-[#EA580C] px-3 py-1 text-[9px] font-bold tracking-wider text-white uppercase shadow">
+                      <span className="rounded-full bg-[#C6A66B] px-3 py-1 text-[9px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm">
                         {journey.category}
                       </span>
 
-                      <span className="inline-flex items-center gap-1 rounded-full border border-amber-400/40 bg-[#0B1A15]/85 px-2.5 py-1 text-[9px] font-semibold text-[#FEF3C7] backdrop-blur-md">
-                        <Clock className="h-2.5 w-2.5 text-[#F59E0B]" />
+                      <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-[#0B1A15]/85 px-2.5 py-1 text-[9px] font-medium text-[#FEF3C7] backdrop-blur-md">
+                        <Clock className="h-2.5 w-2.5 text-[#C6A66B]" />
                         <span>Custom ({journey.duration})</span>
                       </span>
                     </div>
@@ -220,7 +213,7 @@ export function FeaturedJourneys({
                         <button
                           type="button"
                           onClick={() => onEnquireJourney(journey)}
-                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] px-3 py-2 text-[10px] font-bold tracking-wider text-[#0F172A] uppercase shadow-[0_4px_14px_rgba(245,158,11,0.35)] transition-all hover:shadow-[0_6px_20px_rgba(245,158,11,0.55)] hover:brightness-105"
+                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#C6A66B] px-3 py-2 text-[10px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm transition hover:bg-[#DCC28E]"
                         >
                           <Send className="h-3 w-3" />
                           <span>Get Quotation</span>

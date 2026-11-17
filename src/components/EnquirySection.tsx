@@ -135,10 +135,6 @@ export function EnquirySection({
     >
       <div id="enquiry" className="absolute -top-12 left-0" />
 
-      {/* Ambient Lighting */}
-      <div className="atelier-glow pointer-events-none absolute -bottom-32 -left-24 h-96 w-96 rounded-full bg-[#C6A66B]/16 blur-[140px]" />
-      <div className="atelier-glow pointer-events-none absolute -top-24 right-0 h-80 w-80 rounded-full bg-[#C6A66B]/10 blur-[150px]" />
-
       <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:gap-14 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
         {/* Left Column: Business Contact Information & Direct WhatsApp */}
         <div className="flex flex-col justify-between lg:col-span-5">
@@ -332,7 +328,7 @@ export function EnquirySection({
                           })}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex min-h-[46px] flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#25D366] via-[#1EB859] to-[#0E7A66] px-5 py-2.5 text-xs font-bold tracking-wider text-white uppercase shadow-[0_8px_20px_rgba(37,211,102,0.4)] transition hover:brightness-110"
+                          className="inline-flex min-h-[46px] flex-1 items-center justify-center gap-2 rounded-full bg-[#16A34A] px-5 py-2.5 text-xs font-bold tracking-wider text-white uppercase shadow-sm transition hover:bg-[#15803D]"
                         >
                           <MessageCircle className="h-4 w-4 text-white" />
                           <span>Forward on WhatsApp Now</span>
@@ -576,7 +572,7 @@ export function EnquirySection({
                     <div className="pt-2">
                       <button
                         type="submit"
-                        className="luxury-sheen flex min-h-[50px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] px-6 py-3.5 text-xs font-bold tracking-wider text-[#10241E] uppercase shadow-[0_10px_24px_rgba(245,158,11,0.35)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_14px_30px_rgba(245,158,11,0.5)]"
+                        className="luxury-sheen flex min-h-[50px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#C6A66B] px-6 py-3.5 text-xs font-bold tracking-wider text-[#10241E] uppercase shadow-sm transition hover:bg-[#DCC28E]"
                       >
                         <Send className="h-4 w-4 text-[#10241E]" />
                         <span>Request Custom Quotation</span>

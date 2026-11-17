@@ -17,9 +17,6 @@ export function Experiences({ onSelectExperience }: ExperiencesProps) {
       id="experiences"
       className="editorial-grain relative overflow-hidden bg-[#102820] py-16 text-[#F7F4EC] sm:py-24 lg:py-36"
     >
-      {/* Subtle Ambient Gold Glow */}
-      <div className="atelier-glow pointer-events-none absolute -top-40 right-0 h-[520px] w-[520px] rounded-full bg-[#C6A66B]/14 blur-[150px]" />
-
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         {/* Section Heading */}
         <div className="flex flex-col justify-between gap-6 border-b border-[#C6A66B]/20 pb-8 sm:gap-8 sm:pb-12 lg:flex-row lg:items-end">

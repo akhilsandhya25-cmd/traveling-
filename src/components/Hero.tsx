@@ -69,10 +69,6 @@ export function Hero() {
       {/* Luminous Spiritual Dawn Scrim - preserving temple and ocean brilliance */}
       <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[#0F1E19]/60 via-[#10241E]/30 to-[#0A1813]/88 md:from-[#0F1E19]/50 md:via-transparent md:to-[#0A1813]/82" />
       <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-[#0F1E19]/55 via-transparent to-[#0F1E19]/45" />
-      
-      {/* Radiant Saffron & Gold Temple Aura Lights */}
-      <div className="atelier-glow pointer-events-none absolute top-1/4 left-1/2 z-10 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-gradient-to-tr from-[#F59E0B]/22 via-[#D97706]/15 to-transparent blur-[120px]" />
-      <div className="atelier-glow pointer-events-none absolute -bottom-10 right-10 z-10 h-64 w-64 rounded-full bg-[#E11D48]/14 blur-[100px]" />
 
       {/* Subtle Architectural Inset Frame on Larger Viewports */}
       <motion.div
@@ -182,7 +178,7 @@ export function Hero() {
                 delay: isMobile ? 0.48 : 1.0,
                 ease: EDITORIAL_EASE,
               }}
-              className="block italic bg-gradient-to-r from-[#FDE047] via-[#F59E0B] to-[#FBBF24] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(245,158,11,0.35)] will-change-transform"
+              className="block italic text-[#DCC28E] will-change-transform"
             >
               Sacred Destinations
             </motion.span>
@@ -194,7 +190,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.8,
-            delay: isMobile ? 0.58 : 1.15,
+            delay: isMobile ? 0.48 : 1.15,
             ease: EDITORIAL_EASE,
           }}
           className="mt-5 max-w-xl text-[clamp(0.95rem,2.5vw,1.15rem)] font-light leading-relaxed tracking-wide text-[#F7F4EC]/92 drop-shadow sm:mt-8"
@@ -209,7 +205,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.8,
-            delay: isMobile ? 0.68 : 1.3,
+            delay: isMobile ? 0.58 : 1.3,
             ease: EDITORIAL_EASE,
           }}
           className="mt-7 flex w-full max-w-[340px] flex-col items-center gap-3 sm:mt-11 sm:w-auto sm:max-w-none sm:flex-row sm:gap-5"
@@ -219,7 +215,7 @@ export function Hero() {
             whileHover={isMobile ? undefined : { y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => scrollToSection('#destinations')}
-            className="group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] px-7 py-3.5 text-[11px] font-bold tracking-[0.2em] text-[#0F172A] uppercase shadow-[0_12px_32px_-4px_rgba(245,158,11,0.5)] transition-all duration-300 hover:shadow-[0_16px_38px_-4px_rgba(245,158,11,0.7)] hover:brightness-105 sm:w-auto sm:px-8 sm:py-4"
+            className="group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] px-7 py-3.5 text-[11px] font-bold tracking-[0.2em] text-[#0F172A] uppercase shadow-lg transition-all duration-300 hover:brightness-105 sm:w-auto sm:px-8 sm:py-4"
           >
             <span>Explore Spiritual Destinations</span>
             <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />

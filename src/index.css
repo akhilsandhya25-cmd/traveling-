@@ -109,7 +109,7 @@
 }
 
 .atelier-glow {
-  animation: atelierPulse 9s ease-in-out infinite;
+  display: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

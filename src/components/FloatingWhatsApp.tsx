@@ -57,14 +57,11 @@ export function FloatingWhatsApp({ hidden = false }: FloatingWhatsAppProps) {
           <motion.a
             href={BUSINESS_INFO.phoneTel}
             aria-label={`Call Bhargavi Tour and Travels directly at ${BUSINESS_INFO.phone}`}
-            whileTap={{ scale: 0.93 }}
-            className="group inline-flex h-[46px] items-center justify-center gap-2 rounded-full border border-amber-300/50 bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] px-3.5 text-[#0F1D17] shadow-[0_10px_26px_rgba(245,158,11,0.45)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:brightness-110 sm:h-[50px] sm:px-4"
+            whileTap={{ scale: 0.94 }}
+            className="group inline-flex h-[46px] items-center justify-center gap-2 rounded-full border border-amber-400/40 bg-[#D97706] px-4 text-white shadow-lg transition-all duration-200 hover:bg-[#B45309] sm:h-[48px] sm:px-4.5"
           >
-            <span className="relative flex h-4 w-4 shrink-0 items-center justify-center">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/60 duration-1000"></span>
-              <Phone className="relative h-4 w-4 shrink-0 text-[#0F1D17]" />
-            </span>
-            <span className="text-[11px] font-black tracking-[0.14em] uppercase text-[#0F1D17] drop-shadow-xs">
+            <Phone className="h-4 w-4 shrink-0 text-white" />
+            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-white">
               Call Now
             </span>
           </motion.a>
@@ -75,14 +72,11 @@ export function FloatingWhatsApp({ hidden = false }: FloatingWhatsAppProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp with Bhargavi Tour and Travels (+91 7893999764)"
-            whileTap={{ scale: 0.93 }}
-            className="group inline-flex h-[46px] items-center justify-center gap-2 rounded-full border border-emerald-300/40 bg-gradient-to-r from-[#25D366] via-[#1EB859] to-[#0E7A66] px-3.5 text-white shadow-[0_10px_26px_rgba(37,211,102,0.45)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:brightness-110 sm:h-[50px] sm:px-4"
+            whileTap={{ scale: 0.94 }}
+            className="group inline-flex h-[46px] items-center justify-center gap-2 rounded-full border border-emerald-400/40 bg-[#16A34A] px-4 text-white shadow-lg transition-all duration-200 hover:bg-[#15803D] sm:h-[48px] sm:px-4.5"
           >
-            <span className="relative flex h-4 w-4 shrink-0 items-center justify-center">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/40 duration-1000"></span>
-              <MessageCircle className="relative h-4 w-4 shrink-0 text-white" />
-            </span>
-            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-white drop-shadow-xs">
+            <MessageCircle className="h-4 w-4 shrink-0 text-white" />
+            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-white">
               WhatsApp
             </span>
           </motion.a>

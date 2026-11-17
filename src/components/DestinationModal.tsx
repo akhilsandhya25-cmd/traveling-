@@ -168,7 +168,7 @@ export function DestinationModal({
                 <button
                   type="button"
                   onClick={() => onEnquire(destination.name)}
-                  className="inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] px-7 py-3.5 text-xs font-bold tracking-[0.18em] text-[#10241E] uppercase shadow-[0_8px_22px_rgba(245,158,11,0.35)] transition-all duration-300 hover:brightness-110 sm:w-auto"
+                  className="inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-[#C6A66B] px-7 py-3.5 text-xs font-bold tracking-[0.18em] text-[#10241E] uppercase shadow-sm transition hover:bg-[#DCC28E] sm:w-auto"
                 >
                   <span>Plan Pilgrimage to {destination.name}</span>
                   <ArrowRight className="h-4 w-4" />

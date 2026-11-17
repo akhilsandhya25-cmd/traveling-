@@ -70,13 +70,13 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
             : 'bg-gradient-to-b from-[#0B1A15]/85 via-[#0B1A15]/40 to-transparent py-3.5 sm:py-6'
         }`}
       >
-        {/* Radiant Saffron, Marigold & Crimson Header Accent Bar */}
-        <div className="absolute top-0 right-0 left-0 h-[2.5px] bg-gradient-to-r from-[#D97706] via-[#F59E0B] via-[#E11D48] to-[#D97706]" />
+        {/* Refined Gold Header Accent Bar */}
+        <div className="absolute top-0 right-0 left-0 h-[2px] bg-[#C6A66B]/40" />
 
         {/* Ultra-thin Editorial Scroll Progress Hairline */}
         <motion.div
           style={{ scaleX }}
-          className="fixed top-0 right-0 left-0 z-50 h-[2.5px] origin-left bg-gradient-to-r from-[#F59E0B] via-[#FDE047] to-[#E11D48]"
+          className="fixed top-0 right-0 left-0 z-50 h-[2px] origin-left bg-[#C6A66B]"
         />
 
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
@@ -141,7 +141,7 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
                 e.preventDefault();
                 handleLinkClick('#enquiry');
               }}
-              className="hidden min-h-[40px] items-center justify-center rounded-full bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] px-5 py-2 text-[10px] font-bold tracking-[0.18em] text-[#0F172A] uppercase shadow-[0_4px_16px_rgba(245,158,11,0.45)] transition-all duration-300 hover:shadow-[0_6px_22px_rgba(245,158,11,0.65)] hover:brightness-105 xs:inline-flex sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[0.2em]"
+              className="hidden min-h-[40px] items-center justify-center rounded-full bg-[#C6A66B] px-5 py-2 text-[10px] font-bold tracking-[0.18em] text-[#10241E] uppercase shadow-sm transition hover:bg-[#DCC28E] xs:inline-flex sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[0.2em]"
             >
               Plan Your Trip
             </a>

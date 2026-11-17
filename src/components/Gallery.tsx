@@ -68,23 +68,17 @@ export function Gallery({ onPlanTrip }: GalleryProps) {
       id="gallery"
       className="editorial-grain relative overflow-hidden bg-gradient-to-b from-[#0A1813] via-[#10241E] to-[#0A1813] py-18 text-[#F7F4EC] sm:py-28 lg:py-38"
     >
-      {/* Sunset Twilight Ambient Lighting & Embers */}
-      <div className="pointer-events-none absolute -top-32 left-1/3 h-[520px] w-[520px] rounded-full bg-gradient-to-br from-[#F59E0B]/20 via-[#EA580C]/15 to-[#E11D48]/10 blur-[150px] animate-pulse" />
-      <div className="pointer-events-none absolute -bottom-32 right-1/4 h-[460px] w-[460px] rounded-full bg-gradient-to-tl from-[#FBBF24]/18 via-[#F59E0B]/14 to-[#10B981]/12 blur-[140px]" />
-
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-        {/* Editorial Heading with Glowing Sunset Accents */}
-        <div className="flex flex-col justify-between gap-6 border-b border-[#F59E0B]/25 pb-8 sm:gap-8 sm:pb-12 md:flex-row md:items-end">
+        {/* Editorial Heading */}
+        <div className="flex flex-col justify-between gap-6 border-b border-[#C6A66B]/25 pb-8 sm:gap-8 sm:pb-12 md:flex-row md:items-end">
           <div>
-            <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#F59E0B] uppercase sm:tracking-[0.34em]">
+            <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#C6A66B] uppercase sm:tracking-[0.34em]">
               <span>08</span>
-              <AnimatedRule className="h-px w-7 bg-[#F59E0B] sm:w-8" />
+              <AnimatedRule className="h-px w-7 bg-[#C6A66B] sm:w-8" />
               <span>Sacred Visual Journal</span>
             </Reveal>
             <h2 className="font-editorial mt-3.5 text-[clamp(2.15rem,6.8vw,4.35rem)] font-normal leading-[1.06] tracking-[-0.02em] text-white sm:mt-4">
-              <span className="bg-gradient-to-r from-[#FEF08A] via-[#FBBF24] via-[#F59E0B] to-[#FB923C] bg-clip-text text-transparent">
-                Sanctums of Sacred India
-              </span>
+              <span>Sanctums of <span className="text-[#DCC28E]">Sacred India</span></span>
             </h2>
           </div>
           <Reveal delay={0.14}>
@@ -107,13 +101,13 @@ export function Gallery({ onPlanTrip }: GalleryProps) {
             return (
               <motion.figure
                 key={item.id}
-                initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                initial={{ opacity: 0, y: 20, scale: 0.98 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, amount: 'some' }}
-                whileHover={{ y: -6, scale: 1.015 }}
+                whileHover={{ y: -5 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{
-                  duration: 0.5,
+                  duration: 0.4,
                   delay: Math.min(idx * 0.04, 0.25),
                   ease: EDITORIAL_EASE,
                 }}
@@ -121,45 +115,42 @@ export function Gallery({ onPlanTrip }: GalleryProps) {
                   setDirection(1);
                   setSelectedIndex(idx);
                 }}
-                className="group relative flex aspect-[16/11] w-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-amber-400/40 bg-gradient-to-b from-[#132820] to-[#0A1813] shadow-[0_20px_45px_-18px_rgba(0,0,0,0.85)] ring-1 ring-inset ring-amber-300/20 transition-all duration-400 hover:border-amber-400 hover:ring-2 hover:ring-amber-400/60 hover:shadow-[0_28px_65px_-12px_rgba(245,158,11,0.45)]"
+                className="group relative flex aspect-[16/11] w-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#12241D] shadow-lg transition-all duration-300 hover:border-[#C6A66B] hover:shadow-2xl"
               >
-                {/* Top Sunset Glow Gradient Line */}
-                <div className="absolute top-0 right-0 left-0 z-20 h-1 bg-gradient-to-r from-[#F59E0B] via-[#FB923C] to-[#E11D48] transition-all duration-300 group-hover:h-1.5" />
-
                 <img
                   {...responsiveImg}
                   alt={item.alt}
                   loading="lazy"
                   decoding="async"
                   referrerPolicy="no-referrer"
-                  className="photo-grade h-full w-full object-cover object-center transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:scale-110"
+                  className="photo-grade h-full w-full object-cover object-center transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1813]/98 via-[#0A1813]/40 via-orange-950/20 to-transparent opacity-90 transition-opacity duration-400 group-hover:opacity-95" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1813]/95 via-[#0A1813]/30 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-95" />
 
                 {/* Top Badges: Location & Expand Button */}
                 <div className="absolute top-3.5 right-3.5 left-3.5 z-10 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1 rounded-full border border-amber-400/40 bg-[#0B1A15]/90 px-2.5 py-1 text-[9px] font-semibold tracking-wider text-[#FEF3C7] uppercase backdrop-blur-md shadow-sm">
-                    <MapPin className="h-2.5 w-2.5 text-[#F59E0B]" />
+                  <span className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-[#0B1A15]/90 px-2.5 py-1 text-[9px] font-semibold tracking-wider text-[#FEF3C7] uppercase backdrop-blur-md">
+                    <MapPin className="h-2.5 w-2.5 text-[#C6A66B]" />
                     <span className="truncate max-w-[140px]">{item.location}</span>
                   </span>
 
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-[#F59E0B] to-[#EA580C] text-[#0A1813] shadow-md transition-transform duration-300 group-hover:scale-110">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#C6A66B] text-[#0A1813] shadow transition-transform duration-300 group-hover:scale-105">
                     <Expand className="h-3.5 w-3.5 text-[#0A1813]" />
                   </div>
                 </div>
 
-                {/* Caption with Rich Sunset Styling */}
-                <figcaption className="absolute right-0 bottom-0 left-0 z-10 p-4 transition-transform duration-400 sm:p-5 group-hover:-translate-y-1">
+                {/* Caption */}
+                <figcaption className="absolute right-0 bottom-0 left-0 z-10 p-4 transition-transform duration-300 sm:p-5">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500/25 to-orange-500/25 border border-amber-400/30 px-2.5 py-0.5 text-[8.5px] font-bold tracking-wider text-[#FDE047] uppercase backdrop-blur-md">
-                      <Sparkles className="h-2.5 w-2.5 text-[#FBBF24]" />
+                    <span className="inline-flex items-center gap-1 rounded-full bg-white/10 border border-white/10 px-2.5 py-0.5 text-[8.5px] font-bold tracking-wider text-[#DCC28E] uppercase backdrop-blur-md">
+                      <Sparkles className="h-2.5 w-2.5 text-[#C6A66B]" />
                       <span>{item.category}</span>
                     </span>
                   </div>
-                  <p className="font-editorial mt-1.5 text-[1.25rem] font-medium leading-tight text-white transition-colors group-hover:text-[#FDE047] line-clamp-1 sm:text-[1.35rem]">
+                  <p className="font-editorial mt-1.5 text-[1.25rem] font-medium leading-tight text-white transition-colors group-hover:text-[#DCC28E] line-clamp-1 sm:text-[1.35rem]">
                     {item.title}
                   </p>
-                  <p className="mt-1 flex items-center gap-1 text-[10px] font-semibold tracking-wider text-[#F59E0B] uppercase opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <p className="mt-1 flex items-center gap-1 text-[10px] font-semibold tracking-wider text-[#C6A66B] uppercase opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <span>Inspect Sanctum View</span>
                     <span>&rarr;</span>
                   </p>
@@ -261,7 +252,7 @@ export function Gallery({ onPlanTrip }: GalleryProps) {
                           setSelectedIndex(null);
                           onPlanTrip(activeItem.title.replace('Temple', '').trim());
                         }}
-                        className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] px-5 py-2 text-xs font-black tracking-wider text-[#0A1813] uppercase shadow-[0_8px_20px_rgba(245,158,11,0.4)] transition hover:brightness-110"
+                        className="inline-flex items-center gap-2 rounded-full bg-[#C6A66B] px-5 py-2 text-xs font-bold tracking-wider text-[#0A1813] uppercase shadow transition hover:bg-[#DCC28E]"
                       >
                         <Send className="h-3.5 w-3.5 text-[#0A1813]" />
                         <span>Plan Pilgrimage to this Sanctum</span>
