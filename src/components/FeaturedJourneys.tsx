@@ -52,16 +52,16 @@ export function FeaturedJourneys({
         {/* Header + Transparent Quotation Notice */}
         <div className="flex flex-col justify-between gap-6 border-b border-[#102820]/15 pb-8 sm:gap-8 sm:pb-12 lg:flex-row lg:items-end">
           <div>
-            <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#D97706] uppercase sm:tracking-[0.34em]">
+            <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#10241E]/75 uppercase sm:tracking-[0.34em]">
               <span>04</span>
-              <AnimatedRule className="h-px w-7 bg-[#D97706] sm:w-8" />
+              <AnimatedRule className="h-px w-7 bg-[#10241E]/30 sm:w-8" />
               <span>Spiritual Tour Packages</span>
             </Reveal>
             <h2 className="font-editorial mt-3.5 text-[clamp(2.15rem,6.8vw,4.25rem)] font-normal leading-[1.06] tracking-[-0.02em] text-[#1A1813] sm:mt-4">
               <MaskedLine delay={0.08}>Sacred Pilgrimage Circuits</MaskedLine>
             </h2>
             <Reveal delay={0.16}>
-              <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-[#4A3B2C] sm:mt-4 sm:text-base">
+              <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-[#171B19]/75 sm:mt-4 sm:text-base">
                 Curated temple circuits crafted with devotion, unhurried pacing,
                 senior-friendly comfort, and transparent quotations on request.
               </p>
@@ -69,8 +69,8 @@ export function FeaturedJourneys({
           </div>
 
           <Reveal delay={0.14}>
-            <div className="inline-flex max-w-md items-start gap-3 rounded-2xl border border-amber-400/40 bg-white/80 p-4 text-xs leading-relaxed text-[#10241E] shadow-sm backdrop-blur-md">
-              <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#EA580C]" />
+            <div className="inline-flex max-w-md items-start gap-3 rounded-2xl border border-[#102820]/15 bg-white p-4 text-xs leading-relaxed text-[#10241E] shadow-sm">
+              <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#10241E]/70" />
               <span>
                 <strong>Transparent Pricing:</strong> We do not publish fixed or
                 artificial prices. Every quote is custom-calculated with an honest,
@@ -143,19 +143,19 @@ export function FeaturedJourneys({
 
                     {/* Category Badge */}
                     <div className="absolute top-3.5 right-3.5 left-3.5 z-10 flex items-center justify-between">
-                      <span className="rounded-full bg-[#C6A66B] px-3 py-1 text-[9px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm">
+                      <span className="rounded-full bg-white/95 px-3 py-1 text-[9px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm">
                         {journey.category}
                       </span>
 
-                      <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-[#0B1A15]/85 px-2.5 py-1 text-[9px] font-medium text-[#FEF3C7] backdrop-blur-md">
-                        <Clock className="h-2.5 w-2.5 text-[#C6A66B]" />
+                      <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-[#0B1A15]/85 px-2.5 py-1 text-[9px] font-medium text-white backdrop-blur-md">
+                        <Clock className="h-2.5 w-2.5 text-white/80" />
                         <span>Custom ({journey.duration})</span>
                       </span>
                     </div>
 
                     <div className="absolute right-3.5 bottom-3 left-3.5 z-10">
-                      <p className="flex items-center gap-1.5 text-[10px] tracking-wider text-[#DCC28E] uppercase">
-                        <MapPin className="h-3 w-3 text-[#C6A66B]" />
+                      <p className="flex items-center gap-1.5 text-[10px] tracking-wider text-white uppercase">
+                        <MapPin className="h-3 w-3 text-white/80" />
                         <span className="truncate">{journey.destinationName}</span>
                       </p>
                     </div>
@@ -166,11 +166,11 @@ export function FeaturedJourneys({
                     <div>
                       <h3
                         onClick={() => onSelectJourney(journey)}
-                        className="font-editorial cursor-pointer text-[1.65rem] font-normal leading-tight tracking-tight text-[#102820] transition-colors group-hover:text-[#9A7B3E]"
+                        className="font-editorial cursor-pointer text-[1.65rem] font-medium leading-tight tracking-tight text-[#102820] transition-colors group-hover:text-[#18392E]"
                       >
                         {journey.title}
                       </h3>
-                      <p className="mt-1.5 text-[11px] font-semibold tracking-wider text-[#9A7B3E] uppercase">
+                      <p className="mt-1.5 text-[11px] font-semibold tracking-wider text-[#4A5550] uppercase">
                         {journey.routeSummary}
                       </p>
                       <p className="mt-2.5 text-[13.5px] font-light leading-relaxed text-[#171B19]/75 line-clamp-3">
@@ -184,7 +184,7 @@ export function FeaturedJourneys({
                             key={i}
                             className="flex items-start gap-2 text-[12.5px] text-[#171B19]/80"
                           >
-                            <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#C6A66B]" />
+                            <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#10241E]/70" />
                             <span className="line-clamp-1">{h}</span>
                           </li>
                         ))}
@@ -204,18 +204,18 @@ export function FeaturedJourneys({
                         <button
                           type="button"
                           onClick={() => onSelectJourney(journey)}
-                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-amber-700/30 bg-amber-50/70 px-3 py-2 text-[10px] font-bold tracking-wider text-amber-950 uppercase transition hover:border-amber-500 hover:bg-amber-100"
+                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-[#102820]/20 bg-white px-3 py-2 text-[10px] font-semibold tracking-wider text-[#10241E] uppercase transition hover:bg-[#F2EFE8]"
                         >
-                          <FileText className="h-3 w-3 text-amber-600" />
+                          <FileText className="h-3 w-3 text-[#10241E]/60" />
                           <span>View Itinerary</span>
                         </button>
 
                         <button
                           type="button"
                           onClick={() => onEnquireJourney(journey)}
-                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#C6A66B] px-3 py-2 text-[10px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm transition hover:bg-[#DCC28E]"
+                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#10241E] px-3 py-2 text-[10px] font-bold tracking-wider text-white uppercase shadow-sm transition hover:bg-[#18392E]"
                         >
-                          <Send className="h-3 w-3" />
+                          <Send className="h-3 w-3 text-white" />
                           <span>Get Quotation</span>
                         </button>
                       </div>

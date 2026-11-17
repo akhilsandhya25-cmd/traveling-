@@ -215,7 +215,7 @@ export function Hero() {
             whileHover={isMobile ? undefined : { y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => scrollToSection('#destinations')}
-            className="group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#D97706] px-7 py-3.5 text-[11px] font-bold tracking-[0.2em] text-[#0F172A] uppercase shadow-lg transition-all duration-300 hover:brightness-105 sm:w-auto sm:px-8 sm:py-4"
+            className="group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-white px-7 py-3.5 text-[11px] font-bold tracking-[0.2em] text-[#0B1A15] uppercase shadow-lg transition-all duration-300 hover:bg-[#F2EFE8] sm:w-auto sm:px-8 sm:py-4"
           >
             <span>Explore Spiritual Destinations</span>
             <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
@@ -226,9 +226,9 @@ export function Hero() {
             whileHover={isMobile ? undefined : { y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => scrollToSection('#enquiry')}
-            className="group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full border-2 border-[#F59E0B]/75 bg-[#0F231C]/65 px-7 py-3.5 text-[11px] font-semibold tracking-[0.2em] text-[#FEF3C7] uppercase backdrop-blur-md transition-all duration-300 hover:border-[#FBBF24] hover:bg-[#F59E0B]/25 hover:text-white shadow-lg sm:w-auto sm:px-8 sm:py-4"
+            className="group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full border border-white/40 bg-white/10 px-7 py-3.5 text-[11px] font-semibold tracking-[0.2em] text-white uppercase backdrop-blur-md transition-all duration-300 hover:bg-white/20 sm:w-auto sm:px-8 sm:py-4"
           >
-            <Compass className="h-4 w-4 text-[#FBBF24] transition-transform duration-700 group-hover:rotate-45" />
+            <Compass className="h-4 w-4 text-white transition-transform duration-700 group-hover:rotate-45" />
             <span>Plan Your Journey</span>
           </motion.button>
         </motion.div>

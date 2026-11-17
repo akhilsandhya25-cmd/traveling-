@@ -129,12 +129,12 @@ export function Gallery({ onPlanTrip }: GalleryProps) {
 
                 {/* Top Badges: Location & Expand Button */}
                 <div className="absolute top-3.5 right-3.5 left-3.5 z-10 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-[#0B1A15]/90 px-2.5 py-1 text-[9px] font-semibold tracking-wider text-[#FEF3C7] uppercase backdrop-blur-md">
-                    <MapPin className="h-2.5 w-2.5 text-[#C6A66B]" />
+                  <span className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-[#0B1A15]/90 px-2.5 py-1 text-[9px] font-semibold tracking-wider text-white uppercase backdrop-blur-md">
+                    <MapPin className="h-2.5 w-2.5 text-white/70" />
                     <span className="truncate max-w-[140px]">{item.location}</span>
                   </span>
 
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#C6A66B] text-[#0A1813] shadow transition-transform duration-300 group-hover:scale-105">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#0A1813] shadow transition-transform duration-300 group-hover:scale-105">
                     <Expand className="h-3.5 w-3.5 text-[#0A1813]" />
                   </div>
                 </div>
@@ -142,15 +142,15 @@ export function Gallery({ onPlanTrip }: GalleryProps) {
                 {/* Caption */}
                 <figcaption className="absolute right-0 bottom-0 left-0 z-10 p-4 transition-transform duration-300 sm:p-5">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="inline-flex items-center gap-1 rounded-full bg-white/10 border border-white/10 px-2.5 py-0.5 text-[8.5px] font-bold tracking-wider text-[#DCC28E] uppercase backdrop-blur-md">
-                      <Sparkles className="h-2.5 w-2.5 text-[#C6A66B]" />
+                    <span className="inline-flex items-center gap-1 rounded-full bg-white/10 border border-white/10 px-2.5 py-0.5 text-[8.5px] font-bold tracking-wider text-white/90 uppercase backdrop-blur-md">
+                      <Sparkles className="h-2.5 w-2.5 text-white/70" />
                       <span>{item.category}</span>
                     </span>
                   </div>
-                  <p className="font-editorial mt-1.5 text-[1.25rem] font-medium leading-tight text-white transition-colors group-hover:text-[#DCC28E] line-clamp-1 sm:text-[1.35rem]">
+                  <p className="font-editorial mt-1.5 text-[1.25rem] font-medium leading-tight text-white transition-colors group-hover:text-white line-clamp-1 sm:text-[1.35rem]">
                     {item.title}
                   </p>
-                  <p className="mt-1 flex items-center gap-1 text-[10px] font-semibold tracking-wider text-[#C6A66B] uppercase opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <p className="mt-1 flex items-center gap-1 text-[10px] font-semibold tracking-wider text-white/80 uppercase opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <span>Inspect Sanctum View</span>
                     <span>&rarr;</span>
                   </p>
@@ -177,7 +177,7 @@ export function Gallery({ onPlanTrip }: GalleryProps) {
               type="button"
               onClick={() => setSelectedIndex(null)}
               aria-label="Close lightbox"
-              className="absolute top-4 right-4 z-20 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-amber-400/40 bg-white/10 text-white transition hover:bg-[#F59E0B] hover:text-[#0A1813] sm:top-5 sm:right-5"
+              className="absolute top-4 right-4 z-20 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white hover:text-[#0A1813] sm:top-5 sm:right-5"
             >
               <X className="h-5 w-5" />
             </button>
@@ -190,7 +190,7 @@ export function Gallery({ onPlanTrip }: GalleryProps) {
                 stepPrev();
               }}
               aria-label="Previous photograph"
-              className="absolute left-4 z-20 hidden h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-amber-400/30 bg-white/10 text-white transition hover:bg-[#F59E0B] hover:text-[#0A1813] sm:flex"
+              className="absolute left-4 z-20 hidden h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white hover:text-[#0A1813] sm:flex"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -203,7 +203,7 @@ export function Gallery({ onPlanTrip }: GalleryProps) {
                 stepNext();
               }}
               aria-label="Next photograph"
-              className="absolute right-4 z-20 hidden h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-amber-400/30 bg-white/10 text-white transition hover:bg-[#F59E0B] hover:text-[#0A1813] sm:flex"
+              className="absolute right-4 z-20 hidden h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white hover:text-[#0A1813] sm:flex"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -219,22 +219,22 @@ export function Gallery({ onPlanTrip }: GalleryProps) {
                 onClick={(e) => e.stopPropagation()}
                 className="flex max-h-[90vh] w-full max-w-5xl flex-col items-center"
               >
-                <div className="relative overflow-hidden rounded-2xl border border-amber-400/30 shadow-[0_25px_70px_rgba(0,0,0,0.9)]">
+                <div className="relative overflow-hidden rounded-2xl border border-white/20 shadow-[0_25px_70px_rgba(0,0,0,0.9)]">
                   <img
                     src={activeItem.image}
                     alt={activeItem.alt}
                     referrerPolicy="no-referrer"
                     className="max-h-[58vh] w-auto max-w-full rounded-2xl object-contain sm:max-h-[72vh]"
                   />
-                  <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-amber-400/20" />
+                  <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
                 </div>
 
                 <div className="mt-4 text-center sm:mt-5">
                   <div className="flex flex-wrap items-center justify-center gap-2">
-                    <span className="rounded-full bg-gradient-to-r from-[#F59E0B] to-[#EA580C] px-3 py-0.5 text-[9px] font-bold uppercase text-white shadow-sm">
+                    <span className="rounded-full border border-white/20 bg-white/15 px-3 py-0.5 text-[9px] font-bold uppercase text-white shadow-sm">
                       {activeItem.category}
                     </span>
-                    <span className="text-[11px] font-semibold tracking-[0.24em] text-[#FDE047] uppercase">
+                    <span className="text-[11px] font-medium tracking-[0.24em] text-white/80 uppercase">
                       {activeItem.location} &bull; {selectedIndex + 1} / {GALLERY_ITEMS.length}
                     </span>
                   </div>
@@ -252,7 +252,7 @@ export function Gallery({ onPlanTrip }: GalleryProps) {
                           setSelectedIndex(null);
                           onPlanTrip(activeItem.title.replace('Temple', '').trim());
                         }}
-                        className="inline-flex items-center gap-2 rounded-full bg-[#C6A66B] px-5 py-2 text-xs font-bold tracking-wider text-[#0A1813] uppercase shadow transition hover:bg-[#DCC28E]"
+                        className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-xs font-bold tracking-wider text-[#0A1813] uppercase shadow transition hover:bg-[#F2EFE8]"
                       >
                         <Send className="h-3.5 w-3.5 text-[#0A1813]" />
                         <span>Plan Pilgrimage to this Sanctum</span>
@@ -266,7 +266,7 @@ export function Gallery({ onPlanTrip }: GalleryProps) {
                       type="button"
                       onClick={stepPrev}
                       aria-label="Previous photograph"
-                      className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-amber-400/40 bg-white/10 text-white active:scale-95"
+                      className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/10 text-white active:scale-95"
                     >
                       <ChevronLeft className="h-5 w-5" />
                     </button>
@@ -274,7 +274,7 @@ export function Gallery({ onPlanTrip }: GalleryProps) {
                       type="button"
                       onClick={stepNext}
                       aria-label="Next photograph"
-                      className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-amber-400/40 bg-white/10 text-white active:scale-95"
+                      className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/10 text-white active:scale-95"
                     >
                       <ChevronRight className="h-5 w-5" />
                     </button>

@@ -250,7 +250,7 @@ export function EnquirySection({
         {/* Right Column: Interactive Pilgrimage Enquiry Form */}
         <div className="lg:col-span-7">
           <Reveal delay={0.16}>
-            <div className="rounded-2xl border border-amber-400/40 bg-gradient-to-b from-[#FFFDF8] via-[#FFF8ED] to-[#FEF0DD] p-6 text-[#171B19] shadow-[0_32px_80px_-24px_rgba(0,0,0,0.65)] ring-1 ring-amber-300/30 sm:p-9 lg:p-10">
+            <div className="rounded-2xl border border-[#102820]/15 bg-white p-6 text-[#171B19] shadow-xl sm:p-9 lg:p-10">
               <div className="flex items-center justify-between border-b border-[#102820]/10 pb-4">
                 <div>
                   <h3 className="font-editorial text-2xl font-normal text-[#102820] sm:text-3xl">
@@ -260,7 +260,7 @@ export function EnquirySection({
                     Fill in your details for a transparent, customized itinerary.
                   </p>
                 </div>
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#C6A66B]/20 text-[#9A7B3E]">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#102820]/5 text-[#102820]">
                   <Sparkles className="h-4 w-4" />
                 </span>
               </div>
@@ -572,9 +572,9 @@ export function EnquirySection({
                     <div className="pt-2">
                       <button
                         type="submit"
-                        className="luxury-sheen flex min-h-[50px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#C6A66B] px-6 py-3.5 text-xs font-bold tracking-wider text-[#10241E] uppercase shadow-sm transition hover:bg-[#DCC28E]"
+                        className="luxury-sheen flex min-h-[50px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#10241E] px-6 py-3.5 text-xs font-bold tracking-wider text-white uppercase shadow-sm transition hover:bg-[#18392E]"
                       >
-                        <Send className="h-4 w-4 text-[#10241E]" />
+                        <Send className="h-4 w-4 text-white" />
                         <span>Request Custom Quotation</span>
                       </button>
                     </div>

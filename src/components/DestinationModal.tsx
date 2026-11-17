@@ -105,10 +105,10 @@ export function DestinationModal({
                     {destination.bestSeason}
                   </span>
                 </div>
-                <div className="flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-xs text-[#102820]">
-                  <Clock className="h-3.5 w-3.5 text-[#EA580C]" />
+                <div className="flex items-center gap-2 rounded-full border border-[#102820]/15 bg-[#102820]/5 px-4 py-2 text-xs text-[#102820]">
+                  <Clock className="h-3.5 w-3.5 text-[#102820]/70" />
                   <span>
-                    <strong className="font-bold text-[#C2410C]">Duration:</strong>{' '}
+                    <strong className="font-semibold text-[#102820]">Duration:</strong>{' '}
                     Custom Itinerary (Flexible to Your Schedule)
                   </span>
                 </div>
@@ -168,7 +168,7 @@ export function DestinationModal({
                 <button
                   type="button"
                   onClick={() => onEnquire(destination.name)}
-                  className="inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-[#C6A66B] px-7 py-3.5 text-xs font-bold tracking-[0.18em] text-[#10241E] uppercase shadow-sm transition hover:bg-[#DCC28E] sm:w-auto"
+                  className="inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-[#102820] px-7 py-3.5 text-xs font-bold tracking-[0.18em] text-white uppercase shadow-sm transition hover:bg-[#18392E] sm:w-auto"
                 >
                   <span>Plan Pilgrimage to {destination.name}</span>
                   <ArrowRight className="h-4 w-4" />

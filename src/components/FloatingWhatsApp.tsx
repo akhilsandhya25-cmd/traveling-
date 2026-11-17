@@ -58,7 +58,7 @@ export function FloatingWhatsApp({ hidden = false }: FloatingWhatsAppProps) {
             href={BUSINESS_INFO.phoneTel}
             aria-label={`Call Bhargavi Tour and Travels directly at ${BUSINESS_INFO.phone}`}
             whileTap={{ scale: 0.94 }}
-            className="group inline-flex h-[46px] items-center justify-center gap-2 rounded-full border border-amber-400/40 bg-[#D97706] px-4 text-white shadow-lg transition-all duration-200 hover:bg-[#B45309] sm:h-[48px] sm:px-4.5"
+            className="group inline-flex h-[46px] items-center justify-center gap-2 rounded-full border border-white/20 bg-[#10241E] px-4 text-white shadow-lg transition-all duration-200 hover:bg-[#18392E] sm:h-[48px] sm:px-4.5"
           >
             <Phone className="h-4 w-4 shrink-0 text-white" />
             <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-white">

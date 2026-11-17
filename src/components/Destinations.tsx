@@ -41,20 +41,19 @@ export function Destinations({
         {/* Editorial Chapter Header */}
         <div className="flex flex-col justify-between gap-6 border-b border-[#102820]/15 pb-7 sm:gap-10 sm:pb-12 lg:flex-row lg:items-end">
           <div>
-            <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#D97706] uppercase sm:tracking-[0.34em]">
+            <Reveal className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#10241E]/75 uppercase sm:tracking-[0.34em]">
               <span>03</span>
-              <AnimatedRule className="h-px w-7 bg-[#D97706] sm:w-8" />
+              <AnimatedRule className="h-px w-7 bg-[#10241E]/30 sm:w-8" />
               <span>Sacred Sanctuaries</span>
             </Reveal>
             <h2 className="font-editorial mt-3.5 text-[clamp(2.2rem,6.8vw,4.5rem)] font-normal leading-[1.06] tracking-[-0.02em] text-[#1A1813] sm:mt-4">
               <MaskedLine delay={0.08}>Popular Spiritual Destinations</MaskedLine>
             </h2>
             <Reveal delay={0.18}>
-              <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-[#4A3B2C] sm:mt-4 sm:text-base md:text-lg">
+              <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-[#171B19]/75 sm:mt-4 sm:text-base md:text-lg">
                 Fourteen revered pilgrimage destinations across South India,
                 Maharashtra, and Ayodhya. Experience authentic temple architecture,
-                divine darshans, and comfortable sacred travel bathed in the warmth
-                of devotion.
+                divine darshans, and comfortable sacred travel.
               </p>
             </Reveal>
           </div>
@@ -136,20 +135,20 @@ export function Destinations({
 
                     {/* Region & State Badge */}
                     <div className="absolute top-3.5 right-3.5 left-3.5 z-10 flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-[#0B1A15]/85 px-2.5 py-1 text-[9px] font-semibold tracking-wider text-[#FEF3C7] uppercase backdrop-blur-md">
-                        <MapPin className="h-2.5 w-2.5 text-[#C6A66B]" />
+                      <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-[#0B1A15]/85 px-2.5 py-1 text-[9px] font-semibold tracking-wider text-white uppercase backdrop-blur-md">
+                        <MapPin className="h-2.5 w-2.5 text-white/70" />
                         <span>{dest.state}</span>
                       </span>
 
-                      <span className="rounded-full bg-[#C6A66B] px-2.5 py-0.5 text-[9px] font-bold tracking-wider text-[#10241E] uppercase">
+                      <span className="rounded-full bg-white/95 px-2.5 py-0.5 text-[9px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm">
                         {dest.region}
                       </span>
                     </div>
 
                     {/* Deity Overlay */}
                     <div className="absolute right-3.5 bottom-3 left-3.5 z-10">
-                      <p className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wider text-[#FEF3C7] uppercase">
-                        <Sparkles className="h-3.5 w-3.5 text-[#C6A66B]" />
+                      <p className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wider text-white uppercase">
+                        <Sparkles className="h-3.5 w-3.5 text-white/80" />
                         <span>{dest.primaryDeity}</span>
                       </p>
                     </div>
@@ -160,11 +159,11 @@ export function Destinations({
                     <div>
                       <h3
                         onClick={() => onSelectDestination(dest)}
-                        className="font-editorial cursor-pointer text-[1.65rem] font-medium leading-tight tracking-tight text-[#10241E] transition-colors group-hover:text-[#9A7B3E]"
+                        className="font-editorial cursor-pointer text-[1.65rem] font-medium leading-tight tracking-tight text-[#10241E] transition-colors group-hover:text-[#18392E]"
                       >
                         {dest.name}
                       </h3>
-                      <p className="mt-1 font-editorial text-sm italic font-normal text-[#9A7B3E]">
+                      <p className="mt-1 font-editorial text-sm italic font-normal text-[#4A5550]">
                         {dest.tagline}
                       </p>
                       <p className="mt-2.5 text-[13.5px] font-light leading-relaxed text-[#171B19]/75 line-clamp-3">
@@ -174,8 +173,8 @@ export function Destinations({
 
                     {/* Custom Tour Duration */}
                     <div className="mt-4 flex items-center justify-between border-t border-[#102820]/10 pt-3 text-[11.5px]">
-                      <span className="inline-flex items-center gap-1.5 font-semibold text-[#9A7B3E]">
-                        <Clock className="h-3.5 w-3.5 text-[#C6A66B]" />
+                      <span className="inline-flex items-center gap-1.5 font-semibold text-[#10241E]">
+                        <Clock className="h-3.5 w-3.5 text-[#10241E]/70" />
                         <span>Custom Tour Duration</span>
                       </span>
                       <span className="rounded-full bg-[#102820]/5 px-2.5 py-0.5 text-[10px] font-medium text-[#102820]/80">
@@ -188,16 +187,16 @@ export function Destinations({
                       <button
                         type="button"
                         onClick={() => onSelectDestination(dest)}
-                        className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-[#102820]/15 bg-white px-3 py-2 text-[10px] font-semibold tracking-wider text-[#102820] uppercase transition hover:border-[#C6A66B] hover:bg-[#F7F4EC]"
+                        className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-[#102820]/20 bg-white px-3 py-2 text-[10px] font-semibold tracking-wider text-[#10241E] uppercase transition hover:bg-[#F2EFE8]"
                       >
                         <span>Explore More</span>
-                        <ArrowUpRight className="h-3 w-3 text-[#C6A66B]" />
+                        <ArrowUpRight className="h-3 w-3 text-[#10241E]/60" />
                       </button>
 
                       <button
                         type="button"
                         onClick={() => onPlanTrip(dest.name)}
-                        className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#C6A66B] px-3 py-2 text-[10px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm transition hover:bg-[#DCC28E]"
+                        className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#10241E] px-3 py-2 text-[10px] font-bold tracking-wider text-white uppercase shadow-sm transition hover:bg-[#18392E]"
                       >
                         <span>Plan Your Trip</span>
                       </button>

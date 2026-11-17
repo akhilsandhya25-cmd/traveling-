@@ -66,17 +66,17 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'border-b border-[#F59E0B]/30 bg-[#0B1A15]/95 py-2.5 shadow-[0_14px_45px_-16px_rgba(0,0,0,0.6)] backdrop-blur-md sm:py-3.5'
+            ? 'border-b border-white/10 bg-[#0B1A15]/95 py-2.5 shadow-[0_14px_45px_-16px_rgba(0,0,0,0.6)] backdrop-blur-md sm:py-3.5'
             : 'bg-gradient-to-b from-[#0B1A15]/85 via-[#0B1A15]/40 to-transparent py-3.5 sm:py-6'
         }`}
       >
-        {/* Refined Gold Header Accent Bar */}
-        <div className="absolute top-0 right-0 left-0 h-[2px] bg-[#C6A66B]/40" />
+        {/* Refined Minimalist Header Accent Bar */}
+        <div className="absolute top-0 right-0 left-0 h-[1.5px] bg-white/20" />
 
         {/* Ultra-thin Editorial Scroll Progress Hairline */}
         <motion.div
           style={{ scaleX }}
-          className="fixed top-0 right-0 left-0 z-50 h-[2px] origin-left bg-[#C6A66B]"
+          className="fixed top-0 right-0 left-0 z-50 h-[2px] origin-left bg-white"
         />
 
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
@@ -89,7 +89,7 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
             }}
             className="group flex min-h-[44px] items-center gap-2.5 text-white focus:outline-none sm:gap-3.5"
           >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#C6A66B]/50 bg-[#102820]/45 text-[#C6A66B] transition-transform duration-700 group-hover:rotate-45 sm:h-9 sm:w-9">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/5 text-white transition-transform duration-700 group-hover:rotate-45 sm:h-9 sm:w-9">
               <Compass className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={1.35} />
             </span>
             <div className="flex flex-col leading-none">
@@ -97,11 +97,11 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
                 <span className="font-editorial text-lg font-bold tracking-[0.12em] text-white sm:text-2xl sm:tracking-[0.16em]">
                   BHARGAVI
                 </span>
-                <span className="rounded bg-gradient-to-r from-[#F59E0B] via-[#FBBF24] to-[#D97706] px-1.5 py-0.5 text-[8.5px] font-black tracking-[0.18em] text-[#0A1813] uppercase shadow-sm sm:px-2 sm:text-[10px] sm:tracking-[0.2em]">
+                <span className="rounded border border-white/30 bg-white/10 px-1.5 py-0.5 text-[8.5px] font-bold tracking-[0.2em] text-white uppercase shadow-sm sm:px-2 sm:text-[10px]">
                   TOUR &amp; TRAVELS
                 </span>
               </div>
-              <span className="mt-1 text-[7px] font-semibold tracking-[0.24em] text-[#FDE047]/90 uppercase sm:text-[8px] sm:tracking-[0.3em]">
+              <span className="mt-1 text-[7.5px] font-medium tracking-[0.26em] text-white/70 uppercase sm:text-[8px] sm:tracking-[0.3em]">
                 Sacred India Pilgrimages
               </span>
             </div>
@@ -117,10 +117,10 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
                   e.preventDefault();
                   handleLinkClick(link.href);
                 }}
-                className="group relative text-[11px] font-medium tracking-[0.2em] text-[#F7F4EC]/88 uppercase transition-colors hover:text-[#DCC28E]"
+                className="group relative text-[11px] font-medium tracking-[0.2em] text-[#F7F4EC]/88 uppercase transition-colors hover:text-white"
               >
                 {link.label}
-                <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-[#C6A66B] transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </nav>
@@ -129,9 +129,9 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
           <div className="flex items-center gap-2.5 sm:gap-4">
             <a
               href={BUSINESS_INFO.phoneTel}
-              className="hidden items-center gap-2 rounded-full border border-[#F59E0B]/40 bg-[#F59E0B]/10 px-3.5 py-2 text-[11px] font-semibold tracking-wider text-[#FEF3C7] transition-all hover:border-[#F59E0B] hover:bg-[#F59E0B]/25 hover:text-white md:inline-flex"
+              className="hidden items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3.5 py-2 text-[11px] font-semibold tracking-wider text-white transition-all hover:bg-white/15 md:inline-flex"
             >
-              <Phone className="h-3.5 w-3.5 text-[#F59E0B]" />
+              <Phone className="h-3.5 w-3.5 text-white/80" />
               <span>{BUSINESS_INFO.phone}</span>
             </a>
 
@@ -141,7 +141,7 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
                 e.preventDefault();
                 handleLinkClick('#enquiry');
               }}
-              className="hidden min-h-[40px] items-center justify-center rounded-full bg-[#C6A66B] px-5 py-2 text-[10px] font-bold tracking-[0.18em] text-[#10241E] uppercase shadow-sm transition hover:bg-[#DCC28E] xs:inline-flex sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[0.2em]"
+              className="hidden min-h-[40px] items-center justify-center rounded-full bg-white px-5 py-2 text-[10px] font-bold tracking-[0.18em] text-[#0B1A15] uppercase shadow-sm transition hover:bg-[#F2EFE8] xs:inline-flex sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[0.2em]"
             >
               Plan Your Trip
             </a>
@@ -198,11 +198,11 @@ export function Navbar({ onMobileMenuChange }: NavbarProps) {
                       <span className="font-editorial text-xl font-bold tracking-[0.14em] text-white sm:text-2xl">
                         BHARGAVI
                       </span>
-                      <span className="rounded bg-gradient-to-r from-[#F59E0B] via-[#FBBF24] to-[#D97706] px-1.5 py-0.5 text-[9px] font-black tracking-[0.16em] text-[#0A1813] uppercase shadow-sm">
+                      <span className="rounded border border-white/30 bg-white/10 px-1.5 py-0.5 text-[9px] font-bold tracking-[0.18em] text-white uppercase">
                         TOUR &amp; TRAVELS
                       </span>
                     </div>
-                    <span className="mt-1 text-[8px] font-semibold tracking-[0.26em] text-[#FDE047]/90 uppercase">
+                    <span className="mt-1 text-[8px] font-medium tracking-[0.26em] text-white/70 uppercase">
                       Sacred India Pilgrimages
                     </span>
                   </div>

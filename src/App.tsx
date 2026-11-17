@@ -62,7 +62,7 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="min-h-screen overflow-x-clip bg-[#FFF8EE] text-[#171B19]">
+      <div className="min-h-screen overflow-x-clip bg-[#F8F6F0] text-[#171B19]">
         <PageIntro />
         <Navbar onMobileMenuChange={setMobileMenuOpen} />
 
