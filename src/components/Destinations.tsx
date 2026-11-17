@@ -7,6 +7,7 @@ import {
   type RegionFilter,
 } from '../data/travelData';
 import { getResponsiveImageProps } from '../utils/responsiveMedia';
+import { MiniCartoonTourist } from './MiniCartoonTourist';
 import { AnimatedRule, EDITORIAL_EASE, MaskedLine, Reveal } from './Reveal';
 
 const REGIONS: RegionFilter[] = [
@@ -26,11 +27,17 @@ export function Destinations({
   onPlanTrip,
 }: DestinationsProps) {
   const [activeRegion, setActiveRegion] = useState<RegionFilter>('All');
+  const [activeTouristIndex, setActiveTouristIndex] = useState(0);
 
   const filteredDestinations =
     activeRegion === 'All'
       ? DESTINATIONS
       : DESTINATIONS.filter((d) => d.region === activeRegion);
+
+  const handleRegionChange = (region: RegionFilter) => {
+    setActiveRegion(region);
+    setActiveTouristIndex(0);
+  };
 
   return (
     <section
@@ -73,15 +80,15 @@ export function Destinations({
                 <button
                   key={region}
                   type="button"
-                  onClick={() => setActiveRegion(region)}
+                  onClick={() => handleRegionChange(region)}
                   className={`relative min-h-[42px] shrink-0 cursor-pointer rounded-full px-4 py-2 text-[11px] font-bold tracking-[0.16em] uppercase transition-all duration-300 ${
                     isActive
-                      ? 'bg-[#C6A66B] text-[#10241E] shadow-sm'
-                      : 'border border-[#102820]/15 bg-white text-[#171B19]/70 hover:border-[#C6A66B] hover:text-[#10241E]'
+                      ? 'bg-[#10241E] text-white shadow-sm'
+                      : 'border border-[#102820]/15 bg-white text-[#171B19]/70 hover:border-[#102820] hover:text-[#10241E]'
                   }`}
                 >
                   <span>{region}</span>
-                  <span className={`ml-1.5 text-[10px] font-mono ${isActive ? 'text-[#10241E]/75' : 'text-[#C6A66B]'}`}>
+                  <span className={`ml-1.5 text-[10px] font-mono ${isActive ? 'text-white/70' : 'text-[#10241E]/60'}`}>
                     ({count})
                   </span>
                 </button>
@@ -90,10 +97,41 @@ export function Destinations({
           </Reveal>
         </div>
 
+        {/* Playful Mini Cartoon Tourist Guide Bar */}
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#10241E]/10 bg-white/90 px-4 py-2.5 shadow-xs sm:mt-8 sm:px-5">
+          <div className="flex items-center gap-2.5">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#10241E] text-xs">
+              🎒
+            </span>
+            <p className="text-xs font-medium text-[#10241E]">
+              <strong>Mini Tourist Guide:</strong> Currently visiting{' '}
+              <span className="font-bold underline decoration-[#10241E]/30 underline-offset-2">
+                {filteredDestinations[activeTouristIndex]?.name}
+              </span>
+              <span className="hidden text-neutral-500 sm:inline">
+                {' '}&bull; Scroll through the slides to watch him hop from card to card!
+              </span>
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() =>
+              setActiveTouristIndex(
+                (prev) => (prev + 1) % filteredDestinations.length
+              )
+            }
+            className="inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-[#10241E] px-3.5 py-1 text-[11px] font-bold text-white shadow-xs transition hover:bg-[#18392E]"
+          >
+            <span>Hop to Next</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+
         {/* Responsive Grid: 1-col Phones -> 2-col Tablets -> 3-col Desktop */}
         <motion.div
           layout
-          className="mt-8 grid grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7"
+          className="mt-6 grid grid-cols-1 gap-6 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7"
         >
           <AnimatePresence mode="popLayout">
             {filteredDestinations.map((dest, index) => {
@@ -101,105 +139,129 @@ export function Destinations({
                 dest.image,
                 '(max-width: 639px) 94vw, (max-width: 1023px) 47vw, 32vw'
               );
+              const isTouristHere = activeTouristIndex === index;
 
               return (
                 <motion.article
                   key={dest.id}
                   layout
-                  initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                  initial={{ opacity: 0, y: 28, scale: 0.98 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  onViewportEnter={() => {
+                    // Automatically trigger mini tourist jump as visitor scrolls down
+                    setActiveTouristIndex(index);
+                  }}
+                  onMouseEnter={() => setActiveTouristIndex(index)}
                   exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 } }}
-                  viewport={{ once: true, amount: 'some' }}
-                  whileHover={{ y: -5 }}
+                  viewport={{ once: false, amount: 0.35 }}
+                  whileHover={{ y: -6 }}
                   transition={{
-                    duration: 0.4,
-                    delay: Math.min((index % 6) * 0.04, 0.2),
+                    duration: 0.45,
+                    delay: Math.min((index % 3) * 0.08, 0.24),
                     ease: EDITORIAL_EASE,
                   }}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-[#E7DFD0] bg-[#FFFDF9] shadow-sm transition-all duration-300 hover:border-[#C6A66B] hover:shadow-lg"
+                  className="group relative flex flex-col pt-10"
                 >
-                  {/* Authentic Destination Photography Frame */}
-                  <div
-                    className="relative aspect-[16/10] w-full cursor-pointer overflow-hidden bg-[#102820]"
-                    onClick={() => onSelectDestination(dest)}
-                  >
-                    <img
-                      {...responsiveImg}
-                      alt={dest.alt}
-                      loading="lazy"
-                      decoding="async"
-                      referrerPolicy="no-referrer"
-                      className="photo-grade h-full w-full object-cover object-center transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:scale-[1.06]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1A15]/90 via-[#0B1A15]/20 to-transparent" />
+                  {/* Mini Cartoon Tourist perched atop the active card */}
+                  {isTouristHere && (
+                    <div className="absolute -top-4 left-1/2 z-30 -translate-x-1/2">
+                      <MiniCartoonTourist
+                        currentCardIndex={activeTouristIndex}
+                        destinationName={dest.name}
+                        tagline={dest.tagline}
+                        onJumpNext={() =>
+                          setActiveTouristIndex(
+                            (prev) => (prev + 1) % filteredDestinations.length
+                          )
+                        }
+                      />
+                    </div>
+                  )}
 
-                    {/* Region & State Badge */}
-                    <div className="absolute top-3.5 right-3.5 left-3.5 z-10 flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-[#0B1A15]/85 px-2.5 py-1 text-[9px] font-semibold tracking-wider text-white uppercase backdrop-blur-md">
-                        <MapPin className="h-2.5 w-2.5 text-white/70" />
-                        <span>{dest.state}</span>
-                      </span>
+                  <div className="flex flex-1 flex-col overflow-hidden rounded-2xl border border-[#E7DFD0] bg-[#FFFDF9] shadow-sm transition-all duration-300 group-hover:border-[#10241E]/40 group-hover:shadow-lg">
+                    {/* Authentic Destination Photography Frame */}
+                    <div
+                      className="relative aspect-[16/10] w-full cursor-pointer overflow-hidden bg-[#102820]"
+                      onClick={() => onSelectDestination(dest)}
+                    >
+                      <img
+                        {...responsiveImg}
+                        alt={dest.alt}
+                        loading="lazy"
+                        decoding="async"
+                        referrerPolicy="no-referrer"
+                        className="photo-grade h-full w-full object-cover object-center transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:scale-[1.06]"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0B1A15]/90 via-[#0B1A15]/20 to-transparent" />
 
-                      <span className="rounded-full bg-white/95 px-2.5 py-0.5 text-[9px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm">
-                        {dest.region}
-                      </span>
+                      {/* Region & State Badge */}
+                      <div className="absolute top-3.5 right-3.5 left-3.5 z-10 flex items-center justify-between">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-[#0B1A15]/85 px-2.5 py-1 text-[9px] font-semibold tracking-wider text-white uppercase backdrop-blur-md">
+                          <MapPin className="h-2.5 w-2.5 text-white/70" />
+                          <span>{dest.state}</span>
+                        </span>
+
+                        <span className="rounded-full bg-white/95 px-2.5 py-0.5 text-[9px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm">
+                          {dest.region}
+                        </span>
+                      </div>
+
+                      {/* Deity Overlay */}
+                      <div className="absolute right-3.5 bottom-3 left-3.5 z-10">
+                        <p className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wider text-white uppercase">
+                          <Sparkles className="h-3.5 w-3.5 text-white/80" />
+                          <span>{dest.primaryDeity}</span>
+                        </p>
+                      </div>
                     </div>
 
-                    {/* Deity Overlay */}
-                    <div className="absolute right-3.5 bottom-3 left-3.5 z-10">
-                      <p className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wider text-white uppercase">
-                        <Sparkles className="h-3.5 w-3.5 text-white/80" />
-                        <span>{dest.primaryDeity}</span>
-                      </p>
-                    </div>
-                  </div>
+                    {/* Card Content Body */}
+                    <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
+                      <div>
+                        <h3
+                          onClick={() => onSelectDestination(dest)}
+                          className="font-editorial cursor-pointer text-[1.65rem] font-medium leading-tight tracking-tight text-[#10241E] transition-colors group-hover:text-[#18392E]"
+                        >
+                          {dest.name}
+                        </h3>
+                        <p className="mt-1 font-editorial text-sm italic font-normal text-[#4A5550]">
+                          {dest.tagline}
+                        </p>
+                        <p className="mt-2.5 text-[13.5px] font-light leading-relaxed text-[#171B19]/75 line-clamp-3">
+                          {dest.shortDescription}
+                        </p>
+                      </div>
 
-                  {/* Card Content Body */}
-                  <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
-                    <div>
-                      <h3
-                        onClick={() => onSelectDestination(dest)}
-                        className="font-editorial cursor-pointer text-[1.65rem] font-medium leading-tight tracking-tight text-[#10241E] transition-colors group-hover:text-[#18392E]"
-                      >
-                        {dest.name}
-                      </h3>
-                      <p className="mt-1 font-editorial text-sm italic font-normal text-[#4A5550]">
-                        {dest.tagline}
-                      </p>
-                      <p className="mt-2.5 text-[13.5px] font-light leading-relaxed text-[#171B19]/75 line-clamp-3">
-                        {dest.shortDescription}
-                      </p>
-                    </div>
+                      {/* Custom Tour Duration */}
+                      <div className="mt-4 flex items-center justify-between border-t border-[#102820]/10 pt-3 text-[11.5px]">
+                        <span className="inline-flex items-center gap-1.5 font-semibold text-[#10241E]">
+                          <Clock className="h-3.5 w-3.5 text-[#10241E]/70" />
+                          <span>Custom Tour Duration</span>
+                        </span>
+                        <span className="rounded-full bg-[#102820]/5 px-2.5 py-0.5 text-[10px] font-medium text-[#102820]/80">
+                          {dest.bestSeason}
+                        </span>
+                      </div>
 
-                    {/* Custom Tour Duration */}
-                    <div className="mt-4 flex items-center justify-between border-t border-[#102820]/10 pt-3 text-[11.5px]">
-                      <span className="inline-flex items-center gap-1.5 font-semibold text-[#10241E]">
-                        <Clock className="h-3.5 w-3.5 text-[#10241E]/70" />
-                        <span>Custom Tour Duration</span>
-                      </span>
-                      <span className="rounded-full bg-[#102820]/5 px-2.5 py-0.5 text-[10px] font-medium text-[#102820]/80">
-                        {dest.bestSeason}
-                      </span>
-                    </div>
+                      {/* Dual Action Buttons */}
+                      <div className="mt-5 grid grid-cols-2 gap-2.5 pt-1">
+                        <button
+                          type="button"
+                          onClick={() => onSelectDestination(dest)}
+                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-[#102820]/20 bg-white px-3 py-2 text-[10px] font-semibold tracking-wider text-[#10241E] uppercase transition hover:bg-[#F2EFE8]"
+                        >
+                          <span>Explore More</span>
+                          <ArrowUpRight className="h-3 w-3 text-[#10241E]/60" />
+                        </button>
 
-                    {/* Dual Action Buttons */}
-                    <div className="mt-5 grid grid-cols-2 gap-2.5 pt-1">
-                      <button
-                        type="button"
-                        onClick={() => onSelectDestination(dest)}
-                        className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-[#102820]/20 bg-white px-3 py-2 text-[10px] font-semibold tracking-wider text-[#10241E] uppercase transition hover:bg-[#F2EFE8]"
-                      >
-                        <span>Explore More</span>
-                        <ArrowUpRight className="h-3 w-3 text-[#10241E]/60" />
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => onPlanTrip(dest.name)}
-                        className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#10241E] px-3 py-2 text-[10px] font-bold tracking-wider text-white uppercase shadow-sm transition hover:bg-[#18392E]"
-                      >
-                        <span>Plan Your Trip</span>
-                      </button>
+                        <button
+                          type="button"
+                          onClick={() => onPlanTrip(dest.name)}
+                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#10241E] px-3 py-2 text-[10px] font-bold tracking-wider text-white uppercase shadow-sm transition hover:bg-[#18392E]"
+                        >
+                          <span>Plan Your Trip</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </motion.article>
