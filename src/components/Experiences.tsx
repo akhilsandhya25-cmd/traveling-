@@ -36,8 +36,8 @@ export function Experiences({ onSelectExperience }: ExperiencesProps) {
           <Reveal delay={0.16}>
             <p className="max-w-md text-[15px] font-light leading-relaxed text-[#F7F4EC]/78 sm:text-base">
               Experience the profound peace of sacred Indian temple rituals—from
-              the evening brass lamps of Ganga Aarti to peaceful dawn darshans
-              atop holy hilltops.
+              the evening brass lamps of Sarayu Aarti in Ayodhya to peaceful dawn
+              darshans atop holy hilltops.
             </p>
           </Reveal>
         </div>

@@ -77,12 +77,12 @@ export function Gallery() {
           </Reveal>
         </div>
 
-        {/* Staggered Masonry-Inspired Grid */}
-        <div className="mt-8 grid grid-cols-1 gap-4 xs:grid-cols-2 sm:mt-14 sm:gap-5 md:grid-cols-4 md:grid-flow-dense">
+        {/* Responsive Balanced Grid - All 14 Sacred Shrines Clearly Visible */}
+        <div className="mt-8 grid grid-cols-1 gap-5 xs:grid-cols-2 sm:mt-12 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
           {GALLERY_ITEMS.map((item, idx) => {
             const responsiveImg = getResponsiveImageProps(
               item.image,
-              '(max-width: 431px) 94vw, (max-width: 767px) 47vw, 35vw'
+              '(max-width: 479px) 94vw, (max-width: 1023px) 47vw, (max-width: 1279px) 31vw, 23vw'
             );
 
             return (
@@ -95,14 +95,14 @@ export function Gallery() {
                 whileTap={{ scale: 0.99 }}
                 transition={{
                   duration: 0.65,
-                  delay: Math.min(idx * 0.05, 0.25),
+                  delay: Math.min(idx * 0.04, 0.25),
                   ease: EDITORIAL_EASE,
                 }}
                 onClick={() => {
                   setDirection(1);
                   setSelectedIndex(idx);
                 }}
-                className={`group relative cursor-pointer overflow-hidden rounded-2xl bg-[#102820] shadow-[0_20px_45px_-24px_rgba(16,40,32,0.45)] ${item.spanClass}`}
+                className="group relative aspect-[16/11] w-full cursor-pointer overflow-hidden rounded-2xl bg-[#102820] shadow-[0_20px_45px_-24px_rgba(16,40,32,0.45)] ring-1 ring-inset ring-white/10 transition-all duration-500 hover:shadow-[0_25px_60px_-18px_rgba(16,40,32,0.6)]"
               >
                 <img
                   {...responsiveImg}
@@ -112,7 +112,7 @@ export function Gallery() {
                   referrerPolicy="no-referrer"
                   className="photo-grade h-full w-full object-cover object-center transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:scale-[1.07]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#102820]/92 via-[#102820]/18 to-transparent opacity-80 transition-opacity duration-400 group-hover:opacity-95" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#102820]/95 via-[#102820]/25 to-transparent opacity-85 transition-opacity duration-400 group-hover:opacity-95" />
 
                 {/* Expand Badge (visible cue on touch devices, hover reveal on desktop) */}
                 <div className="absolute top-3.5 right-3.5 flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-[#102820]/60 text-white opacity-95 backdrop-blur-md transition-all duration-300 group-hover:scale-105 md:top-4 md:right-4 md:opacity-0 md:group-hover:opacity-100">
@@ -120,11 +120,16 @@ export function Gallery() {
                 </div>
 
                 {/* Caption */}
-                <figcaption className="absolute right-0 bottom-0 left-0 p-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:p-6 md:group-hover:-translate-y-1">
-                  <span className="text-[10px] font-medium tracking-[0.22em] text-[#DCC28E] uppercase sm:tracking-[0.26em]">
-                    {item.location}
-                  </span>
-                  <p className="font-editorial mt-0.5 text-[1.35rem] font-normal leading-snug text-white sm:mt-1 sm:text-2xl">
+                <figcaption className="absolute right-0 bottom-0 left-0 p-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:p-5 md:group-hover:-translate-y-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="truncate text-[10px] font-semibold tracking-[0.2em] text-[#DCC28E] uppercase">
+                      {item.location}
+                    </span>
+                    <span className="shrink-0 rounded-full bg-[#C6A66B]/20 px-2 py-0.5 text-[8.5px] font-medium tracking-wider text-[#DCC28E] uppercase backdrop-blur-md">
+                      {item.category}
+                    </span>
+                  </div>
+                  <p className="font-editorial mt-1 text-[1.25rem] font-normal leading-tight text-white line-clamp-1 sm:text-[1.35rem]">
                     {item.title}
                   </p>
                 </figcaption>
