@@ -11,8 +11,7 @@ import { getResponsiveImageProps } from '../utils/responsiveMedia';
 import { LuxuryExpeditionSUV } from './LuxuryExpeditionSUV';
 import { EDITORIAL_EASE } from './Reveal';
 
-const HERO_IMAGE =
-  'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Varanasi_2010_Ahilyabai_Ghat.jpg/1920px-Varanasi_2010_Ahilyabai_Ghat.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail';
+const HERO_IMAGE = '/images/destinations/tirupati.jpg';
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -52,7 +51,7 @@ export function Hero() {
       >
         <motion.img
           {...responsiveHero}
-          alt="Snow-clad Himalayan peaks rising above Aru Valley in Kashmir, India"
+          alt="Golden spires and sacred temple sanctum of Sri Venkateswara Balaji - Bhargavi Tour and Travels"
           fetchPriority="high"
           decoding="async"
           referrerPolicy="no-referrer"

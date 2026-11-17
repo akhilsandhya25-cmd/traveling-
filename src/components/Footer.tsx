@@ -12,7 +12,7 @@ export function Footer({ onSelectDestinationName }: FooterProps) {
     if (target) target.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const popularPicks = DESTINATIONS.slice(0, 10);
+  const popularPicks = DESTINATIONS;
 
   return (
     <footer className="editorial-grain relative border-t border-[#C6A66B]/20 bg-[#171B19] pt-14 pb-24 text-[#F7F4EC] sm:pt-24 sm:pb-12">
@@ -36,7 +36,7 @@ export function Footer({ onSelectDestinationName }: FooterProps) {
 
             <p className="mt-6 max-w-sm text-sm font-light leading-relaxed text-[#F7F4EC]/75">
               Specialising in spiritual tourism, temple visits, Jyotirlinga
-              yatras, Char Dham circuits, and sacred pilgrimages across India
+              yatras, sacred darshan circuits, and holy pilgrimages across India
               with comfort, devotion, and transparent quotations.
             </p>
 

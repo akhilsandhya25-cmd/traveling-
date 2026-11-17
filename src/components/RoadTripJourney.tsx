@@ -56,47 +56,33 @@ function buildDesktopPath(layout: WaypointLayout): string {
 
 /**
  * Dedicated portrait mobile road path:
- * Sweeps dramatically across full width in scenic corridors *between* destination cards,
- * then hugs a dedicated left driving lane (x = 46..54) while passing alongside cards
- * so the vehicle stays central and visible without covering any editorial text.
+ * Sweeps gracefully across the full width of the smartphone viewport,
+ * alternating right to left and left to right so the vehicle steers and weaves
+ * smoothly across the screen as the visitor scrolls down.
  */
 function buildMobilePath(layout: WaypointLayout): string {
   const { stages, endY } = layout;
+  const startY = 20;
   if (stages.length === 0) {
     return `M 200 0 L 200 ${Math.max(400, endY)}`;
   }
 
-  const laneX = 48;
-  const startY = 18;
   let d = `M 200 0 L 200 ${startY}`;
-
-  // Opening smooth S-curve from center hero down to Stage 1 left shoulder
-  const firstEntryY = Math.max(startY + 40, stages[0].top - 6);
-  const openMidY = (startY + firstEntryY) / 2;
-  d += ` C 200 ${openMidY.toFixed(1)}, ${laneX} ${openMidY.toFixed(1)}, ${laneX} ${firstEntryY.toFixed(1)}`;
+  let prevX = 200;
+  let prevY = startY;
 
   stages.forEach((stage, idx) => {
-    const exitY = stage.bottom + 6;
-
-    // Steady vertical pass hugging the dedicated left highway corridor beside the card
-    d += ` L ${laneX} ${exitY.toFixed(1)}`;
-
-    if (idx < stages.length - 1) {
-      const nextEntryY = Math.max(exitY + 36, stages[idx + 1].top - 6);
-      const bridgeMidY = (exitY + nextEntryY) / 2;
-      const halfInY = (exitY + bridgeMidY) / 2;
-      const halfOutY = (bridgeMidY + nextEntryY) / 2;
-      const peakX = idx % 2 === 0 ? 136 : 104;
-      // C1-continuous dual S-curve sweep across the open scenic bridge between cards
-      d += ` C ${laneX} ${halfInY.toFixed(1)}, ${peakX} ${halfInY.toFixed(1)}, ${peakX} ${bridgeMidY.toFixed(1)}`;
-      d += ` C ${peakX} ${halfOutY.toFixed(1)}, ${laneX} ${halfOutY.toFixed(1)}, ${laneX} ${nextEntryY.toFixed(1)}`;
-    }
+    // Alternates right (305) and left (95) across width 400
+    // Letting the car dynamically travel right-to-left and left-to-right on mobile
+    const targetX = idx % 2 === 0 ? 305 : 95;
+    const midY = (prevY + stage.center) / 2;
+    d += ` C ${prevX} ${midY.toFixed(1)}, ${targetX} ${midY.toFixed(1)}, ${targetX} ${stage.center.toFixed(1)}`;
+    prevX = targetX;
+    prevY = stage.center;
   });
 
-  // Final sweep into the End of Journey viewpoint center
-  const lastExitY = stages[stages.length - 1].bottom + 6;
-  const finalMidY = (lastExitY + endY) / 2;
-  d += ` C ${laneX} ${finalMidY.toFixed(1)}, 200 ${finalMidY.toFixed(1)}, 200 ${endY.toFixed(1)}`;
+  const endMidY = (prevY + endY) / 2;
+  d += ` C ${prevX} ${endMidY.toFixed(1)}, 200 ${endMidY.toFixed(1)}, 200 ${endY.toFixed(1)}`;
   return d;
 }
 
@@ -456,8 +442,8 @@ export function RoadTripJourney({
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-[14px] font-light leading-relaxed text-[#F7F4EC]/78 sm:text-base">
             Scroll gently to drive along India’s sacred pilgrimage corridors: from
-            the snow peaks of Kedarnath to holy Kashi on the Ganges, Deccan hill
-            shrines, Tirumala Balaji, Shirdi, and Somnath on the ocean.
+            Shri Ram Janmabhoomi in Ayodhya to Yadagirigutta, Srisailam Jyotirlinga,
+            Tirumala Balaji, Shirdi, and the holy shrines of Maharashtra.
           </p>
         </div>
 
@@ -552,7 +538,7 @@ export function RoadTripJourney({
           {/* Animated Scroll-Driven Luxury Expedition SUV Layer */}
           <div
             ref={carWrapperRef}
-            className="pointer-events-none absolute top-0 left-0 z-20 will-change-transform"
+            className="pointer-events-none absolute top-0 left-0 z-30 will-change-transform"
             style={{
               transform: 'translate3d(0px, 0px, 0)',
             }}
@@ -585,10 +571,7 @@ export function RoadTripJourney({
                     ref={(el) => {
                       stageRefs.current[idx] = el;
                     }}
-                    className={`grid grid-cols-1 items-center md:grid-cols-12 ${
-                      /* On mobile: reserve dedicated left highway corridor (~68px) so cards NEVER overlap the road/car */
-                      'pl-[4.35rem] xs:pl-[4.75rem] md:pl-0'
-                    }`}
+                    className="grid grid-cols-1 items-center px-2 xs:px-4 md:grid-cols-12 md:px-0"
                   >
                     <motion.article
                       initial={{ opacity: 0, y: 24 }}

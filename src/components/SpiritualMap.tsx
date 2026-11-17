@@ -72,7 +72,7 @@ export function SpiritualMap({ onPlanTrip, onExploreMore }: SpiritualMapProps) {
 
           {/* Region Quick Filter */}
           <div className="no-scrollbar -mx-4 flex gap-1.5 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:gap-2 sm:overflow-visible sm:px-0">
-            {['All', 'South India', 'North India', 'West & Central India', 'East India'].map(
+            {['All', 'South India', 'West & Central India', 'North India'].map(
               (reg) => {
                 const isActive = filterRegion === reg;
                 return (

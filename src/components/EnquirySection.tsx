@@ -453,18 +453,9 @@ export function EnquirySection({
                               </option>
                             ))}
                           </optgroup>
-                          <optgroup label="West & Central Jyotirlingas">
+                          <optgroup label="Maharashtra & West India Temples">
                             {DESTINATIONS.filter(
                               (d) => d.region === 'West & Central India'
-                            ).map((d) => (
-                              <option key={d.id} value={d.name}>
-                                {d.name} ({d.primaryDeity})
-                              </option>
-                            ))}
-                          </optgroup>
-                          <optgroup label="East India Shrines">
-                            {DESTINATIONS.filter(
-                              (d) => d.region === 'East India'
                             ).map((d) => (
                               <option key={d.id} value={d.name}>
                                 {d.name} ({d.primaryDeity})

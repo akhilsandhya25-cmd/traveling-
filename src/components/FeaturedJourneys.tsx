@@ -18,12 +18,11 @@ import { AnimatedRule, EDITORIAL_EASE, MaskedLine, Reveal } from './Reveal';
 
 const CATEGORIES: PackageCategory[] = [
   'All Packages',
-  'Jyotirlinga Tours',
-  'Char Dham Yatra',
-  'South India Temple Tours',
-  'North India Pilgrimage',
-  'Shirdi Sai Baba Tours',
+  'Shirdi & Maharashtra Tours',
+  'Jyotirlinga Special Tours',
   'Telangana Temple Tours',
+  'South India Temple Tours',
+  'Ayodhya Dham Yatra',
   'Custom Spiritual Tours',
 ];
 

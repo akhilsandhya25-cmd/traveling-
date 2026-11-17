@@ -12,9 +12,8 @@ import { AnimatedRule, EDITORIAL_EASE, MaskedLine, Reveal } from './Reveal';
 const REGIONS: RegionFilter[] = [
   'All',
   'South India',
-  'North India',
   'West & Central India',
-  'East India',
+  'North India',
 ];
 
 interface DestinationsProps {
@@ -52,9 +51,9 @@ export function Destinations({
             </h2>
             <Reveal delay={0.18}>
               <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-[#171B19]/75 sm:mt-4 sm:text-base md:text-lg">
-                Revered pilgrimage hubs across South, North, West, Central, and
-                East India. Experience timeless temple architecture, divine
-                darshans, and comfortable sacred travel.
+                Fourteen revered pilgrimage destinations across South India,
+                Maharashtra, and Ayodhya. Experience authentic temple architecture,
+                divine darshans, and comfortable sacred travel.
               </p>
             </Reveal>
           </div>
