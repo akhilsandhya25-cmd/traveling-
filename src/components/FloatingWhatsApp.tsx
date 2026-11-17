@@ -57,11 +57,11 @@ export function FloatingWhatsApp({ hidden = false }: FloatingWhatsAppProps) {
           <motion.a
             href={BUSINESS_INFO.phoneTel}
             aria-label={`Call Bhargavi Tour and Travels directly at ${BUSINESS_INFO.phone}`}
-            whileTap={{ scale: 0.94 }}
-            className="group inline-flex h-[46px] items-center justify-center gap-2 rounded-full border border-white/20 bg-[#10241E] px-4 text-white shadow-lg transition-all duration-200 hover:bg-[#18392E] sm:h-[48px] sm:px-4.5"
+            whileTap={{ scale: 0.92 }}
+            className="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#10241E] text-white shadow-lg transition-all duration-200 hover:bg-[#18392E] sm:h-12 sm:w-auto sm:gap-2 sm:px-4.5"
           >
-            <Phone className="h-4 w-4 shrink-0 text-white" />
-            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-white">
+            <Phone className="h-4.5 w-4.5 shrink-0 text-white sm:h-4 sm:w-4" />
+            <span className="hidden text-[11px] font-bold tracking-[0.14em] uppercase text-white sm:inline">
               Call Now
             </span>
           </motion.a>
@@ -72,11 +72,11 @@ export function FloatingWhatsApp({ hidden = false }: FloatingWhatsAppProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp with Bhargavi Tour and Travels (+91 7893999764)"
-            whileTap={{ scale: 0.94 }}
-            className="group inline-flex h-[46px] items-center justify-center gap-2 rounded-full border border-emerald-400/40 bg-[#16A34A] px-4 text-white shadow-lg transition-all duration-200 hover:bg-[#15803D] sm:h-[48px] sm:px-4.5"
+            whileTap={{ scale: 0.92 }}
+            className="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-emerald-400/40 bg-[#16A34A] text-white shadow-lg transition-all duration-200 hover:bg-[#15803D] sm:h-12 sm:w-auto sm:gap-2 sm:px-4.5"
           >
-            <MessageCircle className="h-4 w-4 shrink-0 text-white" />
-            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-white">
+            <MessageCircle className="h-4.5 w-4.5 shrink-0 text-white sm:h-4 sm:w-4" />
+            <span className="hidden text-[11px] font-bold tracking-[0.14em] uppercase text-white sm:inline">
               WhatsApp
             </span>
           </motion.a>
