@@ -27,9 +27,11 @@ const TOURIST_QUIPS: Record<string, string> = {
 };
 
 /**
- * Delightful animated mini cartoon tourist character that jumps
- * with realistic spring physics, squash-and-stretch, dynamic shadow,
- * and leaps from card to card across the 3 destination slides.
+ * Delightful animated mini cartoon tourist character featuring:
+ * 1. Animated walking stride cycle (swinging legs, alternating shoes, swinging arms)
+ * 2. Energetic spring jump & squash physics (anticipation, high leap, dynamic shadow)
+ * 3. Horizontal walking stroll across the slide card top
+ * 4. High celebratory leap when hopping between destination slides
  */
 export function MiniCartoonTourist({
   currentCardIndex,
@@ -38,15 +40,24 @@ export function MiniCartoonTourist({
   onJumpNext,
 }: MiniCartoonTouristProps) {
   const [isTransferring, setIsTransferring] = useState(false);
+  const [animationMode, setAnimationMode] = useState<'walk' | 'jump'>('walk');
   const [jumpCount, setJumpCount] = useState(0);
 
-  // Trigger high-power leap whenever active destination changes
+  // High celebratory leap when destination index changes
   useEffect(() => {
     setIsTransferring(true);
     setJumpCount((prev) => prev + 1);
-    const timer = setTimeout(() => setIsTransferring(false), 700);
+    const timer = setTimeout(() => setIsTransferring(false), 750);
     return () => clearTimeout(timer);
   }, [currentCardIndex]);
+
+  // Alternates between walking stroll (2.6s) and cheerful jump (1.6s)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimationMode((prev) => (prev === 'walk' ? 'jump' : 'walk'));
+    }, 2400);
+    return () => clearInterval(interval);
+  }, []);
 
   const speechText =
     TOURIST_QUIPS[destinationName] ||
@@ -66,52 +77,80 @@ export function MiniCartoonTourist({
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-        className="relative mb-1 flex items-center gap-1.5 rounded-full border border-[#10241E]/20 bg-white px-3 py-1 shadow-md hover:scale-105 transition-transform"
+        className="relative mb-1.5 flex items-center gap-1.5 rounded-full border border-[#10241E]/20 bg-white px-3.5 py-1 shadow-md transition-transform hover:scale-105"
       >
         <span className="text-[10.5px] font-bold text-[#10241E]">
           {speechText}
         </span>
-        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#10241E] text-[9px] font-bold text-white group-hover:translate-x-0.5 transition-transform">
+        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#10241E] text-[9px] font-bold text-white transition-transform group-hover:translate-x-0.5">
           &rarr;
         </span>
         {/* Little bubble speech pointer triangle */}
         <div className="absolute -bottom-1.5 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-r border-b border-[#10241E]/20 bg-white" />
       </motion.div>
 
-      {/* Mini Cartoon Tourist Character Container with Jump Physics */}
-      <div className="relative flex h-16 w-14 items-center justify-center">
-        {/* Jumping Body */}
+      {/* Horizontal Walking Stroll Wrapper (moves left & right across card top while walking) */}
+      <motion.div
+        animate={
+          isTransferring
+            ? { x: 0 }
+            : animationMode === 'walk'
+            ? { x: [-22, 22, -22] }
+            : { x: 0 }
+        }
+        transition={
+          isTransferring
+            ? { duration: 0.4 }
+            : animationMode === 'walk'
+            ? { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }
+            : { duration: 0.3 }
+        }
+        className="relative flex h-16 w-14 items-center justify-center"
+      >
+        {/* Character Vertical Motion (Walk Bob vs Jumping Launch) */}
         <motion.div
-          key={`jump-${jumpCount}`}
+          key={`motion-${jumpCount}-${animationMode}`}
           animate={
             isTransferring
               ? {
                   // High celebratory leap between slides
-                  y: [0, 4, -44, -38, 3, -12, 0],
-                  scaleY: [1, 0.78, 1.35, 1.25, 0.76, 1.12, 1],
-                  scaleX: [1, 1.22, 0.82, 0.88, 1.24, 0.94, 1],
+                  y: [0, 4, -46, -40, 3, -12, 0],
+                  scaleY: [1, 0.76, 1.35, 1.25, 0.74, 1.12, 1],
+                  scaleX: [1, 1.24, 0.82, 0.88, 1.26, 0.94, 1],
                   rotate: [0, -18, 14, -6, 2, 0],
                 }
+              : animationMode === 'jump'
+              ? {
+                  // Cartoon jump: crouch -> leap high -> apex -> squash landing -> rebound -> settle
+                  y: [0, 3, -28, -26, 3, -10, 0],
+                  scaleY: [1, 0.8, 1.28, 1.2, 0.76, 1.12, 1],
+                  scaleX: [1, 1.2, 0.84, 0.88, 1.24, 0.94, 1],
+                  rotate: [0, -5, 6, 4, -3, 2, 0],
+                }
               : {
-                  // Continuous lively cartoon jumping rhythm (anticipation -> jump -> hang -> land -> rebound -> settle)
-                  y: [0, 3, -24, -22, 3, -9, 0, 0],
-                  scaleY: [1, 0.82, 1.24, 1.18, 0.8, 1.1, 1, 1],
-                  scaleX: [1, 1.18, 0.86, 0.9, 1.2, 0.95, 1, 1],
-                  rotate: [0, -4, 6, 4, -3, 2, 0, 0],
+                  // Walking Bob: steps up & down with walking stride
+                  y: [0, -4, 0, -4, 0, -4, 0],
+                  rotate: [-3, 3, -3, 3, -3],
+                  scaleY: [1, 1.04, 0.98, 1.04, 1],
+                  scaleX: [1, 0.98, 1.02, 0.98, 1],
                 }
           }
           transition={
             isTransferring
               ? {
-                  duration: 0.7,
+                  duration: 0.75,
                   times: [0, 0.12, 0.42, 0.6, 0.8, 0.9, 1],
                   ease: 'easeInOut',
                 }
+              : animationMode === 'jump'
+              ? {
+                  duration: 1.2,
+                  times: [0, 0.15, 0.45, 0.6, 0.8, 0.92, 1],
+                  ease: 'easeInOut',
+                }
               : {
-                  duration: 1.45,
+                  duration: 1.2,
                   repeat: Infinity,
-                  repeatDelay: 0.2,
-                  times: [0, 0.15, 0.4, 0.55, 0.75, 0.88, 0.96, 1],
                   ease: 'easeInOut',
                 }
           }
@@ -119,7 +158,7 @@ export function MiniCartoonTourist({
         >
           {/* Sparkle burst upon leaping or landing */}
           <AnimatePresence>
-            {isTransferring && (
+            {(isTransferring || animationMode === 'jump') && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.3 }}
                 animate={{ opacity: 1, scale: 1.3 }}
@@ -141,24 +180,78 @@ export function MiniCartoonTourist({
             className="h-full w-full drop-shadow-md"
           >
             {/* Backpack on back */}
-            <rect
-              x="12"
-              y="30"
-              width="12"
-              height="18"
-              rx="4"
-              fill="#10241E"
-              stroke="#10241E"
-              strokeWidth="1.5"
-            />
-            <rect x="14" y="27" width="8" height="4" rx="1.5" fill="#C6A66B" />
+            <motion.g
+              animate={
+                animationMode === 'walk'
+                  ? { y: [0, -2, 0, -2, 0], rotate: [-2, 2, -2] }
+                  : { y: [0, -3, 0] }
+              }
+              transition={{ duration: 0.6, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <rect
+                x="12"
+                y="30"
+                width="12"
+                height="18"
+                rx="4"
+                fill="#10241E"
+                stroke="#10241E"
+                strokeWidth="1.5"
+              />
+              <rect x="14" y="27" width="8" height="4" rx="1.5" fill="#C6A66B" />
+            </motion.g>
 
-            {/* Legs & Shoes */}
-            <rect x="23" y="52" width="5" height="12" rx="2" fill="#2E4A3E" />
-            <rect x="35" y="52" width="5" height="12" rx="2" fill="#2E4A3E" />
-            {/* Little Shoes */}
-            <ellipse cx="24" cy="66" rx="4.5" ry="3" fill="#10241E" />
-            <ellipse cx="38" cy="66" rx="4.5" ry="3" fill="#10241E" />
+            {/* Left Leg & Shoe (Animated Walking Stride Cycle) */}
+            <motion.g
+              style={{ transformOrigin: '25px 52px' }}
+              animate={
+                isTransferring
+                  ? { rotate: [-18, 22, -10, 0], y: [0, -4, 2, 0] }
+                  : animationMode === 'jump'
+                  ? { rotate: [-12, -4, 0], y: [0, -4, 0] }
+                  : { rotate: [-28, 28, -28], y: [0, -3, 0] }
+              }
+              transition={{
+                duration: animationMode === 'walk' ? 0.6 : 0.8,
+                repeat: animationMode === 'walk' ? Infinity : 0,
+                ease: 'easeInOut',
+              }}
+            >
+              <rect x="22.5" y="52" width="5.5" height="13" rx="2.5" fill="#2E4A3E" />
+              <ellipse cx="24.5" cy="65.5" rx="5" ry="3.2" fill="#10241E" />
+              <path
+                d="M21 66 Q24.5 68 28.5 66"
+                stroke="#FFFFFF"
+                strokeWidth="0.8"
+                strokeLinecap="round"
+              />
+            </motion.g>
+
+            {/* Right Leg & Shoe (Animated Walking Stride Cycle - Opposite Phase) */}
+            <motion.g
+              style={{ transformOrigin: '38px 52px' }}
+              animate={
+                isTransferring
+                  ? { rotate: [22, -18, 10, 0], y: [-4, 0, 2, 0] }
+                  : animationMode === 'jump'
+                  ? { rotate: [12, 4, 0], y: [0, -4, 0] }
+                  : { rotate: [28, -28, 28], y: [-3, 0, -3] }
+              }
+              transition={{
+                duration: animationMode === 'walk' ? 0.6 : 0.8,
+                repeat: animationMode === 'walk' ? Infinity : 0,
+                ease: 'easeInOut',
+              }}
+            >
+              <rect x="35.5" y="52" width="5.5" height="13" rx="2.5" fill="#2E4A3E" />
+              <ellipse cx="38.5" cy="65.5" rx="5" ry="3.2" fill="#10241E" />
+              <path
+                d="M35 66 Q38.5 68 42.5 66"
+                stroke="#FFFFFF"
+                strokeWidth="0.8"
+                strokeLinecap="round"
+              />
+            </motion.g>
 
             {/* Tourist Shirt & Body */}
             <rect
@@ -183,10 +276,48 @@ export function MiniCartoonTourist({
               strokeWidth="1"
             />
 
-            {/* Mini Camera Hanging with Strap that jiggles with the jump */}
+            {/* Left Arm & Hand (Swings naturally with the stride) */}
             <motion.g
-              animate={{ y: [0, 2, -4, -3, 3, 0] }}
-              transition={{ duration: 1.45, repeat: Infinity, ease: 'easeInOut' }}
+              style={{ transformOrigin: '20px 32px' }}
+              animate={
+                animationMode === 'jump'
+                  ? { rotate: [-18, -32, -18], y: [-2, -6, -2] }
+                  : { rotate: [26, -26, 26] }
+              }
+              transition={{
+                duration: animationMode === 'jump' ? 0.8 : 0.6,
+                repeat: animationMode === 'jump' ? 1 : Infinity,
+                ease: 'easeInOut',
+              }}
+            >
+              <path
+                d="M20 32 C15 38 13 44 11 48"
+                stroke="#FFE8D6"
+                strokeWidth="3.2"
+                strokeLinecap="round"
+              />
+              <circle
+                cx="11"
+                cy="48"
+                r="2.6"
+                fill="#FFE8D6"
+                stroke="#10241E"
+                strokeWidth="0.8"
+              />
+            </motion.g>
+
+            {/* Mini Camera Hanging with Strap (bounces with steps) */}
+            <motion.g
+              animate={
+                animationMode === 'walk'
+                  ? { y: [0, 2, -3, 1, 0], rotate: [-4, 4, -4] }
+                  : { y: [0, 2, -4, -3, 3, 0] }
+              }
+              transition={{
+                duration: animationMode === 'walk' ? 0.6 : 1.2,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
             >
               <path d="M26 31 L37 42" stroke="#10241E" strokeWidth="1" />
               <rect
@@ -252,55 +383,73 @@ export function MiniCartoonTourist({
               strokeWidth="2"
             />
 
-            {/* Waving Arm & Hand */}
+            {/* Right Arm & Hand (Waves enthusiastically) */}
             <motion.path
               d="M44 33 C49 27 54 20 54 14"
               stroke="#FFE8D6"
               strokeWidth="3.2"
               strokeLinecap="round"
-              animate={{ rotate: [0, 12, -8, 0] }}
-              transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut' }}
+              animate={
+                animationMode === 'jump'
+                  ? { rotate: [0, 24, -10, 0] }
+                  : { rotate: [0, 14, -8, 0] }
+              }
+              transition={{ duration: 0.7, repeat: Infinity, ease: 'easeInOut' }}
             />
-            {/* Hand palm */}
-            <circle cx="54" cy="14" r="2.8" fill="#FFE8D6" stroke="#10241E" strokeWidth="1" />
+            <circle
+              cx="54"
+              cy="14"
+              r="2.8"
+              fill="#FFE8D6"
+              stroke="#10241E"
+              strokeWidth="1"
+            />
           </svg>
         </motion.div>
 
-        {/* Dynamic Jump Shadow on Card Top */}
+        {/* Dynamic Shadow on Card Top (Tracks walking horizontal position & jump elevation) */}
         <motion.div
           animate={
             isTransferring
               ? {
-                  // Shadow expands on squash, shrinks to tiny dot high in air
                   scaleX: [1, 1.35, 0.45, 0.5, 1.4, 0.95, 1],
                   scaleY: [1, 1.3, 0.35, 0.4, 1.35, 0.9, 1],
                   opacity: [0.28, 0.45, 0.08, 0.1, 0.48, 0.22, 0.28],
                 }
+              : animationMode === 'jump'
+              ? {
+                  scaleX: [1, 1.3, 0.5, 0.55, 1.35, 0.85, 1],
+                  scaleY: [1, 1.25, 0.4, 0.45, 1.3, 0.8, 1],
+                  opacity: [0.28, 0.42, 0.1, 0.12, 0.44, 0.2, 0.28],
+                }
               : {
-                  // Synchronized continuous jump shadow loop
-                  scaleX: [1, 1.25, 0.55, 0.6, 1.3, 0.85, 1, 1],
-                  scaleY: [1, 1.2, 0.45, 0.5, 1.25, 0.8, 1, 1],
-                  opacity: [0.26, 0.4, 0.1, 0.12, 0.42, 0.2, 0.26, 0.26],
+                  scaleX: [1, 1.08, 0.94, 1.08, 1],
+                  scaleY: [1, 1.06, 0.96, 1.06, 1],
+                  opacity: [0.28, 0.34, 0.26, 0.34, 0.28],
                 }
           }
           transition={
             isTransferring
               ? {
-                  duration: 0.7,
+                  duration: 0.75,
                   times: [0, 0.12, 0.42, 0.6, 0.8, 0.9, 1],
                   ease: 'easeInOut',
                 }
+              : animationMode === 'jump'
+              ? {
+                  duration: 1.2,
+                  times: [0, 0.15, 0.45, 0.6, 0.8, 0.92, 1],
+                  ease: 'easeInOut',
+                }
               : {
-                  duration: 1.45,
+                  duration: 0.6,
                   repeat: Infinity,
-                  repeatDelay: 0.2,
-                  times: [0, 0.15, 0.4, 0.55, 0.75, 0.88, 0.96, 1],
                   ease: 'easeInOut',
                 }
           }
-          className="pointer-events-none absolute -bottom-1 h-2.5 w-10 rounded-full bg-[#10241E]/30 blur-[1px]"
+          className="pointer-events-none absolute -bottom-1 h-2.5 w-11 rounded-full bg-[#10241E]/30 blur-[1px]"
         />
-      </div>
+      </motion.div>
     </div>
   );
 }

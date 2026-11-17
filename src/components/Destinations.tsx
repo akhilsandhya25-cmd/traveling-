@@ -114,12 +114,12 @@ export function Destinations({
               🎒
             </span>
             <p className="text-xs font-medium text-[#10241E]">
-              <strong>Sacred Yatra Tourist:</strong> Currently hopping at{' '}
+              <strong>Sacred Yatra Tourist:</strong> Walking & leaping at{' '}
               <span className="font-bold underline decoration-[#10241E]/40 underline-offset-2">
                 {filteredDestinations[activeTouristIndex]?.name}
               </span>
               <span className="hidden text-neutral-500 sm:inline">
-                {' '}&bull; Jumping between slides as you explore India's holy sanctuaries!
+                {' '}&bull; Strolling and jumping between slides as you explore India's holy sanctuaries!
               </span>
             </p>
           </div>
