@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUpRight, Clock, MapPin, Sparkles } from 'lucide-react';
 import {
@@ -28,6 +28,7 @@ export function Destinations({
 }: DestinationsProps) {
   const [activeRegion, setActiveRegion] = useState<RegionFilter>('All');
   const [activeTouristIndex, setActiveTouristIndex] = useState(0);
+  const [autoHop, setAutoHop] = useState(true);
 
   const filteredDestinations =
     activeRegion === 'All'
@@ -38,6 +39,15 @@ export function Destinations({
     setActiveRegion(region);
     setActiveTouristIndex(0);
   };
+
+  // Continuous auto-hop across slides so scrolling and browsing is always dynamic & lively
+  useEffect(() => {
+    if (!autoHop || filteredDestinations.length <= 1) return;
+    const interval = setInterval(() => {
+      setActiveTouristIndex((prev) => (prev + 1) % filteredDestinations.length);
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [autoHop, filteredDestinations.length]);
 
   return (
     <section
@@ -98,34 +108,54 @@ export function Destinations({
         </div>
 
         {/* Playful Mini Cartoon Tourist Guide Bar */}
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#10241E]/10 bg-white/90 px-4 py-2.5 shadow-xs sm:mt-8 sm:px-5">
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#10241E]/10 bg-white/95 px-4 py-3 shadow-xs sm:mt-8 sm:px-5">
           <div className="flex items-center gap-2.5">
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#10241E] text-xs">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#10241E] text-sm shadow-xs">
               🎒
             </span>
             <p className="text-xs font-medium text-[#10241E]">
-              <strong>Mini Tourist Guide:</strong> Currently visiting{' '}
-              <span className="font-bold underline decoration-[#10241E]/30 underline-offset-2">
+              <strong>Sacred Yatra Tourist:</strong> Currently hopping at{' '}
+              <span className="font-bold underline decoration-[#10241E]/40 underline-offset-2">
                 {filteredDestinations[activeTouristIndex]?.name}
               </span>
               <span className="hidden text-neutral-500 sm:inline">
-                {' '}&bull; Scroll through the slides to watch him hop from card to card!
+                {' '}&bull; Jumping between slides as you explore India's holy sanctuaries!
               </span>
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={() =>
-              setActiveTouristIndex(
-                (prev) => (prev + 1) % filteredDestinations.length
-              )
-            }
-            className="inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-[#10241E] px-3.5 py-1 text-[11px] font-bold text-white shadow-xs transition hover:bg-[#18392E]"
-          >
-            <span>Hop to Next</span>
-            <span>&rarr;</span>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setAutoHop((prev) => !prev)}
+              className={`inline-flex min-h-[34px] cursor-pointer items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold transition ${
+                autoHop
+                  ? 'border border-[#10241E]/20 bg-[#10241E]/5 text-[#10241E]'
+                  : 'border border-neutral-200 bg-neutral-100 text-neutral-500'
+              }`}
+              title={autoHop ? 'Pause automatic slide jumps' : 'Resume automatic slide jumps'}
+            >
+              <span
+                className={`h-2 w-2 rounded-full ${
+                  autoHop ? 'animate-pulse bg-emerald-600' : 'bg-neutral-400'
+                }`}
+              />
+              <span>{autoHop ? 'Auto-Hop ON' : 'Auto-Hop Paused'}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() =>
+                setActiveTouristIndex(
+                  (prev) => (prev + 1) % filteredDestinations.length
+                )
+              }
+              className="inline-flex min-h-[34px] cursor-pointer items-center gap-1.5 rounded-full bg-[#10241E] px-4 py-1 text-[11px] font-bold text-white shadow-xs transition hover:bg-[#18392E]"
+            >
+              <span>Hop to Next Slide</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
         </div>
 
         {/* Responsive Grid: 1-col Phones -> 2-col Tablets -> 3-col Desktop */}
@@ -160,22 +190,33 @@ export function Destinations({
                     delay: Math.min((index % 3) * 0.08, 0.24),
                     ease: EDITORIAL_EASE,
                   }}
-                  className="group relative flex flex-col pt-10"
+                  className="group relative flex flex-col pt-12"
                 >
-                  {/* Mini Cartoon Tourist perched atop the active card */}
+                  {/* Mini Cartoon Tourist with Continuous Jump Animation and Spring Leap */}
                   {isTouristHere && (
-                    <div className="absolute -top-4 left-1/2 z-30 -translate-x-1/2">
-                      <MiniCartoonTourist
-                        currentCardIndex={activeTouristIndex}
-                        destinationName={dest.name}
-                        tagline={dest.tagline}
-                        onJumpNext={() =>
-                          setActiveTouristIndex(
-                            (prev) => (prev + 1) % filteredDestinations.length
-                          )
-                        }
-                      />
-                    </div>
+                    <motion.div
+                      layoutId="mini-cartoon-tourist-carrier"
+                      transition={{
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 18,
+                        mass: 0.8,
+                      }}
+                      className="pointer-events-none absolute -top-10 inset-x-0 z-30 flex justify-center"
+                    >
+                      <div className="pointer-events-auto">
+                        <MiniCartoonTourist
+                          currentCardIndex={activeTouristIndex}
+                          destinationName={dest.name}
+                          tagline={dest.tagline}
+                          onJumpNext={() =>
+                            setActiveTouristIndex(
+                              (prev) => (prev + 1) % filteredDestinations.length
+                            )
+                          }
+                        />
+                      </div>
+                    </motion.div>
                   )}
 
                   <div className="flex flex-1 flex-col overflow-hidden rounded-2xl border border-[#E7DFD0] bg-[#FFFDF9] shadow-sm transition-all duration-300 group-hover:border-[#10241E]/40 group-hover:shadow-lg">
