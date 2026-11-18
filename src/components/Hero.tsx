@@ -117,6 +117,20 @@ export function Hero() {
         }
         className="relative z-20 mx-auto flex w-full max-w-6xl flex-col items-center px-4 pt-[clamp(5.5rem,12vh,7.5rem)] pb-[clamp(5.25rem,12vh,7.5rem)] text-center sm:px-6 lg:px-10"
       >
+        {/* Special Spotlight Pill for Srisailam Packages (From Images 1 & 2) */}
+        <motion.button
+          type="button"
+          onClick={() => scrollToSection('#srisailam-packages')}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="mb-4 inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-[10.5px] font-bold tracking-wider text-white uppercase backdrop-blur-md transition hover:bg-white/20 hover:border-white"
+        >
+          <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span>⭐ Special Spotlight: Srisailam 1-Day &amp; 2-Day Packages</span>
+          <span className="text-white/70">&rarr;</span>
+        </motion.button>
+
         {/* Architectural Hairline Eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}

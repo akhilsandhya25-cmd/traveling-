@@ -6,6 +6,7 @@ import { Destinations } from './components/Destinations';
 import { EnquirySection } from './components/EnquirySection';
 import { Experiences } from './components/Experiences';
 import { FeaturedJourneys } from './components/FeaturedJourneys';
+import { FleetSection } from './components/FleetSection';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { Footer } from './components/Footer';
 import { Gallery } from './components/Gallery';
@@ -15,6 +16,7 @@ import { Navbar } from './components/Navbar';
 import { PageIntro } from './components/PageIntro';
 import { RoadTripJourney } from './components/RoadTripJourney';
 import { SpiritualMap } from './components/SpiritualMap';
+import { SrisailamSpotlight } from './components/SrisailamSpotlight';
 import {
   DESTINATIONS,
   type Destination,
@@ -70,6 +72,9 @@ export default function App() {
           {/* Section A: Hero */}
           <Hero />
 
+          {/* VIP Spotlight: Srisailam 1-Day & 2-Day Packages (From User Images 1 & 2) */}
+          <SrisailamSpotlight onPlanTrip={jumpToEnquiry} />
+
           {/* Preserved Cinematic Scroll-Driven Car Road Trip Yatra */}
           <RoadTripJourney
             onSelectDestinationById={(destinationId) => {
@@ -86,7 +91,7 @@ export default function App() {
           {/* Section B & F: About Us & Why Choose Us */}
           <About />
 
-          {/* Section C: Popular Spiritual Destinations */}
+          {/* Section C: Popular Spiritual Destinations (Exact 20 from Notebook) */}
           <Destinations
             onSelectDestination={setActiveDestination}
             onPlanTrip={jumpToEnquiry}
@@ -97,6 +102,9 @@ export default function App() {
             onSelectJourney={setActiveJourney}
             onEnquireJourney={(journey) => jumpToEnquiry(journey.title)}
           />
+
+          {/* Our Fleet Of Cars (From User Image 3) */}
+          <FleetSection onSelectCar={jumpToEnquiry} />
 
           {/* Section E: Interactive Google Maps Pilgrimage Section */}
           <SpiritualMap

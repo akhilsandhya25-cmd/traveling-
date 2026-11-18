@@ -61,11 +61,11 @@ export function Footer({ onSelectDestinationName }: FooterProps) {
             <ul className="mt-5 space-y-3 text-sm font-light text-[#F7F4EC]/75">
               {[
                 { label: 'Home', href: '#hero' },
-                { label: 'About Us', href: '#about' },
+                { label: 'Srisailam Special', href: '#srisailam-packages' },
                 { label: 'Destinations', href: '#destinations' },
                 { label: 'Tour Packages', href: '#packages' },
+                { label: 'Our Fleet', href: '#fleet' },
                 { label: 'Spiritual Map', href: '#spiritual-map' },
-                { label: 'Sacred Yatra', href: '#road-trip' },
                 { label: 'Contact Us', href: '#contact' },
               ].map((item) => (
                 <li key={item.href}>

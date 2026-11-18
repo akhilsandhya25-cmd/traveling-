@@ -12,9 +12,9 @@ import { AnimatedRule, EDITORIAL_EASE, MaskedLine, Reveal } from './Reveal';
 
 const REGIONS: RegionFilter[] = [
   'All',
-  'South India',
-  'West & Central India',
-  'North India',
+  'Telangana & Andhra Pradesh',
+  'Maharashtra & Karnataka',
+  'Central & North India',
 ];
 
 interface DestinationsProps {
@@ -68,9 +68,9 @@ export function Destinations({
             </h2>
             <Reveal delay={0.18}>
               <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-[#171B19]/75 sm:mt-4 sm:text-base md:text-lg">
-                Fourteen revered pilgrimage destinations across South India,
-                Maharashtra, and Ayodhya. Experience authentic temple architecture,
-                divine darshans, and comfortable sacred travel.
+                Twenty sacred pilgrimage destinations across Telangana, Andhra Pradesh,
+                Maharashtra, Karnataka, Madhya Pradesh, Kerala, and Ayodhya. Experience authentic
+                temple architecture, divine darshans, and comfortable sacred travel.
               </p>
             </Reveal>
           </div>
@@ -235,12 +235,17 @@ export function Destinations({
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0B1A15]/90 via-[#0B1A15]/20 to-transparent" />
 
-                      {/* Region & State Badge */}
+                      {/* Region & State Badge + Number */}
                       <div className="absolute top-3.5 right-3.5 left-3.5 z-10 flex items-center justify-between">
-                        <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-[#0B1A15]/85 px-2.5 py-1 text-[9px] font-semibold tracking-wider text-white uppercase backdrop-blur-md">
-                          <MapPin className="h-2.5 w-2.5 text-white/70" />
-                          <span>{dest.state}</span>
-                        </span>
+                        <div className="flex items-center gap-1.5">
+                          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-[10px] font-bold font-mono text-[#10241E] shadow-sm">
+                            {index + 1}
+                          </span>
+                          <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-[#0B1A15]/85 px-2.5 py-1 text-[9px] font-semibold tracking-wider text-white uppercase backdrop-blur-md">
+                            <MapPin className="h-2.5 w-2.5 text-white/70" />
+                            <span>{dest.state}</span>
+                          </span>
+                        </div>
 
                         <span className="rounded-full bg-white/95 px-2.5 py-0.5 text-[9px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm">
                           {dest.region}

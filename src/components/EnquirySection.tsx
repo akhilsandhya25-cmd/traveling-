@@ -430,49 +430,48 @@ export function EnquirySection({
                           }}
                           className={`${INPUT_CLASS} appearance-none pr-10`}
                         >
-                          <option value="">Select Sacred Destination</option>
-                          <optgroup label="South India Temples">
+                          <option value="">Select Sacred Destination / Package</option>
+                          <optgroup label="Featured Srisailam Packages">
+                            <option value="Srisailam 1 Day Package">
+                              Srisailam 1 Day Package (Same-Day Darshan)
+                            </option>
+                            <option value="Srisailam 2 Day Package">
+                              Srisailam 2 Day Package (With Boating & Safari)
+                            </option>
+                          </optgroup>
+                          <optgroup label="Telangana & Andhra Pradesh Shrines">
                             {DESTINATIONS.filter(
-                              (d) => d.region === 'South India'
+                              (d) => d.region === 'Telangana & Andhra Pradesh'
                             ).map((d) => (
                               <option key={d.id} value={d.name}>
                                 {d.name} ({d.primaryDeity})
                               </option>
                             ))}
                           </optgroup>
-                          <optgroup label="North India Yatras">
+                          <optgroup label="Maharashtra & Karnataka Shrines">
                             {DESTINATIONS.filter(
-                              (d) => d.region === 'North India'
+                              (d) => d.region === 'Maharashtra & Karnataka'
                             ).map((d) => (
                               <option key={d.id} value={d.name}>
                                 {d.name} ({d.primaryDeity})
                               </option>
                             ))}
                           </optgroup>
-                          <optgroup label="Maharashtra & West India Temples">
+                          <optgroup label="Central & North India Shrines">
                             {DESTINATIONS.filter(
-                              (d) => d.region === 'West & Central India'
+                              (d) => d.region === 'Central & North India'
                             ).map((d) => (
                               <option key={d.id} value={d.name}>
                                 {d.name} ({d.primaryDeity})
                               </option>
                             ))}
                           </optgroup>
-                          <optgroup label="Special Circuits">
-                            <option value="12 Jyotirlinga Darshan">
-                              12 Jyotirlinga Darshan Circuit
-                            </option>
-                            <option value="Himalayan Char Dham Yatra">
-                              Himalayan Char Dham Yatra
-                            </option>
-                            <option value="Shirdi Sai Baba & Shani Shingnapur">
-                              Shirdi Sai Baba &amp; Shani Shingnapur
-                            </option>
-                            <option value="Telangana Temple Tour">
-                              Telangana Temple Tour (Yadagirigutta, Swarnagiri)
-                            </option>
+                          <optgroup label="Custom Spiritual Circuits">
                             <option value="Custom Spiritual Pilgrimage">
-                              Custom Spiritual Pilgrimage (Other)
+                              Bespoke Multi-Temple Pilgrimage Yatra
+                            </option>
+                            <option value="Car Fleet Rental Service">
+                              AC Car / Tempo Traveller Booking
                             </option>
                           </optgroup>
                         </select>

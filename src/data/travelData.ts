@@ -1,14 +1,15 @@
 export type RegionFilter =
   | 'All'
-  | 'South India'
-  | 'West & Central India'
-  | 'North India';
+  | 'Telangana & Andhra Pradesh'
+  | 'Maharashtra & Karnataka'
+  | 'Central & North India';
 
 export type PackageCategory =
   | 'All Packages'
-  | 'Shirdi & Maharashtra Tours'
-  | 'Jyotirlinga Special Tours'
+  | 'Srisailam Special Packages'
   | 'Telangana Temple Tours'
+  | 'Maharashtra Pilgrimages'
+  | 'Jyotirlinga Special Tours'
   | 'South India Temple Tours'
   | 'Ayodhya Dham Yatra'
   | 'Custom Spiritual Tours';
@@ -55,6 +56,7 @@ export interface FeaturedJourney {
   suitableFor: string;
   image: string;
   alt: string;
+  isSpecialHighlight?: boolean;
 }
 
 export interface Experience {
@@ -77,45 +79,209 @@ export interface GalleryItem {
   spanClass: string;
 }
 
+export interface CarFleetItem {
+  id: string;
+  name: string;
+  category: string;
+  capacity: string;
+  acType: string;
+  luggage: string;
+  bestFor: string;
+  features: string[];
+  image: string;
+  alt: string;
+}
+
+export interface SrisailamSpecialPackage {
+  id: string;
+  duration: '1 Day' | '2 Day';
+  title: string;
+  tagline: string;
+  badge: string;
+  image: string;
+  alt: string;
+  sightseeing: string[];
+  whatsappMessage: string;
+}
+
 /* ========================================================================
-   POPULAR SPIRITUAL DESTINATIONS (STRICT 14 APPROVED PILGRIMAGE HUBS)
+   POPULAR SPIRITUAL DESTINATIONS (EXACT 20 FROM USER'S NOTEBOOK)
    ======================================================================== */
 export const DESTINATIONS: Destination[] = [
-  // 1. Shirdi
+  // 1. Shrishailam
   {
-    id: 'shirdi',
-    name: 'Shirdi',
-    tagline: 'Abode of Shri Sai Baba & Path of Shraddha and Saburi.',
-    region: 'West & Central India',
-    state: 'Maharashtra',
-    primaryDeity: 'Shri Sai Baba',
+    id: 'srisailam',
+    name: 'Shrishailam',
+    tagline: 'Mallikarjuna Jyotirlinga & Bhramaramba Devi Shakti Peeth.',
+    region: 'Telangana & Andhra Pradesh',
+    state: 'Andhra Pradesh',
+    primaryDeity: 'Lord Mallikarjuna & Goddess Bhramaramba',
     shortDescription:
-      'The sacred Samadhi Mandir and Dwarkamai of Shri Sai Baba, radiating boundless compassion and peace to every visiting devotee.',
+      'Ancient Jyotirlinga and Mahashaktipeeth nestled in the Nallamala hills along Krishna River, granting divine Sparsha Darshan.',
     editorialStory:
-      'Shirdi is the sacred town blessed by the divine presence of Shri Sai Baba. Millions of devotees gather at the Samadhi Mandir to experience profound serenity, attend the divine Kakad and Shej Aartis, and reflect on the timeless teachings of faith (Shraddha) and patience (Saburi).',
-    bestSeason: 'October – March',
-    idealDuration: '2 to 3 Days',
-    moodTags: ['Sai Samadhi', 'Shraddha & Saburi', 'Sacred Dhuni'],
+      'Perched on the flat top of Nallamala Hills along the scenic Krishna river gorge, Srisailam is uniquely sanctified as both one of the 12 sacred Jyotirlingas and one of the 18 Maha Shakti Peeths. Devotees experience profound serenity through Sparsha Darshan, holy bath at Pathalaganga, and the peaceful forested ghat road.',
+    bestSeason: 'September – March',
+    idealDuration: '1 to 2 Days',
+    moodTags: ['Jyotirlinga', 'Shakti Peeth', 'Pathalaganga', 'Sparsha Darshan'],
     highlights: [
-      'Darshan at Shri Sai Baba Samadhi Mandir',
-      'Visit holy Dwarkamai, Chavadi, and Gurusthan',
-      'Experience peaceful Kakad and Shej Aarti blessings',
-      'Visit nearby Shani Shingnapur open-air temple',
+      'Mallikarjuna Swamy Temple & Bramarambika Devi Temple',
+      'Sakshi Ganapathi Temple, Paladhara & Panchadhara',
+      'Pathalaganga Ropeway, Boating & Srisailam Dam',
+      'Octopus View Point & Nallamala Forest Drive',
     ],
-    mapQuery: 'Shri Saibaba Sansthan Temple Shirdi Maharashtra',
-    lat: 19.7667,
-    lng: 74.4766,
-    image: '/images/destinations/shirdi.jpg',
-    alt: 'Sai Baba Samadhi Mandir in Shirdi',
-    gridClass: 'md:col-span-6 md:row-span-2 md:min-h-[520px]',
+    mapQuery: 'Sri Bhramaramba Mallikarjuna Temple Srisailam Andhra Pradesh',
+    lat: 16.074,
+    lng: 78.868,
+    image: '/images/srisailam-1day-package.jpg',
+    alt: 'Golden Gopuram of Mallikarjuna Swamy Temple at Srisailam',
   },
 
-  // 2. Yaganti
+  // 2. Yadadri
+  {
+    id: 'yadadri',
+    name: 'Yadadri',
+    tagline: 'Sri Lakshmi Narasimha Swamy Mahakshetram.',
+    region: 'Telangana & Andhra Pradesh',
+    state: 'Telangana',
+    primaryDeity: 'Sri Lakshmi Narasimha Swamy',
+    shortDescription:
+      'Magnificent Krishna Shila black stone temple honoring Sri Lakshmi Narasimha Swamy atop the sacred Yadagiri hill.',
+    editorialStory:
+      'Yadadri (Yadagirigutta) is Telangana’s architectural and spiritual jewel, rebuilt completely with ancient Dravidian and Kakatiya stone masonry. The sacred hill has blessed devotees for centuries, offering profound peace through special Suprabhata Seva, Satyanarayana Swamy Vratams, and hill-top darshan.',
+    bestSeason: 'October – March',
+    idealDuration: '1 Day',
+    moodTags: ['Krishna Shila Architecture', 'Narasimha Kshetram', 'Yadagiri Hill'],
+    highlights: [
+      'Darshan of Sri Lakshmi Narasimha Swamy in the sanctum sanctorum',
+      'Admire intricate monolithic stone pillars and Kakatiya-style Rajagopurams',
+      'Attend sacred Satyanarayana Swamy Vratam ceremonies',
+      'Smooth 1.5-hour highway drive from Hyderabad',
+    ],
+    mapQuery: 'Sri Lakshmi Narasimha Swamy Temple Yadagirigutta Telangana',
+    lat: 17.5878,
+    lng: 78.9392,
+    image: '/images/destinations/yadagirigutta.jpg',
+    alt: 'Yadadri Sri Lakshmi Narasimha Swamy Temple architectural gopuram',
+  },
+
+  // 3. Vemulawada
+  {
+    id: 'vemulawada',
+    name: 'Vemulawada',
+    tagline: 'Dakshina Kasi & Abode of Sri Raja Rajeshwara Swamy.',
+    region: 'Telangana & Andhra Pradesh',
+    state: 'Telangana',
+    primaryDeity: 'Sri Raja Rajeshwara Swamy (Rajanna)',
+    shortDescription:
+      'Revered as Dakshina Kasi, famous for the sacred Dharma Gundam holy tank and the auspicious Code Mrokkubadi ritual.',
+    editorialStory:
+      'Sri Raja Rajeshwara Temple in Vemulawada, affectionately called Rajanna Temple, is one of Telangana’s most sacred Shaivite pilgrimage destinations. Devotees take a cleansing dip in the sacred Dharma Gundam tank and perform the unique Code Mrokkubadi (ox-tethering offering) for prosperity and family well-being.',
+    bestSeason: 'October – March',
+    idealDuration: '1 to 2 Days',
+    moodTags: ['Dakshina Kasi', 'Dharma Gundam', 'Code Mrokkubadi', 'Rajanna Blessings'],
+    highlights: [
+      'Darshan of Sri Raja Rajeshwara Swamy and Sri Raja Rajeshwari Devi',
+      'Holy bath in the ancient medicinal Dharma Gundam tank',
+      'Participate in the traditional Code Mrokkubadi vow ritual',
+      'Visit Sri Baddi Pochamma Temple and Anjaneya Swamy shrine',
+    ],
+    mapQuery: 'Sri Raja Rajeshwara Swamy Temple Vemulawada Telangana',
+    lat: 18.4715,
+    lng: 78.8687,
+    image: '/images/destinations/vemulawada.jpg',
+    alt: 'Sri Raja Rajeshwara Swamy Temple at Vemulawada',
+  },
+
+  // 4. Ramappa Temple
+  {
+    id: 'ramappa',
+    name: 'Ramappa Temple',
+    tagline: 'UNESCO World Heritage Site & Kakatiya Architectural Wonder.',
+    region: 'Telangana & Andhra Pradesh',
+    state: 'Telangana',
+    primaryDeity: 'Sri Ramalingeswara Swamy',
+    shortDescription:
+      '13th-century Kakatiya masterpiece built with floating bricks and exquisite black basalt stone dancing sculptures in Palampet.',
+    editorialStory:
+      'Nestled near the serene Ramappa Lake in Palampet, the Ramappa (Rudreshwara) Temple is a UNESCO World Heritage wonder from 1213 CE. Famous for its buoyant floating bricks, sandbox foundation engineering, and lifelike bracket figures of celestial dancers (Madanikas) carved out of lustrous black dolerite stone.',
+    bestSeason: 'October – February',
+    idealDuration: '1 Day',
+    moodTags: ['UNESCO World Heritage', 'Floating Bricks', 'Kakatiya Art', 'Ramappa Lake'],
+    highlights: [
+      'Marvel at the UNESCO World Heritage 13th-century Kakatiya temple structure',
+      'Witness the world-famous lightweight floating bricks used in the shikhara',
+      'Admire intricately polished black basalt bracket dancer sculptures (Madanikas)',
+      'Scenic visit to the adjacent historic Ramappa Lake water reservoir',
+    ],
+    mapQuery: 'Ramappa Temple Palampet Mulugu Telangana',
+    lat: 18.2604,
+    lng: 79.9431,
+    image: '/images/destinations/ramappa.jpg',
+    alt: 'Ramappa Rudreshwara Temple in Palampet Telangana',
+  },
+
+  // 5. Thousand Pillar Temple
+  {
+    id: 'thousand-pillar',
+    name: 'Thousand Pillar Temple',
+    tagline: 'Historic Kakatiya Trikuta Shrine & Monolithic Nandi.',
+    region: 'Telangana & Andhra Pradesh',
+    state: 'Telangana',
+    primaryDeity: 'Sri Rudreswara Swamy (Shiva, Vishnu & Surya)',
+    shortDescription:
+      'Historic 12th-century Kakatiya star-shaped trikuta shrine famous for its thousand intricately carved granite pillars and monolithic Nandi.',
+    editorialStory:
+      'Constructed in 1163 CE by King Rudra Deva in Hanamkonda, the Thousand Pillar Temple (Rudreswara Swamy) is an architectural jewel of the Kakatiya dynasty. Its star-shaped trikutalayam layout houses sanctums dedicated to Lord Shiva, Lord Vishnu, and Surya Deva, facing a masterfully polished monolithic Nandi carved from black basalt.',
+    bestSeason: 'October – March',
+    idealDuration: '1 Day',
+    moodTags: ['1000 Pillars', 'Kakatiya Architecture', 'Monolithic Nandi', 'Trikuta Shrine'],
+    highlights: [
+      'Explore the star-shaped temple built with exactly 1,000 carved granite pillars',
+      'Darshan at the triple sanctums of Lord Shiva, Vishnu, and Surya Deva',
+      'Admire the world-renowned 6-foot monolithic black basalt Nandi bull',
+      'Convenient combined tour with Warangal Fort and Bhadrakali Temple',
+    ],
+    mapQuery: 'Thousand Pillar Temple Hanamkonda Warangal Telangana',
+    lat: 17.9996,
+    lng: 79.5746,
+    image: '/images/destinations/thousand-pillar.jpg',
+    alt: 'Thousand Pillar Temple in Hanamkonda Warangal',
+  },
+
+  // 6. Bhadrachalam
+  {
+    id: 'bhadrachalam',
+    name: 'Bhadrachalam',
+    tagline: 'Ayodhya of the South & Sacred Abode of Lord Rama on Godavari.',
+    region: 'Telangana & Andhra Pradesh',
+    state: 'Telangana',
+    primaryDeity: 'Sri Sita Ramachandra Swamy',
+    shortDescription:
+      'Revered riverside abode of Lord Rama and Devi Sita on the sacred banks of the Godavari River, sanctified by Saint Bhakta Ramadasu.',
+    editorialStory:
+      'Bhadrachalam is the spiritual heart of Rama Bhakti in South India. Located on the serene banks of the sacred Godavari River, this holy temple was consecrated where Lord Rama gave darshan to sage Bhadra. Pilgrims come from all over India to take Godavari holy snanam, offer Rama Koti prayers, and visit nearby Parnasala.',
+    bestSeason: 'September – March',
+    idealDuration: '1 to 2 Days',
+    moodTags: ['Rama Kshetram', 'Godavari River', 'Bhakta Ramadasu', 'Parnasala'],
+    highlights: [
+      'Darshan of Sri Sita Ramachandra Swamy and Lord Lakshmana in the sanctum',
+      'Holy snanam (sacred bath) in the holy waters of Godavari River',
+      'Visit historic Parnasala where Lord Rama and Sita Devi resided in exile',
+      'See the historic jail and jewels preserved by Saint Bhakta Ramadasu',
+    ],
+    mapQuery: 'Sri Sita Ramachandra Swamy Temple Bhadrachalam Telangana',
+    lat: 17.6687,
+    lng: 80.8936,
+    image: '/images/destinations/bhadrachalam.jpg',
+    alt: 'Sri Sita Ramachandra Swamy Temple on the Godavari in Bhadrachalam',
+  },
+
+  // 7. Yaganti
   {
     id: 'yaganti',
     name: 'Yaganti',
     tagline: 'Ancient Cave Shrine of Sri Uma Maheswara & Growing Nandi.',
-    region: 'South India',
+    region: 'Telangana & Andhra Pradesh',
     state: 'Andhra Pradesh',
     primaryDeity: 'Lord Shiva (Sri Uma Maheswara)',
     shortDescription:
@@ -126,25 +292,136 @@ export const DESTINATIONS: Destination[] = [
     idealDuration: '1 to 2 Days',
     moodTags: ['Miraculous Nandi', 'Cave Shrines', 'Sacred Pushkarini'],
     highlights: [
-      'Darshan of Sri Uma Maheswara Swamy carved from single stone',
-      'Witness the miraculous growing Nandi idol',
-      'Holy bath in the perennial natural Pushkarini pool',
-      'Explore Agastya Cave and Venkateswara Cave shrines',
+      'Darshan of Sri Uma Maheswara Swamy carved from a single stone',
+      'Witness the miraculous growing Nandi idol verified by research',
+      'Holy bath in the perennial natural spring Pushkarini pool',
+      'Explore Agastya Cave and Sri Veerabrahmendra Swamy meditation caves',
     ],
     mapQuery: 'Sri Yaganti Uma Maheswara Temple Yaganti Andhra Pradesh',
     lat: 15.3512,
     lng: 78.1408,
     image: '/images/destinations/yaganti.jpg',
     alt: 'Sri Yaganti Uma Maheswara Temple Gopuram and sacred surroundings',
-    gridClass: 'md:col-span-6 md:min-h-[260px]',
   },
 
-  // 3. Akalkot
+  // 8. Tirupati
+  {
+    id: 'tirupati',
+    name: 'Tirupati',
+    tagline: 'Kaliyuga Vaikuntha & Abode of Lord Venkateswara at Tirumala.',
+    region: 'Telangana & Andhra Pradesh',
+    state: 'Andhra Pradesh',
+    primaryDeity: 'Sri Venkateswara Swamy (Lord Balaji)',
+    shortDescription:
+      'The world-renowned holy Seven Hills of Tirumala, welcoming millions of devotees for divine Govinda darshan and laddu prasadam.',
+    editorialStory:
+      'Tirumala Balaji stands at the pinnacle of Hindu spiritual journeys. Set atop the scenic Seshachalam mountain range, the divine golden Ananda Nilayam vimanam holds the majestic idol of Lord Venkateswara, the granter of all boons in Kaliyuga. Our personalized packages provide comfortable travel and darshan support.',
+    bestSeason: 'Year-Round (Best: September – March)',
+    idealDuration: '2 to 3 Days',
+    moodTags: ['Govinda Balaji', 'Seven Hills', 'Ananda Nilayam', 'Maha Prasadam'],
+    highlights: [
+      'Seamless travel arrangements for Tirumala Balaji Darshan',
+      'Visit Sri Padmavathi Ammavari Temple at Tiruchanur',
+      'Scenic journey through the lush Seshachalam hills ghat road',
+      'Darshan of Sri Govindaraja Swamy and Kapila Theertham waterfall temple',
+    ],
+    mapQuery: 'Sri Venkateswara Swamy Temple Tirumala Tirupati Andhra Pradesh',
+    lat: 13.6833,
+    lng: 79.3472,
+    image: '/images/destinations/tirupati.jpg',
+    alt: 'Tirumala Sri Venkateswara Temple at Tirupati',
+  },
+
+  // 9. Arunachalam
+  {
+    id: 'arunachalam',
+    name: 'Arunachalam',
+    tagline: 'Sacred Hill of Fire & Holy 14 km Giri Pradakshina.',
+    region: 'Telangana & Andhra Pradesh',
+    state: 'Tamil Nadu',
+    primaryDeity: 'Lord Shiva (Arunachaleswarar - Agni Lingam)',
+    shortDescription:
+      'The sacred fire element (Agni) Shiva shrine with the divine 14 km Giri Pradakshina barefoot pilgrimage around Mount Arunachala.',
+    editorialStory:
+      'Arunachalam (Tiruvannamalai) is the holy Agni Kshetram where Lord Shiva manifested as a cosmic pillar of fire. Devotees from around the world perform the 14-kilometer Giri Pradakshina barefoot around the sacred mountain, visiting the eight Ashta Lingams and meditating at the serene Ramana Maharshi Ashram.',
+    bestSeason: 'October – March',
+    idealDuration: '2 to 3 Days',
+    moodTags: ['Agni Lingam', 'Giri Pradakshina', 'Ramana Ashram', 'Silent Meditation'],
+    highlights: [
+      'Darshan of Sri Arunachaleswarar & Unnamulai Amman in the 25-acre temple',
+      'Sacred 14 km Giri Pradakshina around Mount Arunachala',
+      'Visit all eight Ashta Lingam shrines along the mountain route',
+      'Meditation at Sri Ramana Maharshi Ashram and Virupaksha Cave',
+    ],
+    mapQuery: 'Arulmigu Arunachaleswarar Temple Tiruvannamalai Tamil Nadu',
+    lat: 12.2319,
+    lng: 79.0677,
+    image: '/images/destinations/arunachalam.jpg',
+    alt: 'Sri Arunachaleswarar Temple Rajagopuram at Mount Arunachala',
+  },
+
+  // 10. Ganagapur Temple
+  {
+    id: 'ganagapur',
+    name: 'Ganagapur Temple',
+    tagline: 'Holy Sangam of Bhima & Amarja & Sri Dattatreya Nirguna Paduka.',
+    region: 'Maharashtra & Karnataka',
+    state: 'Karnataka',
+    primaryDeity: 'Lord Dattatreya (Sri Narasimha Saraswati)',
+    shortDescription:
+      'Sacred Dattatreya pilgrimage at the holy confluence of Bhima and Amarja rivers, famous for Nirguna Paduka darshan and holy bath.',
+    editorialStory:
+      'Sri Kshetra Ganagapur is one of the most revered pilgrimage centers in the Dattatreya tradition. It was the sacred karmabhoomi of Sri Narasimha Saraswati Swamy, the second avatar of Lord Dattatreya. Devotees take the sacred Sangam snanam, perform Madhukari (holy bhiksha), and offer prayers to the infallible Nirguna Padukas.',
+    bestSeason: 'October – March',
+    idealDuration: '1 to 2 Days',
+    moodTags: ['Dattatreya Peeth', 'Nirguna Padukas', 'Bheema Amarja Sangam', 'Madhukari'],
+    highlights: [
+      'Darshan of the sacred Nirguna Padukas installed by Sri Narasimha Saraswati',
+      'Holy snanam at the sacred confluence (Sangam) of Bhima and Amarja rivers',
+      'Audumbar tree worship and participating in the sacred Madhukari tradition',
+      'Combined pilgrimage with nearby Akalkot Swami Samarth Mandir',
+    ],
+    mapQuery: 'Dattatreya Temple Ganagapur Afzalpur Karnataka',
+    lat: 17.2798,
+    lng: 76.5292,
+    image: '/images/destinations/ganagapur.jpg',
+    alt: 'Sri Kshetra Ganagapur Dattatreya Temple',
+  },
+
+  // 11. Tulja Bhavani Temple
+  {
+    id: 'tulja-bhavani',
+    name: 'Tulja Bhavani Temple',
+    tagline: 'Kulswamini of Chhatrapati Shivaji Maharaj & 51 Shaktipeeths.',
+    region: 'Maharashtra & Karnataka',
+    state: 'Maharashtra',
+    primaryDeity: 'Goddess Tulja Bhavani (Maa Amba)',
+    shortDescription:
+      'Revered Shaktipeeth and the family guardian deity of Chhatrapati Shivaji Maharaj, blessing millions of devotees in Tuljapur.',
+    editorialStory:
+      'Tuljapur is the divine home of Goddess Tulja Bhavani, one of the three and a half sacred Shaktipeeths of Maharashtra. Blessed with a self-manifested (Swayambhu) idol of Maa Bhavani, this sacred temple was the spiritual source of courage for Chhatrapati Shivaji Maharaj. Devotees offer Gondhal prayers and take part in the vibrant daily aartis.',
+    bestSeason: 'September – March',
+    idealDuration: '1 to 2 Days',
+    moodTags: ['Shakti Peeth', 'Kulswamini', 'Shivaji Maharaj', 'Chhatrapati Blessings'],
+    highlights: [
+      'Darshan of the miraculous Swayambhu idol of Maa Tulja Bhavani',
+      'Visit Kallol Theerth and Gomukh Theerth holy water tanks',
+      'Experience the thrilling Chhabina procession and traditional Gondhal',
+      'Ideal combined tour with Solapur, Akalkot, and Pandharpur',
+    ],
+    mapQuery: 'Tulja Bhavani Temple Tuljapur Maharashtra',
+    lat: 18.0067,
+    lng: 76.0717,
+    image: '/images/destinations/tulja-bhavani.jpg',
+    alt: 'Tulja Bhavani Temple entrance and sanctum in Tuljapur',
+  },
+
+  // 12. Akalkot Temple
   {
     id: 'akalkot',
-    name: 'Akalkot',
+    name: 'Akalkot Temple',
     tagline: 'Sacred Vatavruksha Abode of Shri Swami Samarth Maharaj.',
-    region: 'West & Central India',
+    region: 'Maharashtra & Karnataka',
     state: 'Maharashtra',
     primaryDeity: 'Shri Swami Samarth Maharaj',
     shortDescription:
@@ -153,515 +430,615 @@ export const DESTINATIONS: Destination[] = [
       'Akkalkot is the sacred karmabhoomi of Shri Swami Samarth Maharaj, revered as the third incarnation of Lord Dattatreya. Centered around the holy Vatavruksha (Banyan Tree) temple and Samadhi Mandir, devotees experience profound peace, divine Mahaprasad, and boundless spiritual strength.',
     bestSeason: 'October – February',
     idealDuration: '1 to 2 Days',
-    moodTags: ['Datta Avatara', 'Vatavruksha Temple', 'Divine Blessings'],
+    moodTags: ['Datta Avatara', 'Vatavruksha Temple', 'Bhiu Nakos', 'Swami Samarth'],
     highlights: [
-      'Darshan at Vatavruksha Swami Samarth Mandir',
-      'Visit Samadhi Mandir and Rajwada of Akkalkot',
-      'Partake in holy Mahaprasad and daily Paduka Puja',
-      'Comfortable pilgrimage transit connecting Pandharpur & Solapur',
+      'Darshan at Vatavruksha Swami Samarth Mandir under the sacred banyan tree',
+      'Visit Samadhi Mandir and historic Rajwada palace of Akkalkot',
+      'Partake in holy Mahaprasad and attend the divine evening Paduka Aarti',
+      'Seamless travel arrangements from Solapur railway station',
     ],
-    mapQuery: 'Shri Swami Samarth Maharaj Mandir Akkalkot Maharashtra',
-    lat: 17.5256,
+    mapQuery: 'Vatavruksha Swami Samarth Maharaj Devasthan Akkalkot Maharashtra',
+    lat: 17.5255,
     lng: 76.2045,
     image: '/images/destinations/akalkot.jpg',
-    alt: 'Shri Swami Samarth Maharaj Temple at Akkalkot',
-    gridClass: 'md:col-span-6 md:min-h-[260px]',
+    alt: 'Shri Swami Samarth Maharaj Vatavruksha Temple in Akalkot',
   },
 
-  // 4. Kolhapur
-  {
-    id: 'kolhapur',
-    name: 'Kolhapur',
-    tagline: 'Historic Maha Shakti Peeth of Goddess Mahalakshmi (Ambabai).',
-    region: 'West & Central India',
-    state: 'Maharashtra',
-    primaryDeity: 'Goddess Mahalakshmi (Ambabai)',
-    shortDescription:
-      'One of the eighteen sacred Maha Shakti Peeths, where the Mother of Wealth and Prosperity bestows auspicious grace on all devotees.',
-    editorialStory:
-      'The historic Shri Mahalakshmi Temple at Kolhapur is a masterpiece of ancient Hemadpanthi architecture dating back to the Chalukya era. Pilgrims visit this holy Shakti Peeth seeking health, prosperity, and blessings, especially in conjunction with visits to Tirupati Balaji.',
-    bestSeason: 'October – March',
-    idealDuration: '1 to 2 Days',
-    moodTags: ['Maha Shakti Peeth', 'Ambabai', 'Ancient Architecture'],
-    highlights: [
-      'Darshan of deity Mahalakshmi carved in black stone with golden ornaments',
-      'Explore the ancient Hemadpanthi stone spires and Mandapams',
-      'Witness special Deeparadhana and evening Palakhi procession',
-      'Visit nearby Rankala Lake and Bhavani Mandap',
-    ],
-    mapQuery: 'Shri Mahalakshmi Temple Kolhapur Maharashtra',
-    lat: 16.6944,
-    lng: 74.2223,
-    image: '/images/destinations/kolhapur.jpg',
-    alt: 'Shri Mahalakshmi Ambabai Temple in Kolhapur',
-    gridClass: 'md:col-span-4 md:min-h-[280px]',
-  },
-
-  // 5. Yadagirigutta
-  {
-    id: 'yadagirigutta',
-    name: 'Yadagirigutta',
-    tagline: 'The Divine Hillock of Sri Lakshmi Narasimha Swamy.',
-    region: 'South India',
-    state: 'Telangana',
-    primaryDeity: 'Sri Lakshmi Narasimha Swamy',
-    shortDescription:
-      'Telangana’s magnificent architectural wonder carved from Krishna Shila stone atop the sacred Yadadri hillock.',
-    editorialStory:
-      'Consecrated with centuries of devotion and newly reconstructed into an awe-inspiring stone temple complex, Sri Lakshmi Narasimha Swamy Temple at Yadagirigutta is Telangana’s premier spiritual landmark, just a short drive from Hyderabad with smooth express highway access.',
-    bestSeason: 'Throughout the Year',
-    idealDuration: '1 to 2 Days',
-    moodTags: ['Telangana Heritage', 'Pancha Narasimha', 'Dravidian Stone Carving'],
-    highlights: [
-      'Garbhalaya Darshan inside the ancient natural cave sanctum',
-      'Magnificent Krishna Shila carved Prakarams and Rajagopuram',
-      'Suvarna Pushparchana & Sri Sudarshana Narasimha Homam',
-      'Fast doorstep pickup & return transport from Hyderabad',
-    ],
-    mapQuery: 'Sri Lakshmi Narasimha Swamy Temple Yadagirigutta Telangana',
-    lat: 17.5894,
-    lng: 78.9398,
-    image: '/images/destinations/yadagirigutta.jpg',
-    alt: 'Sri Lakshmi Narasimha Swamy Temple main Gopuram at Yadagirigutta',
-    gridClass: 'md:col-span-4 md:min-h-[280px]',
-  },
-
-  // 6. Swarnagiri
-  {
-    id: 'swarnagiri',
-    name: 'Swarnagiri',
-    tagline: 'Gleaming Golden Abode of Sri Venkateswara on the Hilltop.',
-    region: 'South India',
-    state: 'Telangana',
-    primaryDeity: 'Lord Venkateswara Swamy',
-    shortDescription:
-      'The majestic hill temple near Bhuvanagiri featuring golden spires, intricate Dravidian architecture, and panoramic valley views.',
-    editorialStory:
-      'Perched serenely atop the Manikonda hills in Bhuvanagiri, Swarnagiri Sri Venkateswara Temple is a newly consecrated spiritual marvel. Devotees admire the towering Rajagopuram, shimmering golden Vimana, sacred Pushkarini, and peaceful temple gardens just 45 km from Hyderabad.',
-    bestSeason: 'October – March',
-    idealDuration: '1 Day',
-    moodTags: ['Golden Temple', 'Hilltop Sanctuary', 'Telangana Pilgrimage'],
-    highlights: [
-      'Splendid Darshan of Sri Venkateswara Swamy in sanctum sanctorum',
-      'Panoramic 360-degree hilltop views of surrounding countryside',
-      'Beautifully manicured gardens, fountains, and wide pradakshina paths',
-      'Easy same-day combo tour with nearby Yadagirigutta temple',
-    ],
-    mapQuery: 'Swarnagiri Temple Bhuvanagiri Yadadri Telangana',
-    lat: 17.5147,
-    lng: 78.8924,
-    image: '/images/destinations/swarnagiri.jpg',
-    alt: 'Swarnagiri Sri Venkateswara Swamy Temple in Bhuvanagiri',
-    gridClass: 'md:col-span-4 md:min-h-[280px]',
-  },
-
-  // 7. Tirupati
-  {
-    id: 'tirupati',
-    name: 'Tirupati',
-    tagline: 'Abode of Sri Venkateswara Swamy atop the Seven Hills.',
-    region: 'South India',
-    state: 'Andhra Pradesh',
-    primaryDeity: 'Lord Venkateswara (Balaji)',
-    shortDescription:
-      'The sacred Seshachalam hills and the holy sanctum of Kaliyuga Vaikuntham, welcoming millions of devout pilgrims.',
-    editorialStory:
-      'Perched atop the sacred seven hills of Tirumala, the sanctum of Lord Venkateswara radiates profound spiritual peace. From sacred Suprabhata Seva at dawn to the peaceful chant of Govinda Namalu, Tirupati is an unforgettable pilgrimage of faith and surrender.',
-    bestSeason: 'September – March',
-    idealDuration: '2 to 3 Days',
-    moodTags: ['Divya Desam', 'Kaliyuga Vaikuntham', 'Seven Sacred Hills'],
-    highlights: [
-      'Darshan of Sri Venkateswara Swamy atop Tirumala hills',
-      'Visit Sri Padmavathi Ammavari Temple at Tiruchanur',
-      'Holy bath at Swami Pushkarini sacred teertham',
-      'Comfortable AC cab transfers from Hyderabad & clean hotel booking',
-    ],
-    mapQuery: 'Sri Venkateswara Swamy Temple Tirumala Tirupati Andhra Pradesh',
-    lat: 13.6833,
-    lng: 79.3472,
-    image: '/images/destinations/tirupati.jpg',
-    alt: 'Tirumala Sri Venkateswara Swamy Temple Ananda Nilayam Gopuram',
-    gridClass: 'md:col-span-6 md:min-h-[300px]',
-  },
-
-  // 8. Mallikarjuna Jyotirlinga (Srisailam)
-  {
-    id: 'srisailam',
-    name: 'Mallikarjuna Jyotirlinga (Srisailam)',
-    tagline: 'Sacred Shiva-Shakti Sangamam on the Nallamala Hills.',
-    region: 'South India',
-    state: 'Andhra Pradesh',
-    primaryDeity: 'Lord Mallikarjuna Swamy & Bhramaramba Devi',
-    shortDescription:
-      'Revered as the 2nd Jyotirlinga and one of the 18 Maha Shakti Peeths, nestled on the scenic banks of the Krishna River.',
-    editorialStory:
-      'Srisailam is uniquely sacred: it houses both the divine Jyotirlinga of Lord Mallikarjuna and the Bhramaramba Devi Shakti Peeth. Surrounded by the dense Nallamala wildlife sanctuary and the scenic Krishna gorges, it is a journey of sublime devotion and natural splendour.',
-    bestSeason: 'October – February',
-    idealDuration: '2 to 3 Days',
-    moodTags: ['Jyotirlinga', 'Maha Shakti Peeth', 'Nallamala Forests'],
-    highlights: [
-      'Sparsha Darshan of Sri Mallikarjuna Swamy Jyotirlinga',
-      'Blessings at Sri Bhramaramba Devi Shakti Peeth',
-      'Pathalaganga ropeway and boat ride on the Krishna River',
-      'Sakshi Ganapathi, Paladhara Panchadhara, and Shikhareswaram darshan',
-    ],
-    mapQuery: 'Mallikarjuna Jyotirlinga Temple Srisailam Andhra Pradesh',
-    lat: 16.0747,
-    lng: 78.8683,
-    image: '/images/destinations/srisailam.jpg',
-    alt: 'Sri Bhramaramba Mallikarjuna Jyotirlinga Temple Entrance at Srisailam',
-    gridClass: 'md:col-span-6 md:min-h-[300px]',
-  },
-
-  // 9. Arunachalam
-  {
-    id: 'arunachalam',
-    name: 'Arunachalam',
-    tagline: 'Holy Agni Lingam & Cosmic Arunachaleswarar Temple.',
-    region: 'South India',
-    state: 'Tamil Nadu',
-    primaryDeity: 'Lord Arunachaleswarar (Agni Lingam)',
-    shortDescription:
-      'The sacred Hill of Fire in Tiruvannamalai and one of the Pancha Bhoota Sthalams, celebrated for holy Girivalam pradakshina.',
-    editorialStory:
-      'Arunachalam in Tiruvannamalai is considered the physical manifestation of Lord Shiva as an infinite pillar of fire. Devotees from around the world perform the auspicious 14-km barefoot Girivalam around the sacred hill and seek blessings at the majestic 1000-pillar Arunachaleswarar Temple.',
-    bestSeason: 'November – March',
-    idealDuration: '2 to 3 Days',
-    moodTags: ['Pancha Bhoota', 'Agni Lingam', 'Girivalam Pradakshina'],
-    highlights: [
-      'Darshan at the massive 24-acre Sri Arunachaleswarar Temple complex',
-      'Auspicious Girivalam barefoot circumambulation of the holy hill',
-      'Visit Sri Ramana Maharshi Ashram and Virupaksha Cave',
-      'Witness the world-renowned Karthigai Deepam beacon ceremony',
-    ],
-    mapQuery: 'Arunachaleswarar Temple Tiruvannamalai Tamil Nadu',
-    lat: 12.2319,
-    lng: 79.0677,
-    image: '/images/destinations/arunachalam.jpg',
-    alt: 'Arunachaleswarar Temple and Sacred Arunachala Hill in Tiruvannamalai',
-    gridClass: 'md:col-span-4 md:min-h-[280px]',
-  },
-
-  // 10. Pandharpur
+  // 13. Pandharpur Vitthal Rukmini Temple
   {
     id: 'pandharpur',
-    name: 'Pandharpur',
-    tagline: 'Vithoba Vitthal Rukmini Mandir on the Chandrabhaga.',
-    region: 'West & Central India',
+    name: 'Pandharpur Vitthal Rukmini Temple',
+    tagline: 'Dakshina Kashi & Heart of Varkari Bhakti Movement.',
+    region: 'Maharashtra & Karnataka',
     state: 'Maharashtra',
-    primaryDeity: 'Lord Vitthal (Vithoba) & Rukmini',
+    primaryDeity: 'Lord Vitthal (Vithoba) & Rukmini Mata',
     shortDescription:
-      'The supreme pilgrimage capital of Maharashtra where Lord Vitthal stands with hands on hips, listening to the loving chants of "Vitthal Vitthal."',
+      'The sacred Chandrabhaga riverside abode of Lord Vitthal, where millions chant "Vitthal Vitthal Jai Hari Vitthal" in pure devotion.',
     editorialStory:
-      'Situated on the crescent banks of River Bhima (Chandrabhaga), Pandharpur is the heart of the Warkari devotion. Pilgrims come from far and wide to touch the lotus feet of Lord Vitthal (Charan Sparsh) and experience the divine bliss of saintly bhajans and Namasankirtan.',
-    bestSeason: 'July – February',
+      'Pandharpur is the spiritual heartbeat of Maharashtra. Standing on the sacred banks of the curving Chandrabhaga River, the temple of Lord Vitthal and Rukmini Devi radiates egalitarian love and surrender. Devotees cherish the Padsparsha Darshan (touching the holy feet of Lord Vitthal) and the spiritual resonance of saint-poets like Tukaram, Dnyaneshwar, and Namdev.',
+    bestSeason: 'July – February (Ashadhi & Kartiki Ekadashi)',
     idealDuration: '1 to 2 Days',
-    moodTags: ['Warkari Sampradaya', 'Vitthal Darshan', 'Chandrabhaga Holy Dip'],
+    moodTags: ['Varkari Bhakti', 'Chandrabhaga River', 'Vitthal Darshan', 'Padsparsha'],
     highlights: [
-      'Charan Sparsh Darshan of Lord Vitthal and Goddess Rukmini',
-      'Holy snan at Chandrabhaga River ghats',
-      'Visit Pundalik Temple and Kaikadi Maharaj Math',
-      'Integrated circuit with nearby Akkalkot Swami Samarth temple',
+      'Padsparsha Darshan at the feet of Lord Vitthal (Vithoba)',
+      'Blessings at the sanctum of Rukmini Mata and Pundalik Mandir',
+      'Holy bath and sunset prayers along the sacred Chandrabhaga River ghats',
+      'Chant soulful Abhangs and experience the historic Varkari heritage',
     ],
     mapQuery: 'Shri Vitthal Rukmini Mandir Pandharpur Maharashtra',
-    lat: 17.6778,
+    lat: 17.6775,
     lng: 75.3283,
     image: '/images/destinations/pandharpur.jpg',
-    alt: 'Shri Vitthal Rukmini Temple in Pandharpur',
-    gridClass: 'md:col-span-4 md:min-h-[280px]',
+    alt: 'Vitthal Rukmini Temple shikhara on the banks of Chandrabhaga in Pandharpur',
   },
 
-  // 11. Dagadusheth Ganapati Mandir, Pune
+  // 14. Shiridi
   {
-    id: 'dagadusheth',
-    name: 'Dagadusheth Ganapati Mandir, Pune',
-    tagline: 'Shreemant Dagadusheth Halwai Ganapati Temple of Miracles.',
-    region: 'West & Central India',
+    id: 'shirdi',
+    name: 'Shiridi',
+    tagline: 'Abode of Shri Sai Baba & Eternal Path of Shraddha and Saburi.',
+    region: 'Maharashtra & Karnataka',
     state: 'Maharashtra',
-    primaryDeity: 'Lord Shreemant Dagadusheth Ganapati',
+    primaryDeity: 'Shri Sai Baba',
     shortDescription:
-      'Pune’s most celebrated Ganesh temple, visited by millions of devotees seeking wish-fulfillment, wisdom, and blessings of prosperity.',
+      'The sacred Samadhi Mandir, Dwarkamai, and Chavadi of Shri Sai Baba, radiating boundless compassion and peace to every visiting devotee.',
     editorialStory:
-      'Built in 1893 by sweetmeat trader Dagadusheth Halwai and blessed by Lokmanya Tilak, this magnificent temple houses the magnificent 7.5-foot gold-adorned idol of Lord Ganesha. The temple radiates unparalleled spiritual energy and grand festive devotion.',
-    bestSeason: 'Throughout the Year',
-    idealDuration: '1 to 2 Days',
-    moodTags: ['Siddhi Vinayaka', 'Pune Heritage', 'Ganesh Utsav'],
+      'Shirdi is the sacred town blessed by the divine presence of Shri Sai Baba. Millions of devotees gather at the Samadhi Mandir to experience profound serenity, attend the divine Kakad and Shej Aartis, and reflect on the timeless teachings of faith (Shraddha) and patience (Saburi).',
+    bestSeason: 'October – March',
+    idealDuration: '2 to 3 Days',
+    moodTags: ['Sai Samadhi', 'Shraddha & Saburi', 'Sacred Dhuni', 'Dwarkamai'],
     highlights: [
-      'Darshan of the gold-adorned Shreemant Dagadusheth Ganapati idol',
-      'Witness the majestic Suvarna Jalabhisheka and daily Maha Aarti',
-      'Explore nearby historic Shaniwar Wada and Lal Mahal in Pune',
-      'Easy transit connection to Bhimashankar Jyotirlinga and Shirdi',
+      'Darshan at Shri Sai Baba Samadhi Mandir and golden throne',
+      'Visit holy Dwarkamai with the eternal burning Dhuni and Chavadi',
+      'Experience peaceful Kakad and Shej Aarti blessings',
+      'Visit nearby Shani Shingnapur open-air temple and Loni',
     ],
-    mapQuery: 'Shreemant Dagdusheth Halwai Ganpati Mandir Pune Maharashtra',
-    lat: 18.5165,
-    lng: 73.8562,
-    image: '/images/destinations/dagadusheth.jpg',
-    alt: 'Shreemant Dagadusheth Halwai Ganapati Temple in Pune',
-    gridClass: 'md:col-span-4 md:min-h-[280px]',
+    mapQuery: 'Shri Saibaba Sansthan Temple Shirdi Maharashtra',
+    lat: 19.7667,
+    lng: 74.4766,
+    image: '/images/destinations/shirdi.jpg',
+    alt: 'Sai Baba Samadhi Mandir in Shirdi',
   },
 
-  // 12. Bhimashankar
+  // 15. Bhimashankar
   {
     id: 'bhimashankar',
     name: 'Bhimashankar',
-    tagline: 'Ancient Sahyadri Jyotirlinga amidst Forested Western Ghats.',
-    region: 'West & Central India',
+    tagline: 'Ancient Jyotirlinga Amidst Sahyadri Forest & Bhima River Origin.',
+    region: 'Maharashtra & Karnataka',
     state: 'Maharashtra',
-    primaryDeity: 'Lord Bhimashankar Jyotirlinga',
+    primaryDeity: 'Lord Shiva (Bhimashankar Jyotirlinga)',
     shortDescription:
-      'One of the 12 sacred Jyotirlingas of Lord Shiva and source of River Bhima, enveloped in mist-clad peaks and Nagara architecture.',
+      'One of the 12 sacred Jyotirlingas, surrounded by misty Western Ghat forests and wildlife sanctuary at the source of Bhima River.',
     editorialStory:
-      'Set high in the Sahyadri ranges of Pune district, Bhimashankar Jyotirlinga is enshrined in a picturesque 13th-century stone temple. According to legends, Lord Shiva defeated the demon Tripurasura here. The serene forest surroundings and sacred chants make it deeply rejuvenating.',
-    bestSeason: 'September – February',
+      'Tucked deep inside the verdant Western Ghats near Pune, Bhimashankar Jyotirlinga represents Lord Shiva in his majestic Rudra form who vanquished the demon Tripurasura. Surrounded by dense rainforest, waterfalls, and the wildlife sanctuary home to the giant flying squirrel, it offers a deeply peaceful spiritual atmosphere.',
+    bestSeason: 'September – March',
     idealDuration: '1 to 2 Days',
-    moodTags: ['12 Jyotirlingas', 'Sahyadri Hills', 'River Bhima Origin'],
+    moodTags: ['Jyotirlinga', 'Sahyadri Hills', 'Origin of Bhima River', 'Nagara Style'],
     highlights: [
-      'Sparsha Darshan of Swayambhu Bhimashankar Jyotirlinga',
-      'Marvel at detailed stone Nagara architectural carvings',
-      'Visit Kamalja Mata Temple and scenic Bombay Point view',
-      'Spot the rare Giant Malabar Squirrel in the surrounding wildlife sanctuary',
+      'Darshan and Rudrabhishekam at Bhimashankar Jyotirlinga',
+      'Admire intricate 13th-century Nagara and Hemadpanthi stone carvings',
+      'Visit Mokshakund Theerth and the origin point of the holy Bhima River',
+      'Scenic drive through the misty Sahyadri mountain rainforest',
     ],
     mapQuery: 'Bhimashankar Jyotirlinga Temple Pune Maharashtra',
-    lat: 19.0721,
+    lat: 19.0722,
     lng: 73.5358,
     image: '/images/destinations/bhimashankar.jpg',
-    alt: 'Bhimashankar Jyotirlinga Temple amidst lush Western Ghats',
-    gridClass: 'md:col-span-4 md:min-h-[280px]',
+    alt: 'Bhimashankar Jyotirlinga Temple amidst Sahyadri hills in Maharashtra',
   },
 
-  // 13. Trimbakeshwar
+  // 16. Trimbakeshwar
   {
     id: 'trimbakeshwar',
     name: 'Trimbakeshwar',
-    tagline: 'Three-Faced Jyotirlinga of Brahma, Vishnu & Mahesh at Brahmagiri.',
-    region: 'West & Central India',
+    tagline: 'Three-Faced Trimurti Jyotirlinga & Origin of Sacred Godavari.',
+    region: 'Maharashtra & Karnataka',
     state: 'Maharashtra',
-    primaryDeity: 'Lord Trimbakeshwar Jyotirlinga',
+    primaryDeity: 'Trimbakeshwar Jyotirlinga (Brahma, Vishnu & Shiva)',
     shortDescription:
-      'The sacred Jyotirlinga near Nashik featuring a three-faced lingam and origin of the holy Godavari River, renowned for Narayan Nagbali rituals.',
+      'Unique three-faced Jyotirlinga embodying the Hindu Trimurti at the foothills of Brahmagiri mountain where Godavari River originates.',
     editorialStory:
-      'Nestled at the foothills of sacred Mount Brahmagiri in Nashik, Trimbakeshwar Jyotirlinga is unique because its lingam embodies Lord Brahma, Lord Vishnu, and Lord Shiva together. Built of black basalt stone by the Peshwas, it is revered for sacred Kaalsarp and pitru rituals.',
-    bestSeason: 'October – March',
+      'Trimbakeshwar is extraordinary among the 12 Jyotirlingas because the lingam features three distinct faces representing Brahma, Vishnu, and Shiva. Located at the base of the holy Brahmagiri hills in Nashik, it is the sacred birthplace of the Godavari River. Devotees visit Kushavarta Kund and perform sacred Narayan Nagbali and Kalsarpa pujas here.',
+    bestSeason: 'September – March',
     idealDuration: '2 Days',
-    moodTags: ['Trimurti Jyotirlinga', 'Godavari Origin', 'Kumbh Mela Kshetra'],
+    moodTags: ['Trimurti Jyotirlinga', 'Origin of Godavari', 'Brahmagiri Hill', 'Kushavarta'],
     highlights: [
-      'Darshan of the unique three-faced Swayambhu Jyotirlinga',
-      'Holy dip at Kushavarta Kund, source of the sacred Godavari River',
-      'Explore the ancient black stone temple prakaram and deepastambha',
-      'Visit Brahmagiri hill viewpoint and Gangadwar shrine',
+      'Darshan of the unique three-faced Jyotirlinga of Brahma, Vishnu, and Shiva',
+      'Holy snanam in the sacred Kushavarta Kund reservoir',
+      'Visit Brahmagiri mountain and Gangadwar (origin of Godavari River)',
+      'Combined tour with Nashik Panchavati, Sita Gufa, and Kalaram Mandir',
     ],
     mapQuery: 'Trimbakeshwar Shiva Temple Nashik Maharashtra',
-    lat: 19.9328,
-    lng: 73.5307,
+    lat: 19.9322,
+    lng: 73.5308,
     image: '/images/destinations/trimbakeshwar.jpg',
-    alt: 'Trimbakeshwar Shiva Jyotirlinga Temple near Nashik',
-    gridClass: 'md:col-span-4 md:min-h-[280px]',
+    alt: 'Black stone Trimbakeshwar Jyotirlinga Temple in Nashik',
   },
 
-  // 14. Ayodhya
+  // 17. Omkareshwar madhya pradesh
+  {
+    id: 'omkareshwar',
+    name: 'Omkareshwar madhya pradesh',
+    tagline: 'Sacred Island Shaped Like OM (ॐ) on Holy Narmada River.',
+    region: 'Central & North India',
+    state: 'Madhya Pradesh',
+    primaryDeity: 'Lord Shiva (Omkareshwar & Mamleshwar)',
+    shortDescription:
+      'Revered Jyotirlinga situated on the sacred Mandhata island naturally sculpted in the holy shape of the divine OM (ॐ) syllable.',
+    editorialStory:
+      'Omkareshwar is one of the most spiritually enchanting Jyotirlinga shrines in India. Located on the Mandhata island in the holy Narmada River, the island’s aerial topography is shaped precisely like the sacred symbol OM (ॐ). Pilgrims cross the suspension bridge, perform holy Narmada Parikrama, and take darshan of both Omkareshwar on the island and Mamleshwar on the south bank.',
+    bestSeason: 'October – March',
+    idealDuration: '1 to 2 Days',
+    moodTags: ['Narmada River', 'OM Island', 'Mamleshwar Jyotirlinga', 'Narmada Parikrama'],
+    highlights: [
+      'Darshan at Omkareshwar Jyotirlinga on Mandhata island',
+      'Darshan at the companion Mamleshwar (Amareshwar) Jyotirlinga',
+      'Scenic holy boat ride across the sacred Narmada River waters',
+      'Walk across the picturesque Omkareshwar suspension bridge (Jhula)',
+    ],
+    mapQuery: 'Omkareshwar Jyotirlinga Temple Khandwa Madhya Pradesh',
+    lat: 22.2464,
+    lng: 76.1517,
+    image: '/images/destinations/omkareshwar.jpg',
+    alt: 'Omkareshwar Jyotirlinga Temple on the holy Narmada River in Madhya Pradesh',
+  },
+
+  // 18. Shri Mahakaleshwar Jyotirlinga Temple
+  {
+    id: 'mahakaleshwar',
+    name: 'Shri Mahakaleshwar Jyotirlinga Temple',
+    tagline: 'Dakshinmukhi Swayambhu Jyotirlinga & World-Famous Bhasma Aarti.',
+    region: 'Central & North India',
+    state: 'Madhya Pradesh',
+    primaryDeity: 'Lord Mahakal (Swayambhu Jyotirlinga)',
+    shortDescription:
+      'Supreme south-facing Jyotirlinga on the holy Shipra River in Ujjain, revered for the divine early morning Bhasma Aarti and Mahakal Lok.',
+    editorialStory:
+      'Shri Mahakaleshwar in the ancient holy city of Ujjain (Avanti) is the only south-facing (Dakshinmukhi) Jyotirlinga among the 12, signifying mastery over death and time itself. Millions revere the daily dawn Bhasma Aarti, explore the grand carved Mahakal Lok corridor, and bathe in the sacred Shipra River.',
+    bestSeason: 'October – March',
+    idealDuration: '2 Days',
+    moodTags: ['Bhasma Aarti', 'Dakshinmukhi', 'Mahakal Lok', 'Shipra River', 'Ujjain'],
+    highlights: [
+      'Witness the world-famous early morning Bhasma Aarti ceremony',
+      'Darshan of Swayambhu Mahakaleshwar Jyotirlinga inside the sanctum',
+      'Stroll through the grand 900-meter carved Shri Mahakal Lok Corridor',
+      'Visit Kal Bhairav Temple, Harsiddhi Shaktipeeth, and Ram Ghat on Shipra',
+    ],
+    mapQuery: 'Mahakaleshwar Jyotirlinga Temple Ujjain Madhya Pradesh',
+    lat: 23.1827,
+    lng: 75.7682,
+    image: '/images/destinations/mahakaleshwar.jpg',
+    alt: 'Shri Mahakaleshwar Jyotirlinga Temple and Shikhar in Ujjain',
+  },
+
+  // 19. Sabarimala Ayyappa Temple
+  {
+    id: 'sabarimala',
+    name: 'Sabarimala Ayyappa Temple',
+    tagline: 'Sacred Hill Abode of Swami Ayyappa & 18 Golden Steps.',
+    region: 'Telangana & Andhra Pradesh',
+    state: 'Kerala',
+    primaryDeity: 'Lord Ayyappa (Dharma Sastha)',
+    shortDescription:
+      'Renowned hilltop forest pilgrimage where millions chant "Swamiye Saranam Ayyappa" and ascend the sacred 18 gold-plated steps.',
+    editorialStory:
+      'Nestled amidst the dense green forests of the Periyar Tiger Reserve in the Western Ghats of Kerala, Sabarimala is one of the world’s largest annual pilgrimages. Devotees observe strict 41-day vratham, carry the sacred Irumudi kettu, trek through the holy forest paths, and climb the revered 18 golden steps (Pathinettam Padi) to behold Lord Ayyappa.',
+    bestSeason: 'November – January (Mandala-Makaravilakku Season)',
+    idealDuration: '3 to 4 Days',
+    moodTags: ['Swamiye Saranam', '18 Golden Steps', 'Mandala Vratham', 'Irumudi Kettu'],
+    highlights: [
+      'Trek from Pamba River to Sannidhanam amidst peaceful forest hills',
+      'Darshan of Lord Ayyappa after ascending the sacred 18 golden steps (Pathinettam Padi)',
+      'Experience the divine Makaravilakku and celestial Makara Jyothi',
+      'Dedicated AC vehicle assistance from Hyderabad, Ernakulam, or Kottayam',
+    ],
+    mapQuery: 'Sabarimala Sree Ayyappa Temple Pathanamthitta Kerala',
+    lat: 9.4402,
+    lng: 77.0819,
+    image: '/images/destinations/sabarimala.jpg',
+    alt: 'Sabarimala Sree Dharma Sastha Temple Sannidhanam in Kerala',
+  },
+
+  // 20. Ayodhya Ram Mandir
   {
     id: 'ayodhya',
-    name: 'Ayodhya',
-    tagline: 'Sacred Janmabhoomi of Bhagwan Shri Ram on Holy Sarayu.',
-    region: 'North India',
+    name: 'Ayodhya Ram Mandir',
+    tagline: 'Shri Ram Janmabhoomi & Sacred Sarayu River Ghats.',
+    region: 'Central & North India',
     state: 'Uttar Pradesh',
     primaryDeity: 'Bhagwan Shri Ram Lalla',
     shortDescription:
-      'The revered birthplace of Bhagwan Shri Ram, featuring the grand newly consecrated Shri Ram Janmabhoomi Mandir and Sarayu Aarti.',
+      'The majestic newly consecrated Shri Ram Janmabhoomi temple on holy Sarayu River, celebrating the eternal birthplace of Lord Rama.',
     editorialStory:
-      'Ayodhya Dham is one of the supreme Moksha Dhams of Sanatana Dharma. With the divine Pran Pratishtha of Shri Ram Lalla in the majestic Nagara-style stone temple, devotees experience profound devotion, peaceful boat rides on the holy Sarayu, and timeless blessings at Hanuman Garhi.',
+      'Ayodhya Dham is the timeless birthplace of Maryada Purushottam Lord Rama. With the consecration of the magnificent pink sandstone Nagara-style Shri Ram Janmabhoomi Mandir, millions of devotees visit to behold the captivating idol of Shri Ram Lalla, seek protection at Hanuman Garhi, and attend the sunset Maha Aarti at Sarayu Ghat.',
     bestSeason: 'October – March',
     idealDuration: '2 to 3 Days',
-    moodTags: ['Ram Janmabhoomi', 'Moksha Dham', 'Sarayu River Aarti'],
+    moodTags: ['Ram Lalla', 'Ram Janmabhoomi', 'Sarayu Aarti', 'Hanuman Garhi'],
     highlights: [
-      'Darshan of Bhagwan Shri Ram Lalla inside the grand Ram Mandir',
-      'Blessings at the historic Hanuman Garhi fort temple',
-      'Atmospheric sunset Maha Aarti along the Sarayu River ghats',
-      'Visit Kanak Bhavan and Dashrath Mahal spiritual landmarks',
+      'Darshan of Bhagwan Shri Ram Lalla inside the grand carved stone Ram Mandir',
+      'Seek blessings at historic Hanuman Garhi and Kanak Bhavan',
+      'Soulful sunset boat ride and Maha Aarti on the holy Sarayu River',
+      'Visit Dashrath Mahal, Sita Ki Rasoi, and sacred Surya Kund',
     ],
     mapQuery: 'Shri Ram Janmabhoomi Mandir Ayodhya Uttar Pradesh',
     lat: 26.7956,
     lng: 82.1944,
     image: '/images/destinations/ayodhya.jpg',
-    alt: 'Grand Shri Ram Janmabhoomi Mandir at Ayodhya Dham',
-    gridClass: 'md:col-span-4 md:min-h-[280px]',
+    alt: 'Shri Ram Janmabhoomi Mandir in Ayodhya',
   },
 ];
 
 /* ========================================================================
-   CURATED PILGRIMAGE TOUR PACKAGES (STRICTLY FROM THE 14 DESTINATIONS)
+   SRISAILAM SPECIAL FEATURED PACKAGES (FROM IMAGES 1 & 2 - VIP SPOTLIGHT)
+   ======================================================================== */
+export const SRISAILAM_SPECIAL_PACKAGES: SrisailamSpecialPackage[] = [
+  {
+    id: 'srisailam-1-day',
+    duration: '1 Day',
+    title: '1 Day Package',
+    tagline: 'Srisailam Special Same-Day Darshan & Scenic Tour',
+    badge: 'Most Popular',
+    image: '/images/srisailam-1day-package.jpg',
+    alt: 'Srisailam 1 Day Package with Golden Mallikarjuna Swamy Temple Gopuram',
+    sightseeing: [
+      'Mallikarjuna Swamy Temple',
+      'Bramarambika Devi Temple',
+      'Sakshi Ganapathi Temple',
+      'Paladhara, Panchadhara',
+      'Hatkeshwar Temple',
+      'Paatala Ganga',
+      'Octopus View Point',
+      'Forest View Points (Srisailam Dam)',
+    ],
+    whatsappMessage:
+      'Hello Bhargavi Tour and Travels, I want to book the Srisailam 1 Day Package. Please share vehicle availability and quotation.',
+  },
+  {
+    id: 'srisailam-2-day',
+    duration: '2 Day',
+    title: '2 Day Package',
+    tagline: 'Srisailam Complete Yatra, Boating & Tiger Reserve Experience',
+    badge: 'Devotee Recommended',
+    image: '/images/srisailam-2day-package.jpg',
+    alt: 'Srisailam 2 Day Package with Krishna River Boating & Cruise',
+    sightseeing: [
+      'Mallikarjuna Swamy Temple',
+      'Bramarambika Devi Temple',
+      'Sakshi Ganapathi Temple',
+      'Paladhara, Panchadhara',
+      'Hatkeshwar Temple',
+      'Paatala Ganga',
+      'Octopus View Point',
+      'Srisailam Tiger Reserve',
+      'Srisailam Ropeway',
+      'Srisailam Boating',
+      'Akka Mahadevi Temple',
+      'Chenchu Lakshmi Museum',
+    ],
+    whatsappMessage:
+      'Hello Bhargavi Tour and Travels, I want to book the Srisailam 2 Day Package. Please share details and quotation.',
+  },
+];
+
+/* ========================================================================
+   OUR FLEET OF CARS (FROM IMAGE 3)
+   ======================================================================== */
+export const CAR_FLEET: CarFleetItem[] = [
+  {
+    id: 'swift-dzire',
+    name: 'Swift DZire',
+    category: 'Comfort Sedan',
+    capacity: '4 Passengers + 1 Driver',
+    acType: 'Full Air Conditioned (AC)',
+    luggage: '2 Large + 1 Small Bag',
+    bestFor: 'Solo pilgrims, couples & small family temple visits',
+    features: ['Comfortable Pushback Seats', 'Excellent Mileage & Budget Friendly', 'Doorstep Pickup & Drop'],
+    image: '/images/fleet-overview.jpg',
+    alt: 'Swift DZire Travel Taxi for Pilgrimage',
+  },
+  {
+    id: 'toyota-etios',
+    name: 'Toyota Etios',
+    category: 'Spacious Sedan',
+    capacity: '4 Passengers + 1 Driver',
+    acType: 'Full Air Conditioned (AC)',
+    luggage: '3 Large Bags (Huge Boot Space)',
+    bestFor: 'Highway yatras, comfortable legroom & senior citizens',
+    features: ['Extra Legroom for Elders', 'Silent Highway Ride', 'Spacious Luggage Boot'],
+    image: '/images/fleet-overview.jpg',
+    alt: 'Toyota Etios for Pilgrimage Travel',
+  },
+  {
+    id: 'maruti-ertiga',
+    name: 'Maruti Ertiga',
+    category: 'Family MUV',
+    capacity: '6 Passengers + 1 Driver',
+    acType: 'Dual Zone AC with Rear Vents',
+    luggage: '3-4 Bags (Flexible Seats)',
+    bestFor: 'Families of 5 to 6 members with luggage',
+    features: ['Individual Rear AC Vents', 'Foldable 3rd Row for Cargo', 'Smooth Ghat Road Travel'],
+    image: '/images/fleet-overview.jpg',
+    alt: 'Maruti Ertiga MUV for Family Pilgrimage',
+  },
+  {
+    id: 'toyota-innova',
+    name: 'Toyota Innova',
+    category: 'Premium MUV',
+    capacity: '7 Passengers + 1 Driver',
+    acType: 'Dual Air Conditioning',
+    luggage: '4-5 Large Bags',
+    bestFor: 'The gold standard for South India & Maharashtra temple tours',
+    features: ['Captain Seats Available', 'Proven Safety on Mountain Roads', 'Unmatched Ride Comfort'],
+    image: '/images/fleet-overview.jpg',
+    alt: 'Toyota Innova for Sacred Temple Yatras',
+  },
+  {
+    id: 'innova-crysta',
+    name: 'Innova Crysta',
+    category: 'Luxury MUV',
+    capacity: '7 Passengers + 1 Driver',
+    acType: 'Automatic Climate Control AC',
+    luggage: '5 Large Bags',
+    bestFor: 'VIP pilgrim comfort, long-distance interstate yatras & elders',
+    features: ['Plush Reclining Leather Seats', 'Ambient Lighting & Mobile Charging', 'Top-Grade Chauffeur Service'],
+    image: '/images/fleet-overview.jpg',
+    alt: 'Innova Crysta Luxury Travel for Temple Tours',
+  },
+  {
+    id: 'tempo-traveller',
+    name: 'Tempo Traveller',
+    category: 'Group Luxury Van',
+    capacity: '12 to 17 Passengers + 1 Driver',
+    acType: 'High-Power Overhead Ducted AC',
+    luggage: 'Large Dedicated Luggage Boot',
+    bestFor: 'Large family sanghams, bhajan mandalis & group pilgrimages',
+    features: ['High-Roof Walkthrough Cabin', 'Individual Pushback Seats', 'Music System for Bhajans'],
+    image: '/images/fleet-overview.jpg',
+    alt: 'Tempo Traveller for Group Pilgrimages',
+  },
+];
+
+/* ========================================================================
+   FEATURED JOURNEYS / TOUR PACKAGES
    ======================================================================== */
 export const FEATURED_JOURNEYS: FeaturedJourney[] = [
+  // 1. Srisailam 1 Day Package (Image 1 - Spotlight)
   {
-    id: 'pkg-shirdi-maharashtra',
-    category: 'Shirdi & Maharashtra Tours',
-    title: 'Shirdi, Akalkot & Pandharpur Devotee Circuit',
-    destinationId: 'shirdi',
-    destinationName: 'Shirdi & Maharashtra Shrines',
-    duration: '4 Days / 3 Nights',
-    routeSummary: 'Hyderabad → Akalkot → Pandharpur → Shirdi → Hyderabad',
+    id: 'pkg-srisailam-1day',
+    category: 'Srisailam Special Packages',
+    title: 'Srisailam 1 Day Package',
+    destinationId: 'srisailam',
+    destinationName: 'Shrishailam',
+    duration: '1 Day (Same Day Return)',
+    routeSummary: 'Hyderabad → Nallamala Forests → Srisailam Temples → Hyderabad',
     sampleEstimate: 'Custom Quotation on Request',
+    isSpecialHighlight: true,
     summary:
-      'A deeply uplifting pilgrimage linking the divine grace of Shri Swami Samarth at Akalkot, Lord Vitthal at Pandharpur, and Shri Sai Baba at Shirdi.',
+      'Official 1 Day Srisailam Package covering Mallikarjuna Swamy Temple, Bramarambika Devi Temple, Sakshi Ganapathi, Paladhara Panchadhara, Hatkeshwar, Paatala Ganga, Octopus View Point & Dam.',
     highlights: [
-      'Vatavruksha Swami Samarth Mandir Darshan in Akalkot',
-      'Charan Sparsh Darshan of Lord Vitthal and Rukmini in Pandharpur',
-      'VIP Darshan & Kakad Aarti coordination at Shirdi Sai Samadhi Mandir',
-      'Comfortable sanitized AC multi-axle / Innova vehicle with experienced driver',
-    ],
-    itinerary: [
-      {
-        day: 'Day 01',
-        title: 'Hyderabad to Akalkot (Swami Samarth Darshan)',
-        detail:
-          'Morning pickup from your residence in Hyderabad. Drive comfortably to Akalkot. Check-in and attend afternoon Darshan at Vatavruksha Swami Samarth Mandir. Overnight stay.',
-      },
-      {
-        day: 'Day 02',
-        title: 'Akalkot to Pandharpur (Vitthal Rukmini Temple)',
-        detail:
-          'Early morning prayers in Akalkot. Drive to sacred Pandharpur on the Chandrabhaga River. Experience peaceful Charan Sparsh Darshan of Lord Vitthal. Evening drive towards Shirdi.',
-      },
-      {
-        day: 'Day 03',
-        title: 'Shirdi Sai Baba Samadhi Mandir & Dwarkamai',
-        detail:
-          'Full day immersed in devotion at Shirdi. Attend morning Samadhi Mandir Darshan, holy Dwarkamai, Chavadi, and Gurusthan. Evening Shej Aarti.',
-      },
-      {
-        day: 'Day 04',
-        title: 'Shirdi to Hyderabad (Return Journey)',
-        detail:
-          'Morning prayers and Mahaprasad at Shirdi. Comfortable return drive to Hyderabad with doorstep drop-off by evening.',
-      },
-    ],
-    suitableFor: 'Families, Senior Citizens & Dattatreya-Sai Devotees',
-    image: '/images/destinations/shirdi.jpg',
-    alt: 'Sai Baba Samadhi Mandir in Shirdi',
-  },
-  {
-    id: 'pkg-jyotirlinga-maharashtra-andhra',
-    category: 'Jyotirlinga Special Tours',
-    title: 'Trimbakeshwar & Bhimashankar Jyotirlinga Yatra',
-    destinationId: 'trimbakeshwar',
-    destinationName: 'Trimbakeshwar & Bhimashankar',
-    duration: '3 Days / 2 Nights',
-    routeSummary: 'Pune/Mumbai/Hyderabad → Bhimashankar → Trimbakeshwar (Nashik) → Dagadusheth Ganapati',
-    sampleEstimate: 'Custom Quotation on Request',
-    summary:
-      'Sacred pilgrimage to two ancient Sahyadri Jyotirlingas of Lord Shiva, plus blessings at Pune’s famous Dagadusheth Halwai Ganapati Mandir.',
-    highlights: [
-      'Darshan of Swayambhu Bhimashankar Jyotirlinga amidst green Sahyadris',
-      'Three-faced Trimurti Jyotirlinga Darshan at Trimbakeshwar near Nashik',
-      'Holy dip at Kushavarta Kund and Godavari Teertham',
-      'Blessings at Shreemant Dagadusheth Halwai Ganapati Temple in Pune',
-    ],
-    itinerary: [
-      {
-        day: 'Day 01',
-        title: 'Arrival & Bhimashankar Jyotirlinga',
-        detail:
-          'Scenic drive into the Sahyadri mountains to sacred Bhimashankar. Afternoon Sparsha Darshan of the ancient Jyotirlinga. Evening drive to Nashik.',
-      },
-      {
-        day: 'Day 02',
-        title: 'Trimbakeshwar Jyotirlinga & Brahmagiri',
-        detail:
-          'Early morning Abhishek and Darshan of the three-faced Trimbakeshwar Jyotirlinga. Visit Kushavarta Kund and holy Godavari origin.',
-      },
-      {
-        day: 'Day 03',
-        title: 'Dagadusheth Ganapati Mandir, Pune & Return',
-        detail:
-          'Morning travel to Pune to seek the blessings of Shreemant Dagadusheth Halwai Ganapati. Return drop-off with divine memories.',
-      },
-    ],
-    suitableFor: 'Shiva Devotees, Families & Spiritual Travellers',
-    image: '/images/destinations/trimbakeshwar.jpg',
-    alt: 'Trimbakeshwar Shiva Jyotirlinga Temple near Nashik',
-  },
-  {
-    id: 'pkg-telangana-shrines',
-    category: 'Telangana Temple Tours',
-    title: 'Yadagirigutta & Swarnagiri Temple Day Pilgrimage',
-    destinationId: 'yadagirigutta',
-    destinationName: 'Yadagirigutta & Swarnagiri',
-    duration: '1 Day (Doorstep Same-Day Tour)',
-    routeSummary: 'Hyderabad → Swarnagiri Temple → Yadagirigutta → Hyderabad',
-    sampleEstimate: 'Custom Quotation on Request',
-    summary:
-      'A comfortable same-day pilgrimage from Hyderabad visiting the gleaming Swarnagiri Venkateswara temple and the grand stone marvel of Sri Lakshmi Narasimha Swamy.',
-    highlights: [
-      'Doorstep AC vehicle pickup from any location in Hyderabad & Secunderabad',
-      'Morning Darshan at the golden hilltop Swarnagiri temple in Bhuvanagiri',
-      'Garbhalaya Darshan inside Yadagirigutta cave sanctum sanctorum',
-      'Unhurried elderly-friendly pace with return home by evening',
+      'Mallikarjuna Swamy Temple & Bramarambika Devi Temple',
+      'Sakshi Ganapathi Temple, Paladhara & Panchadhara',
+      'Hatkeshwar Temple & Paatala Ganga holy bath',
+      'Octopus View Point & Forest View Points (Srisailam Dam)',
     ],
     itinerary: [
       {
         day: 'Morning',
-        title: 'Hyderabad Departure to Swarnagiri',
+        title: 'Hyderabad Departure & Scenic Forest Drive',
         detail:
-          'Morning pickup from your home. Smooth 45-minute drive on Warangal Highway to Swarnagiri Venkateswara Swamy Temple. Witness the golden vimanam and attend darshan.',
+          'Early morning pickup from Hyderabad. Enjoy a smooth drive through scenic Nallamala tiger forest. Stop at Octopus View Point and Forest Dam views.',
+      },
+      {
+        day: 'Mid-Day',
+        title: 'Mallikarjuna Swamy & Bramarambika Devi Temple Darshan',
+        detail:
+          'Arrive in Srisailam. Attend holy darshan of Mallikarjuna Jyotirlinga and Bramarambika Devi Shakti Peeth. Visit Sakshi Ganapathi Temple.',
       },
       {
         day: 'Afternoon',
-        title: 'Yadagirigutta Sri Lakshmi Narasimha Swamy Darshan',
+        title: 'Hatkeshwar, Paladhara Panchadhara & Paatala Ganga',
         detail:
-          'Proceed 15 minutes to Yadagirigutta. Take the ghat road to the sanctum. Attend special darshan, receive prasadam, and admire the Krishna Shila stone carvings.',
+          'Explore ancient Hatkeshwar Temple, holy spring waters of Paladhara Panchadhara, and descent to Paatala Ganga.',
       },
       {
         day: 'Evening',
         title: 'Comfortable Return to Hyderabad',
         detail:
-          'Relax on the scenic return drive to Hyderabad with safe doorstep drop-off.',
+          'Relax on the scenic return journey to Hyderabad with safe doorstep drop-off by late evening.',
       },
     ],
-    suitableFor: 'Local Hyderabad Families, Senior Citizens & Weekend Pilgrims',
-    image: '/images/destinations/yadagirigutta.jpg',
-    alt: 'Sri Lakshmi Narasimha Swamy Temple at Yadagirigutta',
+    suitableFor: 'Families, Senior Citizens & Weekend Pilgrims',
+    image: '/images/srisailam-1day-package.jpg',
+    alt: 'Srisailam 1 Day Package Golden Temple Gopuram',
   },
+
+  // 2. Srisailam 2 Day Package (Image 2 - Spotlight)
   {
-    id: 'pkg-south-india-yatra',
-    category: 'South India Temple Tours',
-    title: 'Tirupati Balaji & Srisailam Mallikarjuna Yatra',
-    destinationId: 'tirupati',
-    destinationName: 'Tirupati & Srisailam',
-    duration: '3 Days / 2 Nights',
-    routeSummary: 'Hyderabad → Srisailam Jyotirlinga → Tirupati Balaji → Hyderabad',
+    id: 'pkg-srisailam-2day',
+    category: 'Srisailam Special Packages',
+    title: 'Srisailam 2 Day Package',
+    destinationId: 'srisailam',
+    destinationName: 'Shrishailam',
+    duration: '2 Days / 1 Night',
+    routeSummary: 'Hyderabad → Srisailam Temples → Boating & Tiger Reserve → Hyderabad',
     sampleEstimate: 'Custom Quotation on Request',
+    isSpecialHighlight: true,
     summary:
-      'Consecrated pilgrimage combining Andhra Pradesh’s two supreme abodes: Mallikarjuna Jyotirlinga at Srisailam and Sri Venkateswara Swamy at Tirumala.',
+      'Official 2 Day Srisailam Package covering Mallikarjuna Swamy, Bramarambika Devi, Sakshi Ganapathi, Paladhara, Hatkeshwar, Paatala Ganga, Octopus View, Tiger Reserve, Ropeway, Boating, Akka Mahadevi Temple & Museum.',
     highlights: [
-      'Sparsha Darshan at Mallikarjuna Jyotirlinga & Bhramaramba Shakti Peeth',
-      'Scenic passage through Nallamala tiger sanctuary and Krishna river valley',
-      'Special Entry Darshan coordination at Tirumala Sri Venkateswara Temple',
-      'Dedicated AC chauffeur throughout with sanitized hotel arrangements',
+      'Mallikarjuna Swamy Temple & Bramarambika Devi Temple',
+      'Sakshi Ganapathi, Paladhara Panchadhara & Hatkeshwar Temple',
+      'Paatala Ganga, Ropeway & Krishna River Boating',
+      'Srisailam Tiger Reserve, Akka Mahadevi Temple & Chenchu Lakshmi Museum',
     ],
     itinerary: [
       {
         day: 'Day 01',
-        title: 'Hyderabad to Srisailam (Jyotirlinga & Shakti Peeth)',
+        title: 'Arrival in Srisailam & Temple Darshans',
         detail:
-          'Early departure from Hyderabad through scenic Nallamala forests. Afternoon darshan of Mallikarjuna Swamy Jyotirlinga and Bhramaramba Devi. Overnight in Srisailam.',
+          'Morning pickup from Hyderabad. Scenic forest passage with stop at Octopus View Point. Check-in at hotel. Darshan of Mallikarjuna Swamy and Bramarambika Devi. Visit Sakshi Ganapathi and Hatkeshwar.',
       },
       {
         day: 'Day 02',
-        title: 'Srisailam to Tirupati (Seshachalam Hills)',
+        title: 'Ropeway, Boating, Tiger Reserve & Akka Mahadevi Temple',
         detail:
-          'Morning prayers in Srisailam. Relaxing drive across Rayalaseema to the holy foothills of Tirupati. Check-in and evening visit to Padmavathi Ammavari temple.',
+          'Morning ropeway ride to Paatala Ganga followed by thrilling Krishna river boating to ancient Akka Mahadevi Temple caves. Explore Srisailam Tiger Reserve and Chenchu Lakshmi Tribal Museum before relaxed return to Hyderabad.',
+      },
+    ],
+    suitableFor: 'Devout Families, Nature Lovers & Spiritual Explorers',
+    image: '/images/srisailam-2day-package.jpg',
+    alt: 'Srisailam 2 Day Package Krishna River Boating and Cruise',
+  },
+
+  // 3. Telangana Heritage Temple Tour
+  {
+    id: 'pkg-telangana-heritage',
+    category: 'Telangana Temple Tours',
+    title: 'Telangana Sacred Circuit: Yadadri, Vemulawada, Ramappa & Warangal',
+    destinationId: 'yadadri',
+    destinationName: 'Telangana Shrines',
+    duration: '3 Days / 2 Nights',
+    routeSummary: 'Hyderabad → Yadadri → Vemulawada → Ramappa (UNESCO) → Thousand Pillar → Hyderabad',
+    sampleEstimate: 'Custom Quotation on Request',
+    summary:
+      'Explore Telangana’s supreme divine sanctums: Sri Lakshmi Narasimha Swamy at Yadadri, Raja Rajeshwara Swamy at Vemulawada, UNESCO world heritage Ramappa Temple, and Thousand Pillar Temple.',
+    highlights: [
+      'Darshan at newly carved Krishna Shila temple of Yadadri',
+      'Code Mrokkubadi & Dharma Gundam snanam at Vemulawada Rajanna temple',
+      'Marvel at UNESCO world heritage Ramappa Temple and lightweight floating bricks',
+      'Visit historic Thousand Pillar Temple and monolithic black basalt Nandi',
+    ],
+    itinerary: [
+      {
+        day: 'Day 01',
+        title: 'Hyderabad to Yadadri & Vemulawada',
+        detail:
+          'Morning pickup from Hyderabad. Darshan at Yadadri Sri Lakshmi Narasimha Swamy Temple. Afternoon drive to Vemulawada for evening darshan at Sri Raja Rajeshwara Swamy Temple. Overnight in Vemulawada or Karimnagar.',
+      },
+      {
+        day: 'Day 02',
+        title: 'UNESCO Ramappa Temple & Ramappa Lake',
+        detail:
+          'Morning prayers and drive through lush countryside to Palampet. Explore the UNESCO World Heritage Ramappa Temple, admire black basalt dancer statues, and relax near Ramappa Lake. Overnight in Warangal.',
       },
       {
         day: 'Day 03',
-        title: 'Tirumala Balaji Darshan & Return',
+        title: 'Thousand Pillar Temple & Return to Hyderabad',
         detail:
-          'Ascend the holy seven hills for divine Darshan of Lord Venkateswara at Ananda Nilayam. Receive Tirumala Laddus and commence comfortable return journey.',
+          'Morning darshan at the 12th-century Thousand Pillar Temple and Warangal Fort. Return comfortably to Hyderabad with doorstep drop-off.',
       },
     ],
-    suitableFor: 'Devout Families, Elders & Spiritual Seekers',
-    image: '/images/destinations/tirupati.jpg',
-    alt: 'Tirumala Sri Venkateswara Swamy Temple',
+    suitableFor: 'Families, History Enthusiasts & Temple Devotees',
+    image: '/images/destinations/ramappa.jpg',
+    alt: 'Ramappa Temple UNESCO World Heritage',
   },
+
+  // 4. Maharashtra Tri-Shakti & Datta Peeth Yatra
+  {
+    id: 'pkg-maharashtra-pilgrimage',
+    category: 'Maharashtra Pilgrimages',
+    title: 'Solapur, Ganagapur, Tuljapur, Akalkot & Pandharpur Yatra',
+    destinationId: 'akalkot',
+    destinationName: 'Datta & Vitthal Shrines',
+    duration: '4 Days / 3 Nights',
+    routeSummary: 'Hyderabad → Ganagapur → Tuljapur → Akalkot → Pandharpur → Hyderabad',
+    sampleEstimate: 'Custom Quotation on Request',
+    summary:
+      'Sacred pilgrimage covering Dattatreya Nirguna Padukas at Ganagapur, Tulja Bhavani Shaktipeeth, Swami Samarth Vatavruksha Mandir at Akalkot, and Lord Vitthal-Rukmini Mandir at Pandharpur.',
+    highlights: [
+      'Holy Sangam snanam and Nirguna Paduka darshan at Ganagapur',
+      'Darshan at Tulja Bhavani Temple, Kulswamini of Shivaji Maharaj',
+      'Prayers under the holy Banyan tree at Akalkot Swami Samarth temple',
+      'Padsparsha Darshan at Lord Vitthal and Rukmini Mata in Pandharpur',
+    ],
+    itinerary: [
+      {
+        day: 'Day 01',
+        title: 'Hyderabad to Ganagapur (Dattatreya Peeth)',
+        detail:
+          'Morning pickup from Hyderabad. Drive to Sri Kshetra Ganagapur. Holy bath at Bhima-Amarja Sangam, Audumbar tree worship, and Nirguna Paduka darshan. Overnight in Ganagapur or Solapur.',
+      },
+      {
+        day: 'Day 02',
+        title: 'Tuljapur Bhavani & Akalkot Swami Samarth',
+        detail:
+          'Morning drive to Tuljapur for darshan of Goddess Tulja Bhavani. Proceed to Akalkot for darshan at Vatavruksha Mandir and Swami Samarth Samadhi. Overnight in Solapur.',
+      },
+      {
+        day: 'Day 03',
+        title: 'Pandharpur Vitthal-Rukmini Darshan',
+        detail:
+          'Drive to holy Pandharpur. Take Chandrabhaga river snanam and experience the divine Padsparsha darshan of Lord Vitthal and Rukmini Devi. Overnight in Pandharpur or Solapur.',
+      },
+      {
+        day: 'Day 04',
+        title: 'Comfortable Return to Hyderabad',
+        detail:
+          'Morning prayers and leisurely drive back to Hyderabad with safe doorstep drop-off.',
+      },
+    ],
+    suitableFor: 'Datta Bhaktas, Varkari Devotees & Multi-Generation Families',
+    image: '/images/destinations/pandharpur.jpg',
+    alt: 'Vitthal Rukmini Temple in Pandharpur',
+  },
+
+  // 5. Jyotirlinga Special Yatra
+  {
+    id: 'pkg-jyotirlinga-special',
+    category: 'Jyotirlinga Special Tours',
+    title: 'Panch Jyotirlinga Darshan: Trimbak, Bhimashankar, Omkareshwar & Mahakal',
+    destinationId: 'mahakaleshwar',
+    destinationName: 'Sacred Jyotirlingas',
+    duration: '5 Days / 4 Nights',
+    routeSummary: 'Hyderabad → Nashik (Trimbak) → Bhimashankar → Omkareshwar → Ujjain (Mahakal)',
+    sampleEstimate: 'Custom Quotation on Request',
+    summary:
+      'A blessed multi-state pilgrimage to India’s supreme Jyotirlingas: Trimbakeshwar, Bhimashankar, Omkareshwar in Madhya Pradesh, and Mahakaleshwar in Ujjain.',
+    highlights: [
+      'Darshan of unique 3-faced Trimbakeshwar Jyotirlinga at origin of Godavari',
+      'Visit forested Bhimashankar Jyotirlinga in Western Ghats',
+      'Holy boat ride to Omkareshwar Jyotirlinga island on Narmada River',
+      'Early morning Bhasma Aarti at Mahakaleshwar Jyotirlinga in Ujjain',
+    ],
+    itinerary: [
+      {
+        day: 'Day 01',
+        title: 'Nashik & Trimbakeshwar Jyotirlinga',
+        detail:
+          'Arrive in Nashik. Darshan at Trimbakeshwar Jyotirlinga, visit Kushavarta Kund and Panchavati. Overnight in Nashik.',
+      },
+      {
+        day: 'Day 02',
+        title: 'Bhimashankar Jyotirlinga',
+        detail:
+          'Scenic drive through Western Ghats to Bhimashankar. Attend Rudrabhishekam at the holy sanctum. Overnight in Pune/Manchar.',
+      },
+      {
+        day: 'Day 03',
+        title: 'Journey to Omkareshwar (Madhya Pradesh)',
+        detail:
+          'Travel to Madhya Pradesh. Arrive at holy Omkareshwar island on the Narmada River. Evening sunset boat ride and darshan.',
+      },
+      {
+        day: 'Day 04',
+        title: 'Ujjain Mahakaleshwar & Mahakal Lok',
+        detail:
+          'Proceed to Ujjain. Explore the grand Shri Mahakal Lok corridor and attend Sandhya Aarti at Mahakaleshwar. Overnight in Ujjain.',
+      },
+      {
+        day: 'Day 05',
+        title: 'Ujjain Bhasma Aarti & Departure',
+        detail:
+          'Experience the auspicious 4 AM Bhasma Aarti at Mahakaleshwar temple. Visit Kal Bhairav Temple before departure.',
+      },
+    ],
+    suitableFor: 'Shiva Bhaktas, Spiritual Seekers & Devout Families',
+    image: '/images/destinations/mahakaleshwar.jpg',
+    alt: 'Shri Mahakaleshwar Jyotirlinga in Ujjain',
+  },
+
+  // 6. Ayodhya Shri Ram Janmabhoomi Yatra
   {
     id: 'pkg-ayodhya-dham',
     category: 'Ayodhya Dham Yatra',
@@ -672,7 +1049,7 @@ export const FEATURED_JOURNEYS: FeaturedJourney[] = [
     routeSummary: 'Lucknow/Ayodhya Airport/Station → Ram Mandir → Hanuman Garhi → Sarayu Ghats',
     sampleEstimate: 'Custom Quotation on Request',
     summary:
-      'Experience the divine grandeur of the newly consecrated Shri Ram Janmabhoomi Mandir, historic Hanuman Garhi, and atmospheric sunset Sarayu Aarti.',
+      'Experience the divine grandeur of the consecrated Shri Ram Janmabhoomi Mandir, historic Hanuman Garhi, and atmospheric sunset Sarayu Aarti.',
     highlights: [
       'Darshan of Bhagwan Shri Ram Lalla inside the grand carved stone Ram Mandir',
       'Blessings at Hanuman Garhi and Kanak Bhavan',
@@ -703,20 +1080,22 @@ export const FEATURED_JOURNEYS: FeaturedJourney[] = [
     image: '/images/destinations/ayodhya.jpg',
     alt: 'Shri Ram Janmabhoomi Mandir in Ayodhya',
   },
+
+  // 7. Custom Spiritual Yatra
   {
     id: 'pkg-custom-spiritual',
     category: 'Custom Spiritual Tours',
-    title: 'Bespoke Private Pilgrimage Across 14 Sacred Shrines',
-    destinationId: 'shirdi',
+    title: 'Bespoke Private Pilgrimage Across 20 Holy Shrines',
+    destinationId: 'srisailam',
     destinationName: 'Custom Spiritual Route',
     duration: 'Custom Duration',
-    routeSummary: 'Tailored pickup from Hyderabad to any of the 14 approved pilgrimage shrines',
+    routeSummary: 'Tailored pickup from Hyderabad to any of the 20 approved pilgrimage shrines',
     sampleEstimate: 'Custom Quotation on Request',
     summary:
-      'Design your family’s unique pilgrimage route across Shirdi, Yaganti, Akalkot, Kolhapur, Yadagirigutta, Swarnagiri, Tirupati, Srisailam, Arunachalam, Pandharpur, Dagadusheth, Bhimashankar, Trimbakeshwar, or Ayodhya.',
+      'Design your family’s unique pilgrimage route across Shrishailam, Yadadri, Vemulawada, Ramappa, Thousand Pillar, Bhadrachalam, Yaganti, Tirupati, Arunachalam, Ganagapur, Tuljapur, Akalkot, Pandharpur, Shirdi, Bhimashankar, Trimbakeshwar, Omkareshwar, Mahakaleshwar, Sabarimala, or Ayodhya.',
     highlights: [
       'Completely flexible dates, itinerary pacing, and temple order',
-      'Dedicated AC fleet (Innova Crysta, Ertiga, Tempo Traveller, Luxury Coaches)',
+      'Dedicated AC fleet (Innova Crysta, Ertiga, Tempo Traveller, Swift Dzire)',
       'Special wheelchair & senior citizen care arrangements on request',
       'Transparent, itemized quotation with zero hidden fees',
     ],
@@ -729,13 +1108,13 @@ export const FEATURED_JOURNEYS: FeaturedJourney[] = [
       },
     ],
     suitableFor: 'Private Family Groups, Elders & Custom Spiritual Yatras',
-    image: '/images/destinations/srisailam.jpg',
+    image: '/images/srisailam-1day-package.jpg',
     alt: 'Custom Spiritual Tour with Bhargavi Tour and Travels',
   },
 ];
 
 /* ========================================================================
-   DEVOTIONAL EXPERIENCES & RITUALS (ALIGNED WITH THE 14 SHRINES)
+   DEVOTIONAL EXPERIENCES & RITUALS
    ======================================================================== */
 export const EXPERIENCES: Experience[] = [
   {
@@ -745,169 +1124,88 @@ export const EXPERIENCES: Experience[] = [
     description:
       'Touch the sacred Jyotirlinga stones with your own hands during sanctioned Sparsha Darshan windows, chanting the eternal Om Namah Shivaya with deep inner tranquility.',
     pairedDestinations: 'Srisailam • Bhimashankar • Trimbakeshwar',
-    image: '/images/destinations/srisailam.jpg',
+    image: '/images/srisailam-1day-package.jpg',
     alt: 'Sanctum and temple courtyard of Mallikarjuna Jyotirlinga at Srisailam',
   },
   {
-    id: 'exp-kakad-aarti',
-    title: 'Shirdi Sai Dawn Kakad & Shej Aarti',
-    subtitle: 'Shirdi Samadhi Mandir & Dwarkamai',
+    id: 'exp-giri-pradakshina',
+    title: 'Barefoot Giri Pradakshina at Dawn',
+    subtitle: 'Sacred Mount Arunachala',
     description:
-      'Awaken at dawn in holy Shirdi to the resonant bells and devotional chants of Kakad Aarti, experiencing the peace and compassion of Shri Sai Baba.',
-    pairedDestinations: 'Shirdi • Akalkot • Pandharpur',
-    image: '/images/destinations/shirdi.jpg',
-    alt: 'Sai Baba Samadhi Mandir in Shirdi',
-  },
-  {
-    id: 'exp-girivalam-pradakshina',
-    title: 'Barefoot Girivalam Circumambulation',
-    subtitle: 'Holy Arunachala Hill & Sri Arunachaleswarar',
-    description:
-      'Walk the 14-kilometer sacred pathway around Mount Arunachala under the moonlight, absorbing the spiritual presence of the cosmic Agni Lingam.',
-    pairedDestinations: 'Arunachalam • Tirupati',
+      'Walk the 14-kilometer circumambulation around holy Mount Arunachala on full moon nights or silent early dawns, invoking inner liberation and supreme stillness.',
+    pairedDestinations: 'Arunachalam (Tiruvannamalai)',
     image: '/images/destinations/arunachalam.jpg',
-    alt: 'Arunachaleswarar Temple and Sacred Arunachala Hill in Tiruvannamalai',
+    alt: 'Mount Arunachala and holy path in Tiruvannamalai',
   },
   {
-    id: 'exp-sarayu-aarti',
-    title: 'Sunset Sarayu Maha Aarti & Ram Lalla Darshan',
-    subtitle: 'Ayodhya Dham & Ram Janmabhoomi',
+    id: 'exp-bhasma-aarti',
+    title: 'Divine Bhasma Aarti of Lord Mahakal',
+    subtitle: 'Shri Mahakaleshwar Jyotirlinga',
     description:
-      'Experience the grand evening Maha Aarti with hundreds of brass oil lamps glowing on the sacred Sarayu River ghats, followed by divine darshan of Shri Ram Lalla.',
-    pairedDestinations: 'Ayodhya Dham',
-    image: '/images/destinations/ayodhya.jpg',
-    alt: 'Shri Ram Janmabhoomi Mandir at Ayodhya Dham',
+      'Witness the world-revered 4 AM Bhasma Aarti at Mahakaleshwar in Ujjain, where Lord Shiva is anointed with sacred ash amidst thunderous chants of Har Har Mahadev.',
+    pairedDestinations: 'Mahakaleshwar (Ujjain) • Omkareshwar',
+    image: '/images/destinations/mahakaleshwar.jpg',
+    alt: 'Mahakaleshwar Jyotirlinga in Ujjain',
+  },
+  {
+    id: 'exp-godavari-snanam',
+    title: 'Sacred River Snanam & Rama Darshan',
+    subtitle: 'Bhadrachalam on River Godavari',
+    description:
+      'Take a holy dip in the sacred flowing waters of the Godavari River before climbing to the sanctum of Sri Sita Ramachandra Swamy consecrated by Bhakta Ramadasu.',
+    pairedDestinations: 'Bhadrachalam • Vemulawada',
+    image: '/images/destinations/bhadrachalam.jpg',
+    alt: 'Bhadrachalam Temple on the banks of Godavari',
   },
 ];
 
 /* ========================================================================
-   GALLERY SHOWCASE (ALL 14 SACRED SHRINES)
+   TEMPLE PHOTOGRAPHY JOURNAL
    ======================================================================== */
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
-    id: 'gal-shirdi',
-    title: 'Shri Sai Baba Samadhi Mandir',
-    location: 'Shirdi, Maharashtra',
-    category: 'Devotional Abode',
-    image: '/images/destinations/shirdi.jpg',
-    alt: 'Shri Sai Baba Samadhi Mandir in Shirdi',
-    spanClass: '',
-  },
-  {
-    id: 'gal-yaganti',
-    title: 'Sri Yaganti Uma Maheswara Temple',
-    location: 'Yaganti, Andhra Pradesh',
-    category: 'Ancient Cave Shrine',
-    image: '/images/destinations/yaganti.jpg',
-    alt: 'Sri Yaganti Uma Maheswara Temple Gopuram',
-    spanClass: '',
-  },
-  {
-    id: 'gal-akalkot',
-    title: 'Vatavruksha Swami Samarth Mandir',
-    location: 'Akkalkot, Maharashtra',
-    category: 'Datta Avatara Kshetra',
-    image: '/images/destinations/akalkot.jpg',
-    alt: 'Shri Swami Samarth Maharaj Temple at Akkalkot',
-    spanClass: '',
-  },
-  {
-    id: 'gal-kolhapur',
-    title: 'Shri Mahalakshmi Ambabai Temple',
-    location: 'Kolhapur, Maharashtra',
-    category: 'Maha Shakti Peeth',
-    image: '/images/destinations/kolhapur.jpg',
-    alt: 'Shri Mahalakshmi Ambabai Temple in Kolhapur',
-    spanClass: '',
-  },
-  {
-    id: 'gal-yadagirigutta',
-    title: 'Sri Lakshmi Narasimha Swamy Temple',
-    location: 'Yadadri, Telangana',
-    category: 'Stone Marvel',
-    image: '/images/destinations/yadagirigutta.jpg',
-    alt: 'Sri Lakshmi Narasimha Swamy Temple main Gopuram at Yadagirigutta',
-    spanClass: '',
-  },
-  {
-    id: 'gal-swarnagiri',
-    title: 'Swarnagiri Sri Venkateswara Temple',
-    location: 'Bhuvanagiri, Telangana',
-    category: 'Golden Hilltop Shrine',
-    image: '/images/destinations/swarnagiri.jpg',
-    alt: 'Swarnagiri Sri Venkateswara Swamy Temple in Bhuvanagiri',
-    spanClass: '',
-  },
-  {
-    id: 'gal-tirupati',
-    title: 'Tirumala Balaji Ananda Nilayam',
-    location: 'Tirupati, Andhra Pradesh',
-    category: 'Kaliyuga Vaikuntham',
-    image: '/images/destinations/tirupati.jpg',
-    alt: 'Tirumala Sri Venkateswara Temple Ananda Nilayam Gopuram',
-    spanClass: '',
-  },
-  {
-    id: 'gal-srisailam',
-    title: 'Mallikarjuna Jyotirlinga Temple',
-    location: 'Srisailam, Andhra Pradesh',
+    id: 'g-srisailam',
+    title: 'Mallikarjuna Swamy Golden Shikhara',
+    location: 'Shrishailam, Andhra Pradesh',
     category: 'Jyotirlinga & Shakti Peeth',
-    image: '/images/destinations/srisailam.jpg',
-    alt: 'Mallikarjuna Jyotirlinga Temple Entrance at Srisailam',
-    spanClass: '',
+    image: '/images/srisailam-1day-package.jpg',
+    alt: 'Srisailam Temple Golden Gopuram',
+    spanClass: 'md:col-span-8 md:row-span-2 min-h-[360px] md:min-h-[460px]',
   },
   {
-    id: 'gal-arunachalam',
-    title: 'Arunachaleswarar Temple',
-    location: 'Tiruvannamalai, Tamil Nadu',
-    category: 'Agni Lingam Sthalam',
-    image: '/images/destinations/arunachalam.jpg',
-    alt: 'Arunachaleswarar Temple and Sacred Arunachala Hill',
-    spanClass: '',
+    id: 'g-boating',
+    title: 'Krishna River Boating to Akka Mahadevi Caves',
+    location: 'Shrishailam Gorge, Andhra Pradesh',
+    category: 'Scenic Pilgrimage',
+    image: '/images/srisailam-2day-package.jpg',
+    alt: 'Srisailam Krishna river boat cruise',
+    spanClass: 'md:col-span-4 min-h-[220px]',
   },
   {
-    id: 'gal-pandharpur',
-    title: 'Shri Vitthal Rukmini Mandir',
-    location: 'Pandharpur, Maharashtra',
-    category: 'Warkari Supreme Abode',
-    image: '/images/destinations/pandharpur.jpg',
-    alt: 'Shri Vitthal Rukmini Temple in Pandharpur',
-    spanClass: '',
+    id: 'g-yadadri',
+    title: 'Krishna Shila Carved Rajagopuram',
+    location: 'Yadadri, Telangana',
+    category: 'Dravidian Stone Heritage',
+    image: '/images/destinations/yadagirigutta.jpg',
+    alt: 'Yadadri Temple stone gopuram',
+    spanClass: 'md:col-span-4 min-h-[220px]',
   },
   {
-    id: 'gal-dagadusheth',
-    title: 'Shreemant Dagadusheth Ganapati Mandir',
-    location: 'Pune, Maharashtra',
-    category: 'Siddhi Vinayaka Temple',
-    image: '/images/destinations/dagadusheth.jpg',
-    alt: 'Shreemant Dagadusheth Halwai Ganapati Temple in Pune',
-    spanClass: '',
+    id: 'g-ramappa',
+    title: '13th-Century Kakatiya Dancing Sculptures',
+    location: 'Ramappa Temple, Palampet',
+    category: 'UNESCO World Heritage',
+    image: '/images/destinations/ramappa.jpg',
+    alt: 'Ramappa UNESCO Heritage Temple',
+    spanClass: 'md:col-span-6 min-h-[280px]',
   },
   {
-    id: 'gal-bhimashankar',
-    title: 'Bhimashankar Jyotirlinga Temple',
-    location: 'Bhimashankar, Maharashtra',
-    category: 'Sahyadri Jyotirlinga',
-    image: '/images/destinations/bhimashankar.jpg',
-    alt: 'Bhimashankar Jyotirlinga Temple in Maharashtra',
-    spanClass: '',
-  },
-  {
-    id: 'gal-trimbakeshwar',
-    title: 'Trimbakeshwar Shiva Jyotirlinga',
-    location: 'Nashik, Maharashtra',
-    category: 'Trimurti Jyotirlinga',
-    image: '/images/destinations/trimbakeshwar.jpg',
-    alt: 'Trimbakeshwar Shiva Jyotirlinga Temple near Nashik',
-    spanClass: '',
-  },
-  {
-    id: 'gal-ayodhya',
-    title: 'Shri Ram Janmabhoomi Mandir',
-    location: 'Ayodhya, Uttar Pradesh',
-    category: 'Sacred Ayodhya Dham',
+    id: 'g-ayodhya',
+    title: 'Shri Ram Janmabhoomi Mandir Grand Sanctum',
+    location: 'Ayodhya Dham, Uttar Pradesh',
+    category: 'Nagara Architecture',
     image: '/images/destinations/ayodhya.jpg',
-    alt: 'Grand Shri Ram Janmabhoomi Mandir in Ayodhya Dham',
-    spanClass: '',
+    alt: 'Ayodhya Ram Mandir facade',
+    spanClass: 'md:col-span-6 min-h-[280px]',
   },
 ];

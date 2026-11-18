@@ -11,9 +11,10 @@ import { EDITORIAL_EASE } from './Reveal';
 
 const NAV_LINKS = [
   { label: 'Home', href: '#hero' },
-  { label: 'About Us', href: '#about' },
+  { label: 'Srisailam Special', href: '#srisailam-packages' },
   { label: 'Destinations', href: '#destinations' },
   { label: 'Tour Packages', href: '#packages' },
+  { label: 'Our Fleet', href: '#fleet' },
   { label: 'Spiritual Map', href: '#spiritual-map' },
   { label: 'Contact Us', href: '#contact' },
 ];

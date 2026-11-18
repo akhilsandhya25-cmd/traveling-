@@ -18,10 +18,10 @@ import { AnimatedRule, EDITORIAL_EASE, MaskedLine, Reveal } from './Reveal';
 
 const CATEGORIES: PackageCategory[] = [
   'All Packages',
-  'Shirdi & Maharashtra Tours',
-  'Jyotirlinga Special Tours',
+  'Srisailam Special Packages',
   'Telangana Temple Tours',
-  'South India Temple Tours',
+  'Maharashtra Pilgrimages',
+  'Jyotirlinga Special Tours',
   'Ayodhya Dham Yatra',
   'Custom Spiritual Tours',
 ];
@@ -91,8 +91,8 @@ export function FeaturedJourneys({
                 onClick={() => setActiveCategory(cat)}
                 className={`min-h-[40px] shrink-0 cursor-pointer rounded-full border px-4 py-2 text-[11px] font-semibold tracking-wider transition-all duration-300 sm:text-xs ${
                   isActive
-                    ? 'border-[#C6A66B] bg-[#C6A66B] text-[#10241E] font-bold shadow-sm'
-                    : 'border-amber-900/15 bg-white text-[#171B19]/75 hover:border-amber-400 hover:text-amber-900'
+                    ? 'border-[#10241E] bg-[#10241E] text-white font-bold shadow-sm'
+                    : 'border-neutral-200 bg-white text-[#171B19]/75 hover:border-[#10241E] hover:text-[#10241E]'
                 }`}
               >
                 {cat}
@@ -143,9 +143,16 @@ export function FeaturedJourneys({
 
                     {/* Category Badge */}
                     <div className="absolute top-3.5 right-3.5 left-3.5 z-10 flex items-center justify-between">
-                      <span className="rounded-full bg-white/95 px-3 py-1 text-[9px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm">
-                        {journey.category}
-                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <span className="rounded-full bg-white/95 px-3 py-1 text-[9px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm">
+                          {journey.category}
+                        </span>
+                        {journey.isSpecialHighlight && (
+                          <span className="rounded-full bg-emerald-600 px-2.5 py-1 text-[9px] font-bold tracking-wider text-white uppercase shadow-sm">
+                            ⭐ Special Package
+                          </span>
+                        )}
+                      </div>
 
                       <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-[#0B1A15]/85 px-2.5 py-1 text-[9px] font-medium text-white backdrop-blur-md">
                         <Clock className="h-2.5 w-2.5 text-white/80" />

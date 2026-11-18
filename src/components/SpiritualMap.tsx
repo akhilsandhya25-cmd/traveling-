@@ -17,7 +17,7 @@ interface SpiritualMapProps {
 }
 
 export function SpiritualMap({ onPlanTrip, onExploreMore }: SpiritualMapProps) {
-  const [selectedId, setSelectedId] = useState<string>('tirupati');
+  const [selectedId, setSelectedId] = useState<string>('srisailam');
   const [filterRegion, setFilterRegion] = useState<string>('All');
 
   const selectedDest =
@@ -68,25 +68,28 @@ export function SpiritualMap({ onPlanTrip, onExploreMore }: SpiritualMapProps) {
 
           {/* Region Quick Filter */}
           <div className="no-scrollbar -mx-4 flex gap-1.5 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:gap-2 sm:overflow-visible sm:px-0">
-            {['All', 'South India', 'West & Central India', 'North India'].map(
-              (reg) => {
-                const isActive = filterRegion === reg;
-                return (
-                  <button
-                    key={reg}
-                    type="button"
-                    onClick={() => setFilterRegion(reg)}
-                    className={`min-h-[38px] shrink-0 cursor-pointer rounded-full border px-3.5 py-1.5 text-[10px] font-semibold tracking-wider uppercase transition-colors sm:text-[11px] ${
-                      isActive
-                        ? 'border-[#C6A66B] bg-[#C6A66B] text-[#102820]'
-                        : 'border-white/20 bg-white/5 text-[#F7F4EC]/75 hover:border-[#C6A66B]/60 hover:text-white'
-                    }`}
-                  >
-                    {reg}
-                  </button>
-                );
-              }
-            )}
+            {[
+              'All',
+              'Telangana & Andhra Pradesh',
+              'Maharashtra & Karnataka',
+              'Central & North India',
+            ].map((reg) => {
+              const isActive = filterRegion === reg;
+              return (
+                <button
+                  key={reg}
+                  type="button"
+                  onClick={() => setFilterRegion(reg)}
+                  className={`min-h-[38px] shrink-0 cursor-pointer rounded-full border px-3.5 py-1.5 text-[10px] font-semibold tracking-wider uppercase transition-colors sm:text-[11px] ${
+                    isActive
+                      ? 'border-white bg-white text-[#10241E] font-bold shadow-sm'
+                      : 'border-white/20 bg-white/5 text-[#F7F4EC]/75 hover:border-white/60 hover:text-white'
+                  }`}
+                >
+                  {reg}
+                </button>
+              );
+            })}
           </div>
         </div>
 
