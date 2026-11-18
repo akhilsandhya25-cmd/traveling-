@@ -7,7 +7,6 @@ import { Experiences } from './components/Experiences';
 import { FeaturedJourneys } from './components/FeaturedJourneys';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { Footer } from './components/Footer';
-import { Gallery } from './components/Gallery';
 import { Hero } from './components/Hero';
 import { JourneyModal } from './components/JourneyModal';
 import { Navbar } from './components/Navbar';
@@ -100,9 +99,6 @@ export default function App() {
               jumpToEnquiry('Custom Spiritual Pilgrimage')
             }
           />
-
-          {/* Temple Photography Gallery */}
-          <Gallery onPlanTrip={jumpToEnquiry} />
 
           {/* Section G: Contact & Enquiry */}
           <EnquirySection preselectedDestination={enquiryDestination} />
