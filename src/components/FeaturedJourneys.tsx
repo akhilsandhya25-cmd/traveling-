@@ -65,6 +65,7 @@ export function FeaturedJourneys({
         <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-10">
           <AnimatePresence mode="popLayout">
             {FEATURED_JOURNEYS.map((journey, idx) => {
+              const isOneDay = journey.id === 'pkg-srisailam-1day';
               const responsiveImg = getResponsiveImageProps(
                 journey.image,
                 '(max-width: 639px) 94vw, (max-width: 1023px) 47vw, 48vw'
@@ -84,7 +85,11 @@ export function FeaturedJourneys({
                     delay: Math.min((idx % 6) * 0.05, 0.2),
                     ease: EDITORIAL_EASE,
                   }}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-[#E7DFD0] bg-[#FFFDF9] shadow-sm transition-all duration-300 hover:border-[#C6A66B] hover:shadow-lg"
+                  className={`group flex flex-col overflow-hidden rounded-2xl transition-all duration-300 ${
+                    isOneDay
+                      ? 'border-2 border-emerald-500 bg-white shadow-xl ring-2 ring-emerald-500/20 hover:shadow-2xl'
+                      : 'border border-[#E7DFD0] bg-[#FFFDF9] shadow-sm hover:border-[#10241E]/40 hover:shadow-lg'
+                  }`}
                 >
                   {/* Package Photography */}
                   <div
@@ -104,19 +109,31 @@ export function FeaturedJourneys({
                     {/* Category Badge */}
                     <div className="absolute top-3.5 right-3.5 left-3.5 z-10 flex items-center justify-between">
                       <div className="flex items-center gap-1.5">
-                        <span className="rounded-full bg-white/95 px-3 py-1 text-[9px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm">
-                          {journey.category}
-                        </span>
-                        {journey.isSpecialHighlight && (
-                          <span className="rounded-full bg-emerald-600 px-2.5 py-1 text-[9px] font-bold tracking-wider text-white uppercase shadow-sm">
-                            ⭐ Special Package
+                        {isOneDay ? (
+                          <span className="rounded-full bg-emerald-600 px-3 py-1 text-[9px] font-extrabold tracking-wider text-white uppercase shadow-md">
+                            ⭐ MOST POPULAR &bull; SRISAILAM SPECIAL
                           </span>
+                        ) : (
+                          <>
+                            <span className="rounded-full bg-white/95 px-3 py-1 text-[9px] font-bold tracking-wider text-[#10241E] uppercase shadow-sm">
+                              {journey.category}
+                            </span>
+                            {journey.isSpecialHighlight && (
+                              <span className="rounded-full bg-teal-700 px-2.5 py-1 text-[9px] font-bold tracking-wider text-white uppercase shadow-sm">
+                                ⭐ Special Package
+                              </span>
+                            )}
+                          </>
                         )}
                       </div>
 
-                      <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-[#0B1A15]/85 px-2.5 py-1 text-[9px] font-medium text-white backdrop-blur-md">
+                      <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[9px] font-medium backdrop-blur-md ${
+                        isOneDay
+                          ? 'border border-emerald-300/40 bg-emerald-950/90 text-emerald-200 font-bold'
+                          : 'border border-white/20 bg-[#0B1A15]/85 text-white'
+                      }`}>
                         <Clock className="h-2.5 w-2.5 text-white/80" />
-                        <span>Custom ({journey.duration})</span>
+                        <span>{isOneDay ? '1 Day (Same Day Return)' : journey.duration}</span>
                       </span>
                     </div>
 
@@ -180,10 +197,14 @@ export function FeaturedJourneys({
                         <button
                           type="button"
                           onClick={() => onEnquireJourney(journey)}
-                          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#10241E] px-3 py-2 text-[10px] font-bold tracking-wider text-white uppercase shadow-sm transition hover:bg-[#18392E]"
+                          className={`inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2 text-[10px] font-bold tracking-wider text-white uppercase shadow-sm transition ${
+                            isOneDay
+                              ? 'bg-[#0284C7] hover:bg-[#0369A1] shadow-sky-500/20'
+                              : 'bg-[#10241E] hover:bg-[#18392E]'
+                          }`}
                         >
                           <Send className="h-3 w-3 text-white" />
-                          <span>Get Quotation</span>
+                          <span>{isOneDay ? 'Book 1 Day Now' : 'Get Quotation'}</span>
                         </button>
                       </div>
                     </div>
