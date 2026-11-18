@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   CheckCircle2,
@@ -11,20 +10,9 @@ import {
 import {
   FEATURED_JOURNEYS,
   type FeaturedJourney,
-  type PackageCategory,
 } from '../data/travelData';
 import { getResponsiveImageProps } from '../utils/responsiveMedia';
 import { AnimatedRule, EDITORIAL_EASE, MaskedLine, Reveal } from './Reveal';
-
-const CATEGORIES: PackageCategory[] = [
-  'All Packages',
-  'Srisailam Special Packages',
-  'Telangana Temple Tours',
-  'Maharashtra Pilgrimages',
-  'Jyotirlinga Special Tours',
-  'Ayodhya Dham Yatra',
-  'Custom Spiritual Tours',
-];
 
 interface FeaturedJourneysProps {
   onSelectJourney: (journey: FeaturedJourney) => void;
@@ -35,13 +23,6 @@ export function FeaturedJourneys({
   onSelectJourney,
   onEnquireJourney,
 }: FeaturedJourneysProps) {
-  const [activeCategory, setActiveCategory] =
-    useState<PackageCategory>('All Packages');
-
-  const filteredPackages =
-    activeCategory === 'All Packages'
-      ? FEATURED_JOURNEYS
-      : FEATURED_JOURNEYS.filter((p) => p.category === activeCategory);
 
   return (
     <section
@@ -80,34 +61,13 @@ export function FeaturedJourneys({
           </Reveal>
         </div>
 
-        {/* Category Filter Pills (Scrollable on Mobile) */}
-        <div className="no-scrollbar -mx-4 mt-8 flex flex-nowrap gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:gap-2.5 sm:overflow-visible sm:px-0 sm:pb-0">
-          {CATEGORIES.map((cat) => {
-            const isActive = activeCategory === cat;
-            return (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setActiveCategory(cat)}
-                className={`min-h-[40px] shrink-0 cursor-pointer rounded-full border px-4 py-2 text-[11px] font-semibold tracking-wider transition-all duration-300 sm:text-xs ${
-                  isActive
-                    ? 'border-[#10241E] bg-[#10241E] text-white font-bold shadow-sm'
-                    : 'border-neutral-200 bg-white text-[#171B19]/75 hover:border-[#10241E] hover:text-[#10241E]'
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Package Cards Grid */}
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        {/* Package Cards Grid (Official 1 Day & 2 Day Packages) */}
+        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-10">
           <AnimatePresence mode="popLayout">
-            {filteredPackages.map((journey, idx) => {
+            {FEATURED_JOURNEYS.map((journey, idx) => {
               const responsiveImg = getResponsiveImageProps(
                 journey.image,
-                '(max-width: 639px) 94vw, (max-width: 1023px) 47vw, 32vw'
+                '(max-width: 639px) 94vw, (max-width: 1023px) 47vw, 48vw'
               );
 
               return (

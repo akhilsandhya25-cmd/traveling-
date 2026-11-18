@@ -4,18 +4,10 @@ import { ArrowUpRight, Clock, MapPin, Sparkles } from 'lucide-react';
 import {
   DESTINATIONS,
   type Destination,
-  type RegionFilter,
 } from '../data/travelData';
 import { getResponsiveImageProps } from '../utils/responsiveMedia';
 import { MiniCartoonTourist } from './MiniCartoonTourist';
 import { AnimatedRule, EDITORIAL_EASE, MaskedLine, Reveal } from './Reveal';
-
-const REGIONS: RegionFilter[] = [
-  'All',
-  'Telangana & Andhra Pradesh',
-  'Maharashtra & Karnataka',
-  'Central & North India',
-];
 
 interface DestinationsProps {
   onSelectDestination: (destination: Destination) => void;
@@ -26,28 +18,19 @@ export function Destinations({
   onSelectDestination,
   onPlanTrip,
 }: DestinationsProps) {
-  const [activeRegion, setActiveRegion] = useState<RegionFilter>('All');
   const [activeTouristIndex, setActiveTouristIndex] = useState(0);
   const [autoHop, setAutoHop] = useState(true);
 
-  const filteredDestinations =
-    activeRegion === 'All'
-      ? DESTINATIONS
-      : DESTINATIONS.filter((d) => d.region === activeRegion);
-
-  const handleRegionChange = (region: RegionFilter) => {
-    setActiveRegion(region);
-    setActiveTouristIndex(0);
-  };
+  const destinationsList = DESTINATIONS;
 
   // Continuous auto-hop across slides so scrolling and browsing is always dynamic & lively
   useEffect(() => {
-    if (!autoHop || filteredDestinations.length <= 1) return;
+    if (!autoHop || destinationsList.length <= 1) return;
     const interval = setInterval(() => {
-      setActiveTouristIndex((prev) => (prev + 1) % filteredDestinations.length);
+      setActiveTouristIndex((prev) => (prev + 1) % destinationsList.length);
     }, 4500);
     return () => clearInterval(interval);
-  }, [autoHop, filteredDestinations.length]);
+  }, [autoHop, destinationsList.length]);
 
   return (
     <section
@@ -75,35 +58,21 @@ export function Destinations({
             </Reveal>
           </div>
 
-          {/* Region Tabs (Scroll strip on mobile) */}
-          <Reveal
-            delay={0.14}
-            className="no-scrollbar -mx-4 flex flex-nowrap gap-x-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:gap-x-3 sm:overflow-visible sm:px-0 sm:pb-0"
-          >
-            {REGIONS.map((region) => {
-              const isActive = activeRegion === region;
-              const count =
-                region === 'All'
-                  ? DESTINATIONS.length
-                  : DESTINATIONS.filter((d) => d.region === region).length;
-              return (
-                <button
-                  key={region}
-                  type="button"
-                  onClick={() => handleRegionChange(region)}
-                  className={`relative min-h-[42px] shrink-0 cursor-pointer rounded-full px-4 py-2 text-[11px] font-bold tracking-[0.16em] uppercase transition-all duration-300 ${
-                    isActive
-                      ? 'bg-[#10241E] text-white shadow-sm'
-                      : 'border border-[#102820]/15 bg-white text-[#171B19]/70 hover:border-[#102820] hover:text-[#10241E]'
-                  }`}
-                >
-                  <span>{region}</span>
-                  <span className={`ml-1.5 text-[10px] font-mono ${isActive ? 'text-white/70' : 'text-[#10241E]/60'}`}>
-                    ({count})
-                  </span>
-                </button>
-              );
-            })}
+          {/* 20 Shrines Counter Badge */}
+          <Reveal delay={0.14}>
+            <div className="flex items-center gap-3 rounded-2xl border border-[#10241E]/15 bg-white px-5 py-3 shadow-xs">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#10241E] text-sm font-bold font-mono text-white shadow-xs">
+                20
+              </span>
+              <div>
+                <p className="text-xs font-bold tracking-wider text-[#10241E] uppercase">
+                  Holy Pilgrimage Shrines
+                </p>
+                <p className="text-[11px] text-neutral-500">
+                  Exact Order From Sacred Journal (#01 &ndash; #20)
+                </p>
+              </div>
+            </div>
           </Reveal>
         </div>
 
@@ -116,7 +85,7 @@ export function Destinations({
             <p className="text-xs font-medium text-[#10241E]">
               <strong>Sacred Yatra Tourist:</strong> Walking & leaping at{' '}
               <span className="font-bold underline decoration-[#10241E]/40 underline-offset-2">
-                {filteredDestinations[activeTouristIndex]?.name}
+                {destinationsList[activeTouristIndex]?.name}
               </span>
               <span className="hidden text-neutral-500 sm:inline">
                 {' '}&bull; Strolling and jumping between slides as you explore India's holy sanctuaries!
@@ -147,7 +116,7 @@ export function Destinations({
               type="button"
               onClick={() =>
                 setActiveTouristIndex(
-                  (prev) => (prev + 1) % filteredDestinations.length
+                  (prev) => (prev + 1) % destinationsList.length
                 )
               }
               className="inline-flex min-h-[34px] cursor-pointer items-center gap-1.5 rounded-full bg-[#10241E] px-4 py-1 text-[11px] font-bold text-white shadow-xs transition hover:bg-[#18392E]"
@@ -164,7 +133,7 @@ export function Destinations({
           className="mt-6 grid grid-cols-1 gap-6 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7"
         >
           <AnimatePresence mode="popLayout">
-            {filteredDestinations.map((dest, index) => {
+            {destinationsList.map((dest, index) => {
               const responsiveImg = getResponsiveImageProps(
                 dest.image,
                 '(max-width: 639px) 94vw, (max-width: 1023px) 47vw, 32vw'
@@ -211,7 +180,7 @@ export function Destinations({
                           tagline={dest.tagline}
                           onJumpNext={() =>
                             setActiveTouristIndex(
-                              (prev) => (prev + 1) % filteredDestinations.length
+                              (prev) => (prev + 1) % destinationsList.length
                             )
                           }
                         />

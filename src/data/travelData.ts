@@ -800,14 +800,14 @@ export const CAR_FLEET: CarFleetItem[] = [
 ];
 
 /* ========================================================================
-   FEATURED JOURNEYS / TOUR PACKAGES
+   FEATURED JOURNEYS / TOUR PACKAGES (ONLY THE PACKAGES FROM USER PICS)
    ======================================================================== */
 export const FEATURED_JOURNEYS: FeaturedJourney[] = [
   // 1. Srisailam 1 Day Package (Image 1 - Spotlight)
   {
     id: 'pkg-srisailam-1day',
     category: 'Srisailam Special Packages',
-    title: 'Srisailam 1 Day Package',
+    title: '1 Day Package',
     destinationId: 'srisailam',
     destinationName: 'Shrishailam',
     duration: '1 Day (Same Day Return)',
@@ -857,7 +857,7 @@ export const FEATURED_JOURNEYS: FeaturedJourney[] = [
   {
     id: 'pkg-srisailam-2day',
     category: 'Srisailam Special Packages',
-    title: 'Srisailam 2 Day Package',
+    title: '2 Day Package',
     destinationId: 'srisailam',
     destinationName: 'Shrishailam',
     duration: '2 Days / 1 Night',
@@ -889,227 +889,6 @@ export const FEATURED_JOURNEYS: FeaturedJourney[] = [
     suitableFor: 'Devout Families, Nature Lovers & Spiritual Explorers',
     image: '/images/srisailam-2day-package.jpg',
     alt: 'Srisailam 2 Day Package Krishna River Boating and Cruise',
-  },
-
-  // 3. Telangana Heritage Temple Tour
-  {
-    id: 'pkg-telangana-heritage',
-    category: 'Telangana Temple Tours',
-    title: 'Telangana Sacred Circuit: Yadadri, Vemulawada, Ramappa & Warangal',
-    destinationId: 'yadadri',
-    destinationName: 'Telangana Shrines',
-    duration: '3 Days / 2 Nights',
-    routeSummary: 'Hyderabad → Yadadri → Vemulawada → Ramappa (UNESCO) → Thousand Pillar → Hyderabad',
-    sampleEstimate: 'Custom Quotation on Request',
-    summary:
-      'Explore Telangana’s supreme divine sanctums: Sri Lakshmi Narasimha Swamy at Yadadri, Raja Rajeshwara Swamy at Vemulawada, UNESCO world heritage Ramappa Temple, and Thousand Pillar Temple.',
-    highlights: [
-      'Darshan at newly carved Krishna Shila temple of Yadadri',
-      'Code Mrokkubadi & Dharma Gundam snanam at Vemulawada Rajanna temple',
-      'Marvel at UNESCO world heritage Ramappa Temple and lightweight floating bricks',
-      'Visit historic Thousand Pillar Temple and monolithic black basalt Nandi',
-    ],
-    itinerary: [
-      {
-        day: 'Day 01',
-        title: 'Hyderabad to Yadadri & Vemulawada',
-        detail:
-          'Morning pickup from Hyderabad. Darshan at Yadadri Sri Lakshmi Narasimha Swamy Temple. Afternoon drive to Vemulawada for evening darshan at Sri Raja Rajeshwara Swamy Temple. Overnight in Vemulawada or Karimnagar.',
-      },
-      {
-        day: 'Day 02',
-        title: 'UNESCO Ramappa Temple & Ramappa Lake',
-        detail:
-          'Morning prayers and drive through lush countryside to Palampet. Explore the UNESCO World Heritage Ramappa Temple, admire black basalt dancer statues, and relax near Ramappa Lake. Overnight in Warangal.',
-      },
-      {
-        day: 'Day 03',
-        title: 'Thousand Pillar Temple & Return to Hyderabad',
-        detail:
-          'Morning darshan at the 12th-century Thousand Pillar Temple and Warangal Fort. Return comfortably to Hyderabad with doorstep drop-off.',
-      },
-    ],
-    suitableFor: 'Families, History Enthusiasts & Temple Devotees',
-    image: '/images/destinations/ramappa.jpg',
-    alt: 'Ramappa Temple UNESCO World Heritage',
-  },
-
-  // 4. Maharashtra Tri-Shakti & Datta Peeth Yatra
-  {
-    id: 'pkg-maharashtra-pilgrimage',
-    category: 'Maharashtra Pilgrimages',
-    title: 'Solapur, Ganagapur, Tuljapur, Akalkot & Pandharpur Yatra',
-    destinationId: 'akalkot',
-    destinationName: 'Datta & Vitthal Shrines',
-    duration: '4 Days / 3 Nights',
-    routeSummary: 'Hyderabad → Ganagapur → Tuljapur → Akalkot → Pandharpur → Hyderabad',
-    sampleEstimate: 'Custom Quotation on Request',
-    summary:
-      'Sacred pilgrimage covering Dattatreya Nirguna Padukas at Ganagapur, Tulja Bhavani Shaktipeeth, Swami Samarth Vatavruksha Mandir at Akalkot, and Lord Vitthal-Rukmini Mandir at Pandharpur.',
-    highlights: [
-      'Holy Sangam snanam and Nirguna Paduka darshan at Ganagapur',
-      'Darshan at Tulja Bhavani Temple, Kulswamini of Shivaji Maharaj',
-      'Prayers under the holy Banyan tree at Akalkot Swami Samarth temple',
-      'Padsparsha Darshan at Lord Vitthal and Rukmini Mata in Pandharpur',
-    ],
-    itinerary: [
-      {
-        day: 'Day 01',
-        title: 'Hyderabad to Ganagapur (Dattatreya Peeth)',
-        detail:
-          'Morning pickup from Hyderabad. Drive to Sri Kshetra Ganagapur. Holy bath at Bhima-Amarja Sangam, Audumbar tree worship, and Nirguna Paduka darshan. Overnight in Ganagapur or Solapur.',
-      },
-      {
-        day: 'Day 02',
-        title: 'Tuljapur Bhavani & Akalkot Swami Samarth',
-        detail:
-          'Morning drive to Tuljapur for darshan of Goddess Tulja Bhavani. Proceed to Akalkot for darshan at Vatavruksha Mandir and Swami Samarth Samadhi. Overnight in Solapur.',
-      },
-      {
-        day: 'Day 03',
-        title: 'Pandharpur Vitthal-Rukmini Darshan',
-        detail:
-          'Drive to holy Pandharpur. Take Chandrabhaga river snanam and experience the divine Padsparsha darshan of Lord Vitthal and Rukmini Devi. Overnight in Pandharpur or Solapur.',
-      },
-      {
-        day: 'Day 04',
-        title: 'Comfortable Return to Hyderabad',
-        detail:
-          'Morning prayers and leisurely drive back to Hyderabad with safe doorstep drop-off.',
-      },
-    ],
-    suitableFor: 'Datta Bhaktas, Varkari Devotees & Multi-Generation Families',
-    image: '/images/destinations/pandharpur.jpg',
-    alt: 'Vitthal Rukmini Temple in Pandharpur',
-  },
-
-  // 5. Jyotirlinga Special Yatra
-  {
-    id: 'pkg-jyotirlinga-special',
-    category: 'Jyotirlinga Special Tours',
-    title: 'Panch Jyotirlinga Darshan: Trimbak, Bhimashankar, Omkareshwar & Mahakal',
-    destinationId: 'mahakaleshwar',
-    destinationName: 'Sacred Jyotirlingas',
-    duration: '5 Days / 4 Nights',
-    routeSummary: 'Hyderabad → Nashik (Trimbak) → Bhimashankar → Omkareshwar → Ujjain (Mahakal)',
-    sampleEstimate: 'Custom Quotation on Request',
-    summary:
-      'A blessed multi-state pilgrimage to India’s supreme Jyotirlingas: Trimbakeshwar, Bhimashankar, Omkareshwar in Madhya Pradesh, and Mahakaleshwar in Ujjain.',
-    highlights: [
-      'Darshan of unique 3-faced Trimbakeshwar Jyotirlinga at origin of Godavari',
-      'Visit forested Bhimashankar Jyotirlinga in Western Ghats',
-      'Holy boat ride to Omkareshwar Jyotirlinga island on Narmada River',
-      'Early morning Bhasma Aarti at Mahakaleshwar Jyotirlinga in Ujjain',
-    ],
-    itinerary: [
-      {
-        day: 'Day 01',
-        title: 'Nashik & Trimbakeshwar Jyotirlinga',
-        detail:
-          'Arrive in Nashik. Darshan at Trimbakeshwar Jyotirlinga, visit Kushavarta Kund and Panchavati. Overnight in Nashik.',
-      },
-      {
-        day: 'Day 02',
-        title: 'Bhimashankar Jyotirlinga',
-        detail:
-          'Scenic drive through Western Ghats to Bhimashankar. Attend Rudrabhishekam at the holy sanctum. Overnight in Pune/Manchar.',
-      },
-      {
-        day: 'Day 03',
-        title: 'Journey to Omkareshwar (Madhya Pradesh)',
-        detail:
-          'Travel to Madhya Pradesh. Arrive at holy Omkareshwar island on the Narmada River. Evening sunset boat ride and darshan.',
-      },
-      {
-        day: 'Day 04',
-        title: 'Ujjain Mahakaleshwar & Mahakal Lok',
-        detail:
-          'Proceed to Ujjain. Explore the grand Shri Mahakal Lok corridor and attend Sandhya Aarti at Mahakaleshwar. Overnight in Ujjain.',
-      },
-      {
-        day: 'Day 05',
-        title: 'Ujjain Bhasma Aarti & Departure',
-        detail:
-          'Experience the auspicious 4 AM Bhasma Aarti at Mahakaleshwar temple. Visit Kal Bhairav Temple before departure.',
-      },
-    ],
-    suitableFor: 'Shiva Bhaktas, Spiritual Seekers & Devout Families',
-    image: '/images/destinations/mahakaleshwar.jpg',
-    alt: 'Shri Mahakaleshwar Jyotirlinga in Ujjain',
-  },
-
-  // 6. Ayodhya Shri Ram Janmabhoomi Yatra
-  {
-    id: 'pkg-ayodhya-dham',
-    category: 'Ayodhya Dham Yatra',
-    title: 'Ayodhya Shri Ram Janmabhoomi Darshan Yatra',
-    destinationId: 'ayodhya',
-    destinationName: 'Ayodhya Dham',
-    duration: '3 Days / 2 Nights',
-    routeSummary: 'Lucknow/Ayodhya Airport/Station → Ram Mandir → Hanuman Garhi → Sarayu Ghats',
-    sampleEstimate: 'Custom Quotation on Request',
-    summary:
-      'Experience the divine grandeur of the consecrated Shri Ram Janmabhoomi Mandir, historic Hanuman Garhi, and atmospheric sunset Sarayu Aarti.',
-    highlights: [
-      'Darshan of Bhagwan Shri Ram Lalla inside the grand carved stone Ram Mandir',
-      'Blessings at Hanuman Garhi and Kanak Bhavan',
-      'Soulful evening boat ride and Maha Aarti on the holy Sarayu River',
-      'Personalized elder-care assistance with e-rickshaw coordination',
-    ],
-    itinerary: [
-      {
-        day: 'Day 01',
-        title: 'Arrival in Ayodhya Dham & Sarayu Evening Aarti',
-        detail:
-          'Warm welcome on arrival. Hotel check-in. Evening peaceful boat ride on the holy Sarayu River and attend the mesmerizing sunset Maha Aarti at Ram Ki Paidi.',
-      },
-      {
-        day: 'Day 02',
-        title: 'Shri Ram Janmabhoomi & Hanuman Garhi',
-        detail:
-          'Morning sacred Darshan of Shri Ram Lalla at the grand Ram Mandir. Blessings at Hanuman Garhi, Kanak Bhavan, and Dashrath Mahal.',
-      },
-      {
-        day: 'Day 03',
-        title: 'Surya Kund, Guptar Ghat & Departure',
-        detail:
-          'Morning visit to sacred Surya Kund and historic Guptar Ghat. Departure with cherished blessings of Bhagwan Shri Ram.',
-      },
-    ],
-    suitableFor: 'Ram Bhaktas, Families & Senior Citizens',
-    image: '/images/destinations/ayodhya.jpg',
-    alt: 'Shri Ram Janmabhoomi Mandir in Ayodhya',
-  },
-
-  // 7. Custom Spiritual Yatra
-  {
-    id: 'pkg-custom-spiritual',
-    category: 'Custom Spiritual Tours',
-    title: 'Bespoke Private Pilgrimage Across 20 Holy Shrines',
-    destinationId: 'srisailam',
-    destinationName: 'Custom Spiritual Route',
-    duration: 'Custom Duration',
-    routeSummary: 'Tailored pickup from Hyderabad to any of the 20 approved pilgrimage shrines',
-    sampleEstimate: 'Custom Quotation on Request',
-    summary:
-      'Design your family’s unique pilgrimage route across Shrishailam, Yadadri, Vemulawada, Ramappa, Thousand Pillar, Bhadrachalam, Yaganti, Tirupati, Arunachalam, Ganagapur, Tuljapur, Akalkot, Pandharpur, Shirdi, Bhimashankar, Trimbakeshwar, Omkareshwar, Mahakaleshwar, Sabarimala, or Ayodhya.',
-    highlights: [
-      'Completely flexible dates, itinerary pacing, and temple order',
-      'Dedicated AC fleet (Innova Crysta, Ertiga, Tempo Traveller, Swift Dzire)',
-      'Special wheelchair & senior citizen care arrangements on request',
-      'Transparent, itemized quotation with zero hidden fees',
-    ],
-    itinerary: [
-      {
-        day: 'Day 01+',
-        title: 'Your Tailored Spiritual Itinerary',
-        detail:
-          'Our pilgrimage coordinators consult with you to build the ideal daily schedule, darshan slots, hotel accommodations, and rest stops tailored to your family needs.',
-      },
-    ],
-    suitableFor: 'Private Family Groups, Elders & Custom Spiritual Yatras',
-    image: '/images/srisailam-1day-package.jpg',
-    alt: 'Custom Spiritual Tour with Bhargavi Tour and Travels',
   },
 ];
 
