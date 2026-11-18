@@ -228,10 +228,10 @@ export function Hero() {
             type="button"
             whileHover={isMobile ? undefined : { y: -2 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => scrollToSection('#destinations')}
+            onClick={() => scrollToSection('#packages')}
             className="group inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-white px-7 py-3.5 text-[11px] font-bold tracking-[0.2em] text-[#0B1A15] uppercase shadow-lg transition-all duration-300 hover:bg-[#F2EFE8] sm:w-auto sm:px-8 sm:py-4"
           >
-            <span>Explore Spiritual Destinations</span>
+            <span>Explore Tour Packages</span>
             <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
           </motion.button>
 

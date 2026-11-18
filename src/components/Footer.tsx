@@ -62,10 +62,8 @@ export function Footer({ onSelectDestinationName }: FooterProps) {
               {[
                 { label: 'Home', href: '#hero' },
                 { label: 'Srisailam Special', href: '#srisailam-packages' },
-                { label: 'Destinations', href: '#destinations' },
                 { label: 'Tour Packages', href: '#packages' },
-                { label: 'Our Fleet', href: '#fleet' },
-                { label: 'Spiritual Map', href: '#spiritual-map' },
+                { label: 'About Us', href: '#about' },
                 { label: 'Contact Us', href: '#contact' },
               ].map((item) => (
                 <li key={item.href}>
